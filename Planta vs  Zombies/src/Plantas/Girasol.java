@@ -1,19 +1,17 @@
 package Plantas;
-
-import Estados.EstadoEntidad;
-import Visitores.Visitor;
-
-public class LanzaGuisantesDoble extends Planta {
+import Visitores.*;
+import Estados.*;
+public class Girasol extends Planta{
     protected int precio;
     protected int vida;
-    protected int danio;
+    protected int soles;
     protected EstadoEntidad estado;
     protected Visitor visitor;
 
-    public LanzaGuisantesDoble(){
-        precio = 200;
-        vida = 10;
-        danio = 2; //pero dispara dos veces
+    public Girasol(){
+        precio = 50;
+        vida = 7;
+        soles = 50;
         //estado = new EstadoPlanta();
     }
 
@@ -24,7 +22,7 @@ public class LanzaGuisantesDoble extends Planta {
 
     @Override
     public int Atacar() {
-        /*aca dispara un gisante asi que se debe hacer la clase guisante */
+        /*aca en vez de atacar lo que hace es soltar un sol */
         return 0;
     }
 
@@ -47,5 +45,4 @@ public class LanzaGuisantesDoble extends Planta {
     public EstadoEntidad getEstadoEntidad() {
         return estado;
     }
-    
 }
