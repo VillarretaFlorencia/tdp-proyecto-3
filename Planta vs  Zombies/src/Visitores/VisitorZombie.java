@@ -1,5 +1,6 @@
 package Visitores;
 
+import Plantas.Planta;
 import Zombies.Zombie;
 
 public class VisitorZombie extends Visitor{
@@ -11,5 +12,11 @@ public class VisitorZombie extends Visitor{
 	}
 	
 	public void visit (Zombie z) {}
+
+	
+	public void visit(Planta p) {
+		//vacio por ahora
+		
+	}
 	
 }
