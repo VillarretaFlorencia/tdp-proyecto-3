@@ -15,8 +15,7 @@ public class VisitorZombie extends Visitor{
 
 	
 	public void visit(Planta p) {
-		//vacio por ahora
-		
+		zombie.comer();
 	}
 	
 }

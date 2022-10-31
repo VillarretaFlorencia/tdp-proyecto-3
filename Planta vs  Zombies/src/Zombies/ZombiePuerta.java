@@ -1,7 +1,8 @@
 package Zombies;
 
+import Estados.EstadoComiendo;
 import Estados.EstadoEntidad;
-import Estados.EstadoNormal;
+import Estados.EstadoZombieNormal;
 import Estados.EstadoZombie;
 import Visitores.Visitor;
 import Visitores.VisitorZombie;
@@ -20,7 +21,7 @@ public class ZombiePuerta extends Zombie{
 		velocidad = 1;
 		danio = 1;
 		multiplicador = 1;
-		estado = new EstadoNormal();
+		estado = new EstadoZombieNormal();
 		visitor = new VisitorZombie(this);
 	}
 	
@@ -29,7 +30,7 @@ public class ZombiePuerta extends Zombie{
 	public int getDanio() {return danio;}
 	public double getMultiplicador() {return multiplicador;}
 	public EstadoEntidad getEstado() {return estado;}
-	
+	public void comer () {estado = new EstadoComiendo();}
 	public void recibirDanio (int danio) {
 		vida -= danio;
 		if (vida<=0) {
