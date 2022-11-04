@@ -1,0 +1,50 @@
+package Plantas;
+
+import Estados.EstadoEntidad;
+import Visitores.Visitor;
+
+public class SetaDesporadora extends Planta{
+    protected int precio;
+    protected int vida;
+    protected int danio;
+    protected EstadoEntidad estado;
+    protected Visitor visitor;
+
+    public SetaDesporadora(){
+        precio = 25;
+        vida = 4;
+        danio = 1;
+        //estado = new EstadoPlanta();
+    }
+
+    @Override
+    public int getVida() {
+        return vida;
+    }
+
+    @Override
+    public int Atacar() {
+        /*aca dispara una espora asi que se debe hacer la clase espora */
+        return 0;
+    }
+
+    @Override
+    public void recibirDanio(int danio) {
+        vida -= danio;
+		if (vida<=0) {
+			//autoreMove
+			//opcional que se haga desde el nivel
+		} 
+    }
+
+    @Override
+    public void accept(Visitor v) {
+        v.visit(this);
+        
+    }
+
+    @Override
+    public EstadoEntidad getEstadoEntidad() {
+        return estado;
+    }
+}
