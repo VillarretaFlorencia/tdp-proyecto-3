@@ -118,7 +118,6 @@ public class GUI extends JFrame {
 		contentPane.add(c);
 	}
 	
+	public Nivel getNivel() {return nivel;} 
 	
-	
-
 }

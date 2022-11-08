@@ -1,13 +1,10 @@
 package Zombies;
 
-import Estados.EstadoComiendo;
-import Estados.EstadoEntidad;
-import Estados.EstadoZombieNormal;
-import Estados.EstadoZombie;
+import Estados.*;
 import Visitores.Visitor;
 import Visitores.VisitorZombie;
 
-public class ZombieCono extends Zombie{
+public class ZombieBandera extends Zombie{
 	
 	protected int vida;
 	protected int velocidad;
@@ -17,11 +14,11 @@ public class ZombieCono extends Zombie{
 	protected Visitor visitor;
 	protected boolean movimiento;
 	
-	public ZombieCono() {
-		vida = 8;
+	public ZombieBandera() {
+		vida = 5;
 		velocidad = 1;
-		danio = 2;
-		multiplicador = 2;
+		danio = 1;
+		multiplicador = 1;
 		estado = new EstadoZombieNormal();
 		visitor = new VisitorZombie(this);
 		movimiento=false;

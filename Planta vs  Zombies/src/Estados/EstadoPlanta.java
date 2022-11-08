@@ -1,11 +1,6 @@
 package Estados;
 
-public class EstadoPlanta extends EstadoEntidad{
-
-    @Override
-    public String getImagen() {
-        // TODO Auto-generated method stub
-        return null;
-    }
+public abstract class EstadoPlanta extends EstadoEntidad{
     //estado normal de la planta
+	public abstract String getImagen();
 }
