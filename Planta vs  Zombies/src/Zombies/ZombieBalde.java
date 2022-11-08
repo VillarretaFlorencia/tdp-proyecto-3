@@ -12,6 +12,7 @@ public class ZombieBalde extends Zombie{
 	protected double multiplicador;
 	protected EstadoZombie estado;
 	protected Visitor visitor;
+	protected boolean movimiento;
 	
 	public ZombieBalde() {
 		vida = 5;
@@ -20,6 +21,8 @@ public class ZombieBalde extends Zombie{
 		multiplicador = 1;
 		estado = new EstadoZombieNormal();
 		visitor = new VisitorZombie(this);
+		movimiento = false;
+		
 	}
 	
 	public int getVida() {return vida;}
@@ -35,6 +38,15 @@ public class ZombieBalde extends Zombie{
 			//opcional que se haga desde el nivel
 		} 
 	}
+	
+	public void caminar() {
+		movimiento = true;
+	}
+	public boolean enMovimiento() {
+		
+		return movimiento;
+	}
+	
 	
 	public void accept (Visitor v) {
 		v.visit (this);

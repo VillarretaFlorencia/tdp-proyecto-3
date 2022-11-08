@@ -14,4 +14,7 @@ public abstract class Zombie extends Entidad{
 	public abstract void comer();
 	public abstract void recibirDanio (int danio);
 	public abstract void accept (Visitor v);
+	public abstract void caminar ();
+	public abstract boolean enMovimiento();
 }
+

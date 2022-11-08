@@ -1,13 +1,10 @@
 package Zombies;
 
-import Estados.EstadoComiendo;
-import Estados.EstadoEntidad;
-import Estados.EstadoZombieNormal;
-import Estados.EstadoZombie;
+import Estados.*;
 import Visitores.Visitor;
 import Visitores.VisitorZombie;
 
-public class ZombieDiario  extends Zombie{
+public class ZombiePeriodico extends Zombie{
 	
 	protected int vida;
 	protected int velocidad;
@@ -15,14 +12,16 @@ public class ZombieDiario  extends Zombie{
 	protected double multiplicador;
 	protected EstadoZombie estado;
 	protected Visitor visitor;
+	protected boolean movimiento;
 	
-	public ZombieDiario() {
-		vida = 8;
+	public ZombiePeriodico() {
+		vida = 5;
 		velocidad = 1;
-		danio = 2;
-		multiplicador = 2;
+		danio = 1;
+		multiplicador = 1;
 		estado = new EstadoZombieNormal();
 		visitor = new VisitorZombie(this);
+		movimiento=false;
 	}
 	
 	public int getVida() {return vida;}
@@ -37,6 +36,14 @@ public class ZombieDiario  extends Zombie{
 			//autoreMove
 			//opcional que se haga desde el nivel
 		} 
+	}
+	
+	public void caminar() {
+		movimiento = true;
+	}
+	public boolean enMovimiento() {
+		
+		return movimiento;
 	}
 	
 	public void accept (Visitor v) {

@@ -15,6 +15,7 @@ public class ZombieCono extends Zombie{
 	protected double multiplicador;
 	protected EstadoZombie estado;
 	protected Visitor visitor;
+	protected boolean movimiento;
 	
 	public ZombieCono() {
 		vida = 8;
@@ -23,6 +24,7 @@ public class ZombieCono extends Zombie{
 		multiplicador = 2;
 		estado = new EstadoZombieNormal();
 		visitor = new VisitorZombie(this);
+		movimiento=false;
 	}
 	
 	public int getVida() {return vida;}
@@ -38,6 +40,15 @@ public class ZombieCono extends Zombie{
 			//opcional que se haga desde el nivel
 		} 
 	}
+	
+	public void caminar() {
+		movimiento = true;
+	}
+	public boolean enMovimiento() {
+		
+		return movimiento;
+	}
+	
 	
 	public void accept (Visitor v) {
 		v.visit (this);
