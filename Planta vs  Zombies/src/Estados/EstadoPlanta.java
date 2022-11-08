@@ -1,5 +1,6 @@
 package Estados;
 
-public class EstadoPlanta extends EstadoEntidad{
+public abstract class EstadoPlanta extends EstadoEntidad{
     //estado normal de la planta
+	public abstract String getImagen();
 }
