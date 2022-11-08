@@ -47,5 +47,29 @@ public class LanzaGuisantes extends Planta{
     public EstadoEntidad getEstadoEntidad() {
         return estado;
     }
+
+    @Override
+    public int getVelocidad() {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
+    public int getDanio() {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
+    public double getMultiplicador() {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
+    public EstadoEntidad getEstado() {
+        // TODO Auto-generated method stub
+        return null;
+    }
     
 }
