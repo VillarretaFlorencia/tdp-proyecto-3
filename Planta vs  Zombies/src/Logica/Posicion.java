@@ -16,4 +16,11 @@ public class Posicion {
 	public int getY() {
 		return posY;
 	}
+	public void setX(int x) {
+		posX = x;
+	}
+	
+	public void setY(int y) {
+		posY = y;
+	}
 }
