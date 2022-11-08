@@ -15,10 +15,11 @@ import javax.swing.border.EmptyBorder;
 
 import Cronometro.Cronometro;
 import Logica.Entidad;
+import Logica.*;
 
 
 public class GUI extends JFrame {
-
+	private Nivel  nivel;
 	private JPanel contentPane;
 	private Cronometro miCronometro;
 	private Thread hiloCronometro;
@@ -46,6 +47,7 @@ public class GUI extends JFrame {
 	 * Create the frame.
 	 */
 	public GUI() {
+		nivel = new Nivel();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
