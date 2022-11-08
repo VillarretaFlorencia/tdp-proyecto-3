@@ -14,7 +14,6 @@ public class Cronometro implements Runnable{
 	public Cronometro (JFrame ventana) {
 		//this.ventana=ventana;
 		segundos = 0;
-		n = 1;
 	}
 	
 	
@@ -25,8 +24,7 @@ public class Cronometro implements Runnable{
 				//this.ventana.getLabel().setText("Time "+segundos);
 				//System.out.println("Time "+segundos);
 				segundos++;
-				if (segundos == 30*n) {
-					n++;
+				if (segundos % 30 == 0) {
 					//aca este metodo le avisa a la GUI que debe generar un sol
 					//ventana.generarSol();
 				}
