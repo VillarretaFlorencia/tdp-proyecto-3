@@ -21,9 +21,9 @@ public class startScreen extends JPanel implements ActionListener{
 		//el boton es transparente aprobechando la estructura de la pantalla de titulo
 				btnStart = new JButton("start");
 				btnStart.setBounds(178, 297, 213, 23);
-				//btnStart.setOpaque(false);
-				//btnStart.setContentAreaFilled(false);
-				//btnStart.setBorderPainted(false);
+				btnStart.setOpaque(false);
+				btnStart.setContentAreaFilled(false);
+				btnStart.setBorderPainted(false);
 				add(btnStart);
 				btnStart.addActionListener(this);
 		add(lblstart);
