@@ -18,11 +18,6 @@ public class LanzaGuisantesDoble extends Planta {
     }
 
     @Override
-    public int getVida() {
-        return vida;
-    }
-
-    @Override
     public int Atacar() {
         /*aca dispara un gisante asi que se debe hacer la clase guisante */
         return 0;
@@ -35,12 +30,6 @@ public class LanzaGuisantesDoble extends Planta {
 			//autoreMove
 			//opcional que se haga desde el nivel
 		} 
-    }
-
-    @Override
-    public void accept(Visitor v) {
-        v.visit(this);
-        
     }
 
     @Override

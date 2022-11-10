@@ -22,9 +22,9 @@ public class Proyectil extends Entidad{
 		}
 	}
 
-	private boolean colision() {
+	/*private boolean colision() {
 		return juego.Zombie.getBounds().intersects(getBounds());
-	}
+	}*/
 	
 	public Rectangle getBounds() {
 		return new Rectangle(pos.getX(), pos.getY(),50, 50);

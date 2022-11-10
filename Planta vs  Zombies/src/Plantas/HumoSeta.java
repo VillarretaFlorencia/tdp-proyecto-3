@@ -18,11 +18,6 @@ public class HumoSeta extends Planta{
     }
 
     @Override
-    public int getVida() {
-        return vida;
-    }
-
-    @Override
     public int Atacar() {
         /*aca dispara un monton de esporas en 3 cuadrados delante de el
          * como una escopeta
@@ -37,12 +32,6 @@ public class HumoSeta extends Planta{
 			//autoreMove
 			//opcional que se haga desde el nivel
 		} 
-    }
-
-    @Override
-    public void accept(Visitor v) {
-        v.visit(this);
-        
     }
 
     @Override

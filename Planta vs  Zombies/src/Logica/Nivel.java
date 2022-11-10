@@ -1,24 +1,35 @@
 package Logica;
 
+import java.util.LinkedList;
+
+import Estados.Estado;
 import Excepciones.EmptyListException;
+import Fabrica.Factory;
+import Fabrica.FactoryDia;
+import Fabrica.FactoryNoche;
 import TDALista.DoubleLinkedList;
 import TDALista.PositionList;
 import Zombies.Zombie;
 import Zombies.ZombieNormal;
 
 public class Nivel {
+	protected int soles;
+	protected Entidad grilla;
+	protected Estado estado;
+	protected int nivelLvl;
+	protected Factory fabricaDia;
+	protected Factory fabricaNoche;
+	//protected Singleton singleton;
     private Entidad[][] nivel = new Entidad[6][10];
     
     public Nivel(){
         for(int x = 0; x<6; x++){
             for(int y = 0; y<10; y++){
-                nivel[x][y]= new Celda();
+                nivel[x][y] = null;
             }
         }
-    }
-
-    public void modificar(int x, int y, Entidad ent){
-        nivel[x][y] = ent;
+        fabricaDia = new FactoryDia();
+        fabricaNoche = new FactoryNoche();
     }
     
     public int getColumnas(){
@@ -38,7 +49,50 @@ public class Nivel {
     }
     
     public Entidad getEntidad(int x, int y){
-    return nivel[x][y];
+    	return nivel[x][y];
+    }
+    
+    public int getNivelLVL() {
+    	return nivelLvl;
+    }
+    public void setNivelLVL(int n) {
+    	nivelLvl = n;
+    }
+    public void modificar(Posicion p, int i) {
+    	if (nivel[p.getX()][p.getY()] == null) {
+    		if (nivelLvl == 1  || nivelLvl == 2) {
+	    		switch(i) {
+	    		  case 0:
+	    			nivel[p.getX()][p.getY()] = fabricaDia.createPlantaA();
+	    		    break;
+	    		  case 1:
+	    			nivel[p.getX()][p.getY()] = fabricaDia.createPlantaB();
+	    		    break;
+	    		  case 2:
+	    			nivel[p.getX()][p.getY()] = fabricaDia.createPlantaGirasol();
+	    		    break;
+	    		  case 3:
+	    		    nivel[p.getX()][p.getY()] = fabricaDia.createPlantaNuez();
+	    		    break;
+	    		}
+    		}
+    		if (nivelLvl == 3  || nivelLvl == 4) {
+	    		switch(i) {
+	    		  case 0:
+	    			nivel[p.getX()][p.getY()] = fabricaNoche.createPlantaA();
+	    		    break;
+	    		  case 1:
+	    			nivel[p.getX()][p.getY()] = fabricaNoche.createPlantaB();
+	    		    break;
+	    		  case 2:
+	    			nivel[p.getX()][p.getY()] = fabricaNoche.createPlantaGirasol();
+	    		    break;
+	    		  case 3:
+	    		    nivel[p.getX()][p.getY()] = fabricaNoche.createPlantaNuez();
+	    		    break;
+	    		}
+    		}
+    	}
     }
     
     //listas de oleadas implementar bien, esta es una "pruba"

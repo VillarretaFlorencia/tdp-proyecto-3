@@ -16,11 +16,6 @@ public class Nuez extends Planta{
     }
 
     @Override
-    public int getVida() {
-        return vida;
-    }
-
-    @Override
     public int Atacar() {
         /*aca no hace nada*/
         return 0;
@@ -33,12 +28,6 @@ public class Nuez extends Planta{
 			//autoreMove
 			//opcional que se haga desde el nivel
 		} 
-    }
-
-    @Override
-    public void accept(Visitor v) {
-        v.visit(this);
-        
     }
 
     @Override

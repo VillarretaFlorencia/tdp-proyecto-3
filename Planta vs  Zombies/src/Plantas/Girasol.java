@@ -36,12 +36,6 @@ public class Girasol extends Planta{
     }
 
     @Override
-    public void accept(Visitor v) {
-        v.visit(this);
-        
-    }
-
-    @Override
     public EstadoEntidad getEstadoEntidad() {
         return estado;
     }
