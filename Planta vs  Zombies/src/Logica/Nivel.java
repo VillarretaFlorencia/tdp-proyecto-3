@@ -3,6 +3,8 @@ package Logica;
 import java.util.LinkedList;
 
 import Estados.Estado;
+import Estados.EstadoDia;
+import Estados.EstadoNoche;
 import Excepciones.EmptyListException;
 import Fabrica.Factory;
 import Fabrica.FactoryDia;
@@ -22,14 +24,31 @@ public class Nivel {
 	//protected Singleton singleton;
     private Entidad[][] nivel = new Entidad[6][10];
     
-    public Nivel(){
+    public Nivel(int i){
+    	nivelLvl = i;
         for(int x = 0; x<6; x++){
             for(int y = 0; y<10; y++){
                 nivel[x][y] = null;
             }
         }
-        fabricaDia = new FactoryDia();
-        fabricaNoche = new FactoryNoche();
+        switch(i) {
+        	case(1):
+        		estado = new EstadoDia();
+        		fabricaDia = new FactoryDia();
+        		break;
+        	case(2):
+        		estado = new EstadoDia();
+        		fabricaDia = new FactoryDia();
+        		break;
+        	case(3):
+        		estado = new EstadoNoche();
+        		fabricaNoche = new FactoryNoche();
+        		break;
+        	case(4):
+        		estado = new EstadoNoche();
+        		fabricaNoche = new FactoryNoche();
+        		break;		
+        }      
     }
     
     public int getColumnas(){
@@ -55,9 +74,7 @@ public class Nivel {
     public int getNivelLVL() {
     	return nivelLvl;
     }
-    public void setNivelLVL(int n) {
-    	nivelLvl = n;
-    }
+    
     public void modificar(Posicion p, int i) {
     	if (nivel[p.getX()][p.getY()] == null) {
     		if (nivelLvl == 1  || nivelLvl == 2) {
