@@ -30,6 +30,9 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 		
 		btnRestart = new JButton("Restart");
 		btnRestart.setBounds(481, 0, 89, 23);
+		btnRestart.setOpaque(false);
+		btnRestart.setContentAreaFilled(false);
+		btnRestart.setBorderPainted(false);
 		add(btnRestart,Integer.valueOf(1));
 		
 		panelJardin = new PanelJardin();
@@ -59,6 +62,10 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 		
 		
 		
+	}
+	
+	public void restart() {
+		panelJardin.restart();
 	}
 	
 	public JButton getRestartButton() {

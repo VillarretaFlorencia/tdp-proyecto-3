@@ -6,22 +6,32 @@ import Logica.Nivel;
 import Logica.Posicion;
 
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 
 public class PanelJardin extends JPanel{
 	int seleccion = 0;
+	private JLabel[][] label = new JLabel[9][6];
 	Nivel nivel = new Nivel(1);
 	public PanelJardin() {
-		this.setBounds(0, 0, 540, 300);// esto nos da rectangulos de tamaño 540x294
-		setLayout(new GridLayout(6, 9, 0, 0));
+		this.setBounds(0, 0, 540, 300);
 		setOpaque(false);
 		EventosDelRaton raton = new EventosDelRaton();
 		raton.setPanel(this);//dentro del controlador del panel ponemos este panel
-		addMouseListener(raton);
+		setLayout(null);
 		
+		addMouseListener(raton);
+		for(int x = 0;x < 9; x++) {
+			for(int y = 0; y < 6; y++) {
+				label[x][y] =  new JLabel("poggers");//el string es para ver si aparecian > no funciono
+				label[x][y].setBounds((60*x)+21, (50*y)+22, 27, 47);
+			}
+		}
 		
 		
 	}
@@ -39,6 +49,40 @@ public class PanelJardin extends JPanel{
 	public Nivel getNivel() {
 		return nivel;
 	}
+	
+	public JLabel[][] getLabels(){
+		return label;
+	}
+	
+	public void insert(int posX, int posY) {
+		ImageIcon imagenIcon = null;
+		Image imagen = null;
+		switch(seleccion) {
+			case 1:
+				imagenIcon = new ImageIcon(this.getClass().getResource("/recursos/peashooter.gif"));//cambiar luego dependiendo del estado
+				imagen = imagenIcon.getImage();
+				imagen = imagen.getScaledInstance(27, 47,  java.awt.Image.SCALE_SMOOTH);//le cambiamos el tamano
+				imagenIcon = new ImageIcon(imagen);
+				label[posX][posY].setIcon(imagenIcon);
+				add(label[posX][posY],Integer.valueOf(1));
+				label[posX][posY].setVisible(true);
+				break;
+			case 2:
+				imagenIcon = new ImageIcon(this.getClass().getResource("/recursos/peashooter.gif"));//cambiar luego dependiendo del estado
+				imagen = imagenIcon.getImage();
+				imagen = imagen.getScaledInstance(27, 47,  java.awt.Image.SCALE_SMOOTH);//le cambiamos el tamano
+				imagenIcon = new ImageIcon(imagen);
+				label[posX][posY].setIcon(imagenIcon);
+				add(label[posX][posY],Integer.valueOf(1));
+				label[posX][posY].setVisible(true);
+				break;
+		}
+		add(label[posX][posY]);
+		
+	}
+	public void restart() {
+		nivel = new Nivel(1);
+	}
 }
 
 class EventosDelRaton implements MouseListener{
@@ -46,19 +90,22 @@ class EventosDelRaton implements MouseListener{
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		System.out.println("Coordenadas del mouse: "+e.getX()+ " | "+e.getY());
-		int posX = (int) Math.floor(e.getX()/60);
-		int posY= (int) Math.floor(5-(e.getY()/50));
-		System.out.println("Posicion en la grilla: "+Math.floor(e.getX()/60)+ " | "+Math.floor(5-(e.getY()/50)));
-		System.out.println("Seleccion: "+ panel.getSeleccion());
-		
-		if(panel.getNivel().getEntidad(posX, posY)==null) {
-			System.out.println("Pongo una planta nueva");
-			panel.getNivel().modificar(new Posicion(posX,posY), panel.getSeleccion());
-			panel.setSeleccion(0);
-		}else {
-			System.out.println("ya hay una planta aqui");
-			panel.setSeleccion(0);
+		if(panel.getSeleccion()!=0) {//solo si ha seleccionado algo
+			System.out.println("Coordenadas del mouse: "+e.getX()+ " | "+e.getY());
+			int posX = (int) Math.floor(e.getX()/60);
+			int posY= (int) Math.floor(5-(e.getY()/50));
+			System.out.println("Posicion en la grilla: "+Math.floor(e.getX()/60)+ " | "+Math.floor(5-(e.getY()/50)));
+			System.out.println("Seleccion: "+ panel.getSeleccion());
+			
+			if(panel.getNivel().getEntidad(posX, posY)==null) {
+				System.out.println("Pongo una planta nueva");
+				panel.getNivel().modificar(new Posicion(posX,posY), panel.getSeleccion());
+				panel.insert(posX,posY);
+				panel.setSeleccion(0);
+			}else {
+				System.out.println("ya hay una planta aqui");
+				panel.setSeleccion(0);
+			}
 		}
 	}
 

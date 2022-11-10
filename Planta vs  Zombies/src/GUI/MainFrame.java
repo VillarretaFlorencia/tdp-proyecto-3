@@ -40,7 +40,7 @@ public class MainFrame extends JFrame{
 			public void actionPerformed(ActionEvent e) {//al momento de presionar el boton
 				CardLayout c1 = (CardLayout)(getContentPane().getLayout());//se cambia toma el panel
 				c1.show(getContentPane(),START); // y lo cambiamos en el contentPane
-				
+				panelGameplay.restart();
 			}
 			
 		});
