@@ -22,12 +22,12 @@ public class Nivel {
 	protected Factory fabricaDia;
 	protected Factory fabricaNoche;
 	//protected Singleton singleton;
-    private Entidad[][] nivel = new Entidad[6][10];
+    private Entidad[][] nivel = new Entidad[6][9];
     
     public Nivel(int i){
     	nivelLvl = i;
         for(int x = 0; x<6; x++){
-            for(int y = 0; y<10; y++){
+            for(int y = 0; y<9; y++){
                 nivel[x][y] = null;
             }
         }
