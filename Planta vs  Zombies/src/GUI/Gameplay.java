@@ -9,12 +9,11 @@ import javax.swing.plaf.basic.BasicButtonListener;
 
 public class Gameplay extends JLayeredPane implements ActionListener{
 	private JButton btnRestart;
-	private PanelJardin panel;
+	private PanelJardin panelJardin;
 	private JButton btnPlanta1;
 	private JButton btnPlanta2;
 	private JButton btnPlanta3;
 	private JButton btnPlanta4;
-	private int seleccion; // esta es la seleccion de la planta que quiere plantar
 	public Gameplay() {
 		JLabel lblGame = new JLabel("");
 		lblGame.setBounds(0, 0, 600, 341);
@@ -33,9 +32,9 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 		btnRestart.setBounds(481, 0, 89, 23);
 		add(btnRestart,Integer.valueOf(1));
 		
-		panel = new PanelJardin();
-		panel.setBounds(23, 48, 526, 293);
-		add(panel,Integer.valueOf(1));
+		panelJardin = new PanelJardin();
+		panelJardin.setBounds(23, 48, 526, 293);
+		add(panelJardin,Integer.valueOf(1));
 		
 		btnPlanta1 = new JButton("Planta1");
 		btnPlanta1.setBounds(64, 14, 57, 23);
@@ -70,22 +69,22 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==btnPlanta1) {
 			System.out.println("CREANDO PLANTA 1");
-			seleccion = 1;
+			panelJardin.setSeleccion(1);
 		}
 		
 		if(e.getSource()==btnPlanta2) {
 			System.out.println("CREANDO PLANTA 2");
-			seleccion = 2;
+			panelJardin.setSeleccion(2);
 		}
 		
 		if(e.getSource()==btnPlanta3) {
 			System.out.println("CREANDO PLANTA 3");
-			seleccion = 3;
+			panelJardin.setSeleccion(3);
 		}
 		
 		if(e.getSource()==btnPlanta4) {
 			System.out.println("CREANDO PLANTA 4");
-			seleccion = 4;
+			panelJardin.setSeleccion(4);
 		}
 	}
 }
