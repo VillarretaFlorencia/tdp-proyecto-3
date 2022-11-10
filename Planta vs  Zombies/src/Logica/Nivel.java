@@ -79,17 +79,17 @@ public class Nivel {
     	if (nivel[p.getX()][p.getY()] == null) {
     		if (nivelLvl == 1  || nivelLvl == 2) {
 	    		switch(i) {
-	    		  case 0:
-	    			nivel[p.getX()][p.getY()] = fabricaDia.createPlantaA();
-	    		    break;
 	    		  case 1:
-	    			nivel[p.getX()][p.getY()] = fabricaDia.createPlantaB();
+	    			nivel[p.getX()][p.getY()] = fabricaDia.createPlantaA();
 	    		    break;
 	    		  case 2:
 	    			nivel[p.getX()][p.getY()] = fabricaDia.createPlantaGirasol();
 	    		    break;
 	    		  case 3:
-	    		    nivel[p.getX()][p.getY()] = fabricaDia.createPlantaNuez();
+	    			nivel[p.getX()][p.getY()] = fabricaDia.createPlantaNuez();
+	    		    break;
+	    		  case 4:
+	    		    nivel[p.getX()][p.getY()] = fabricaDia.createPlantaB();
 	    		    break;
 	    		}
     		}

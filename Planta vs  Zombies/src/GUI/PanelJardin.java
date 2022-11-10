@@ -76,6 +76,24 @@ public class PanelJardin extends JPanel{
 				add(label[posX][posY],Integer.valueOf(1));
 				label[posX][posY].setVisible(true);
 				break;
+			case 3:
+				imagenIcon = new ImageIcon(this.getClass().getResource("/recursos/sunflower.gif"));//cambiar luego dependiendo del estado
+				imagen = imagenIcon.getImage();
+				imagen = imagen.getScaledInstance(27, 47,  java.awt.Image.SCALE_SMOOTH);//le cambiamos el tamano
+				imagenIcon = new ImageIcon(imagen);
+				label[posX][posY].setIcon(imagenIcon);
+				add(label[posX][posY],Integer.valueOf(1));
+				label[posX][posY].setVisible(true);
+				break;
+			case 4:
+				imagenIcon = new ImageIcon(this.getClass().getResource("/recursos/walnut_full_life.gif"));//cambiar luego dependiendo del estado
+				imagen = imagenIcon.getImage();
+				imagen = imagen.getScaledInstance(27, 47,  java.awt.Image.SCALE_SMOOTH);//le cambiamos el tamano
+				imagenIcon = new ImageIcon(imagen);
+				label[posX][posY].setIcon(imagenIcon);
+				add(label[posX][posY],Integer.valueOf(1));
+				label[posX][posY].setVisible(true);
+				break;
 		}
 		add(label[posX][posY]);
 		
@@ -104,6 +122,7 @@ class EventosDelRaton implements MouseListener{
 				panel.setSeleccion(0);
 			}else {
 				System.out.println("ya hay una planta aqui");
+				System.out.println("Aqui hay: "+panel.getNivel().getEntidad(posX, posY).getClass().getSimpleName());
 				panel.setSeleccion(0);
 			}
 		}
