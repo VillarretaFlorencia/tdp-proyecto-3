@@ -1,6 +1,7 @@
 package Logica;
 
 import java.util.LinkedList;
+import java.util.Map;
 
 import Estados.Estado;
 import Estados.EstadoDia;
@@ -19,10 +20,11 @@ public class Nivel {
 	protected Entidad grilla;
 	protected Estado estado;
 	protected int nivelLvl;
-	protected Factory fabricaDia;
-	protected Factory fabricaNoche;
+	protected Factory miFabrica;
+	protected Map<Integer,Entidad> fila;
 	//protected Singleton singleton;
     private Entidad[][] nivel = new Entidad[6][9];
+    
     
     public Nivel(int i){
     	nivelLvl = i;
@@ -31,24 +33,14 @@ public class Nivel {
                 nivel[x][y] = null;
             }
         }
-        switch(i) {
-        	case(1):
-        		estado = new EstadoDia();
-        		fabricaDia = new FactoryDia();
-        		break;
-        	case(2):
-        		estado = new EstadoDia();
-        		fabricaDia = new FactoryDia();
-        		break;
-        	case(3):
-        		estado = new EstadoNoche();
-        		fabricaNoche = new FactoryNoche();
-        		break;
-        	case(4):
-        		estado = new EstadoNoche();
-        		fabricaNoche = new FactoryNoche();
-        		break;		
-        }      
+        if (i == 1 || i == 2) {
+        	estado = new EstadoDia();
+    		miFabrica = new FactoryDia();
+        }
+        if (i == 3 || i == 4) {
+        	estado = new EstadoNoche();
+    		miFabrica = new FactoryNoche();
+        }
     }
     
     public int getColumnas(){
@@ -59,8 +51,8 @@ public class Nivel {
     }
     
     //devuelve la lista de entidades existentes en una fila    
-    public PositionList<Entidad> getEntidadesFila (int fila){
-    	PositionList<Entidad> entidades = new DoubleLinkedList<Entidad>();
+    public LinkedList<Entidad> getEntidadesFila (int fila){
+    	LinkedList<Entidad> entidades = new LinkedList<Entidad>();
     	for (int i=0; i < getColumnas(); i++) {
     		entidades.addLast(nivel[fila][i]);
     	}
@@ -76,47 +68,29 @@ public class Nivel {
     }
     
     public void modificar(Posicion p, int i) {
-    	if (nivel[p.getX()][p.getY()] == null) {
-    		if (nivelLvl == 1  || nivelLvl == 2) {
-	    		switch(i) {
-	    		  case 1:
-	    			nivel[p.getX()][p.getY()] = fabricaDia.createPlantaA();
-	    		    break;
-	    		  case 2:
-	    			nivel[p.getX()][p.getY()] = fabricaDia.createPlantaGirasol();
-	    		    break;
-	    		  case 3:
-	    			nivel[p.getX()][p.getY()] = fabricaDia.createPlantaNuez();
-	    		    break;
-	    		  case 4:
-	    		    nivel[p.getX()][p.getY()] = fabricaDia.createPlantaB();
-	    		    break;
-	    		}
-    		}
-    		if (nivelLvl == 3  || nivelLvl == 4) {
-	    		switch(i) {
-	    		  case 0:
-	    			nivel[p.getX()][p.getY()] = fabricaNoche.createPlantaA();
-	    		    break;
-	    		  case 1:
-	    			nivel[p.getX()][p.getY()] = fabricaNoche.createPlantaB();
-	    		    break;
-	    		  case 2:
-	    			nivel[p.getX()][p.getY()] = fabricaNoche.createPlantaGirasol();
-	    		    break;
-	    		  case 3:
-	    		    nivel[p.getX()][p.getY()] = fabricaNoche.createPlantaNuez();
-	    		    break;
-	    		}
-    		}
-    	}
+		switch(i) {
+		  case 1:
+			nivel[p.getX()][p.getY()] = miFabrica.createPlantaA();
+		    break;
+		  case 2:
+			nivel[p.getX()][p.getY()] = miFabrica.createPlantaGirasol();
+		    break;
+		  case 3:
+			nivel[p.getX()][p.getY()] = miFabrica.createPlantaNuez();
+		    break;
+		  case 4:
+		    nivel[p.getX()][p.getY()] = miFabrica.createPlantaB();
+		    break;
+	    }
+		//ENVIAR A LA GUI, LA ENTIDAD QUE AGREGAMOS Y LA POSICION (ACTUALIZAR)
+		fila.insertPlanta(p.getY(),nivel[p.getX()][p.getY()]);
     }
     
     //listas de oleadas implementar bien, esta es una "pruba"
-    public PositionList<PositionList<Zombie>> getOleadas (){
-    	PositionList<PositionList<Zombie>> oleadas = new DoubleLinkedList<PositionList<Zombie>>();
+    public LinkedList<LinkedList<Zombie>> getOleadas (){
+    	LinkedList<LinkedList<Zombie>> oleadas = new LinkedList<LinkedList<Zombie>>();
     	//agrego lista la primer oleada
-    	oleadas.addLast(new DoubleLinkedList<Zombie>());
+    	oleadas.addLast(new LinkedList<Zombie>());
     	//agregozombie a la oleada
     	try {
 			oleadas.last().element().addLast(new ZombieNormal());
