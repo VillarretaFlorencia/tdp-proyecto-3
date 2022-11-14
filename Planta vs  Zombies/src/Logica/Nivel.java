@@ -1,5 +1,6 @@
 package Logica;
 
+import java.util.Deque;
 import java.util.LinkedList;
 import java.util.Map;
 
@@ -10,10 +11,9 @@ import Excepciones.EmptyListException;
 import Fabrica.Factory;
 import Fabrica.FactoryDia;
 import Fabrica.FactoryNoche;
-import TDALista.DoubleLinkedList;
-import TDALista.PositionList;
 import Zombies.Zombie;
 import Zombies.ZombieNormal;
+
 
 public class Nivel {
 	protected int soles;
@@ -22,12 +22,17 @@ public class Nivel {
 	protected int nivelLvl;
 	protected Factory miFabrica;
 	protected Map<Integer,Entidad> fila;
+	protected LinkedList<LinkedList<Zombie>> oleadas;
+	
 	//protected Singleton singleton;
     private Entidad[][] nivel = new Entidad[6][9];
     
     
     public Nivel(int i){
     	nivelLvl = i;
+    	
+    	
+    	
         for(int x = 0; x<6; x++){
             for(int y = 0; y<9; y++){
                 nivel[x][y] = null;
@@ -41,6 +46,9 @@ public class Nivel {
         	estado = new EstadoNoche();
     		miFabrica = new FactoryNoche();
         }
+        
+        LevelReader lr = new LevelReader(nivelLvl);
+    	oleadas = lr.crearOleadas(miFabrica);
     }
     
     public int getColumnas(){
@@ -83,18 +91,14 @@ public class Nivel {
 		    break;
 	    }
 		//ENVIAR A LA GUI, LA ENTIDAD QUE AGREGAMOS Y LA POSICION (ACTUALIZAR)
-		fila.insertPlanta(p.getY(),nivel[p.getX()][p.getY()]);
+		//fila.insertPlanta(p.getY(),nivel[p.getX()][p.getY()]);
     }
     
-    //listas de oleadas implementar bien, esta es una "pruba"
-    public LinkedList<LinkedList<Zombie>> getOleadas (){
-    	LinkedList<LinkedList<Zombie>> oleadas = new LinkedList<LinkedList<Zombie>>();
-    	//agrego lista la primer oleada
-    	oleadas.addLast(new LinkedList<Zombie>());
-    	//agregozombie a la oleada
-    	try {
-			oleadas.last().element().addLast(new ZombieNormal());
-    	} catch (EmptyListException e) {e.printStackTrace();}
+    
+    
+    public LinkedList<LinkedList<Zombie>> getOleadas () {
     	return oleadas;
     }
+    
+    
 }
