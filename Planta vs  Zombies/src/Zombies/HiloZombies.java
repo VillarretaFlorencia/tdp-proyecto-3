@@ -33,6 +33,7 @@ public class HiloZombies implements Runnable{
 				else {
 					dormir /= 2;  
 					oleadas.remove(oleadas.getFirst());
+					//ventana.getNuevaOleada();
 				}
 			} catch (InterruptedException e) {e.printStackTrace();}
 		}

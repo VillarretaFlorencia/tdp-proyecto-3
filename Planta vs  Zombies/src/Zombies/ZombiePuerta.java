@@ -3,6 +3,7 @@ package Zombies;
 import Estados.EstadoComiendo;
 import Estados.EstadoEntidad;
 import Estados.EstadoZombieNormal;
+import Logica.Posicion;
 import Estados.EstadoZombie;
 import Visitores.Visitor;
 import Visitores.VisitorZombie;
@@ -12,6 +13,7 @@ public class ZombiePuerta extends Zombie{
 	protected int vida;
 	protected int velocidad;
 	protected int danio;
+	protected Posicion posicion;
 	protected double multiplicador;
 	protected EstadoZombie estado;
 	protected Visitor visitor;
