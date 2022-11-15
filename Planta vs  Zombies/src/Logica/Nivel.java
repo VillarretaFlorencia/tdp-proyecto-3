@@ -26,7 +26,7 @@ public class Nivel {
 	
 	
 	//protected Singleton singleton;
-    private Entidad[][] nivel = new Entidad[6][9]; //cambiar por filas y columnas
+    private Entidad[][] nivel = new Entidad[9][6]; //cambiar por filas y columnas
     
     
     public Nivel(int i){
@@ -34,8 +34,8 @@ public class Nivel {
     	
     	
     	
-        for(int x = 0; x<6; x++){
-            for(int y = 0; y<9; y++){
+        for(int x = 0; x<9; x++){
+            for(int y = 0; y<6; y++){
                 nivel[x][y] = null;
             }
         }

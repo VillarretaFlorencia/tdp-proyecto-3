@@ -66,50 +66,8 @@ public class PanelJardin extends JPanel{
 	public void insert(int posX, int posY) {
 		ImageIcon imagenIcon = null;
 		Image imagen = null;
-		switch(seleccion) {
-			case 1:
-				/*
-				imagenIcon = new ImageIcon(this.getClass().getResource("/recursos/peashooter.gif"));//cambiar luego dependiendo del estado
-				imagen = imagenIcon.getImage();
-				imagen = imagen.getScaledInstance(27, 47,  java.awt.Image.SCALE_SMOOTH);//le cambiamos el tamano
-				imagenIcon = new ImageIcon(imagen);
-				label[posX][posY].setIcon(imagenIcon);
-				add(label[posX][posY],Integer.valueOf(1));
-				label[posX][posY].setVisible(true);
-				label[posX][posY].repaint();
-				*/
-				gameplay.modificar(posX, posY, seleccion);
-				break;
-			case 2:
-				imagenIcon = new ImageIcon(this.getClass().getResource("/recursos/peashooter.gif"));//cambiar luego dependiendo del estado
-				imagen = imagenIcon.getImage();
-				imagen = imagen.getScaledInstance(27, 47,  java.awt.Image.SCALE_SMOOTH);//le cambiamos el tamano
-				imagenIcon = new ImageIcon(imagen);
-				label[posX][posY].setIcon(imagenIcon);
-				add(label[posX][posY],Integer.valueOf(1));
-				label[posX][posY].setVisible(true);
-				break;
-			case 3:
-				imagenIcon = new ImageIcon(this.getClass().getResource("/recursos/sunflower.gif"));//cambiar luego dependiendo del estado
-				imagen = imagenIcon.getImage();
-				imagen = imagen.getScaledInstance(27, 47,  java.awt.Image.SCALE_SMOOTH);//le cambiamos el tamano
-				imagenIcon = new ImageIcon(imagen);
-				label[posX][posY].setIcon(imagenIcon);
-				add(label[posX][posY],Integer.valueOf(1));
-				label[posX][posY].setVisible(true);
-				break;
-			case 4:
-				imagenIcon = new ImageIcon(this.getClass().getResource("/recursos/walnut_full_life.gif"));//cambiar luego dependiendo del estado
-				imagen = imagenIcon.getImage();
-				imagen = imagen.getScaledInstance(27, 47,  java.awt.Image.SCALE_SMOOTH);//le cambiamos el tamano
-				imagenIcon = new ImageIcon(imagen);
-				label[posX][posY].setIcon(imagenIcon);
-				add(label[posX][posY],Integer.valueOf(1));
-				label[posX][posY].setVisible(true);
-				break;
-		}
-		add(label[posX][posY]);
-		this.repaint();
+		gameplay.modificar(posX, posY, seleccion);
+		
 	}
 	public void restart() {
 		nivel = new Nivel(1);
@@ -123,9 +81,9 @@ class EventosDelRaton implements MouseListener{
 		// TODO Auto-generated method stub
 		if(panel.getSeleccion()!=0) {//solo si ha seleccionado algo
 			System.out.println("Coordenadas del mouse: "+e.getX()+ " | "+e.getY());
-			int posX = (int) Math.floor(e.getX()/63);
-			int posY= (int) Math.floor((e.getY()/63));
-			System.out.println("Posicion en la grilla: "+Math.floor(e.getX()/63)+ " | "+Math.floor((e.getY()/63)));
+			int posX = (int) (Math.floor(e.getX()/63));
+			int posY= (int) (Math.floor((e.getY()/63)));
+			System.out.println("Posicion en la grilla: "+(posX)+ " | "+(5-posY));
 			System.out.println("Seleccion: "+ panel.getSeleccion());
 			
 			if(panel.getNivel().getEntidad(posX, posY)==null) {
