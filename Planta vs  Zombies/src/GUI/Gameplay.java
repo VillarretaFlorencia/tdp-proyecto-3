@@ -14,6 +14,7 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 	private JButton btnPlanta2;
 	private JButton btnPlanta3;
 	private JButton btnPlanta4;
+	JLabel[][] label = new JLabel[9][6];
 	public Gameplay() {
 		JLabel lblGame = new JLabel("");
 		lblGame.setBounds(0, 0, 600, 341);
@@ -96,6 +97,15 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 		
 		
 		
+		for(int x = 0;x < 9; x++) {
+			for(int y = 0; y < 6; y++) {
+				label[x][y] =  new JLabel("poggers");//el string es para ver si aparecian > no funciono
+				label[x][y].setBounds((60*x)+21, (50*y)+22, 27, 47);
+				label[x][y].setIcon(iconLanzaG);
+				label[x][y].setVisible(true);
+				add(label[x][y],Integer.valueOf(1));
+			}
+		}
 		
 	}
 	

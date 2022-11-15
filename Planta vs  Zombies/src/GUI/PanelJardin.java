@@ -66,6 +66,7 @@ public class PanelJardin extends JPanel{
 				label[posX][posY].setIcon(imagenIcon);
 				add(label[posX][posY],Integer.valueOf(1));
 				label[posX][posY].setVisible(true);
+				label[posX][posY].repaint();
 				break;
 			case 2:
 				imagenIcon = new ImageIcon(this.getClass().getResource("/recursos/peashooter.gif"));//cambiar luego dependiendo del estado
@@ -96,7 +97,7 @@ public class PanelJardin extends JPanel{
 				break;
 		}
 		add(label[posX][posY]);
-		
+		this.repaint();
 	}
 	public void restart() {
 		nivel = new Nivel(1);

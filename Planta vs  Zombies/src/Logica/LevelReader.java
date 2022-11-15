@@ -17,10 +17,30 @@ public class LevelReader {
 	
 	public LevelReader(int lvl) {
 		
+		File directorio = new File(System.getProperty("user.dir"));
+	    String[] arr = directorio.list();
+	    File dirRecursos = null;
+	    File dirtxt = null;
+	    for (int i = 0; i < arr.length; i++) {
+	      if (arr[i].contains("recursos")) {
+	        dirRecursos = new File(arr[i]);
+	      }
+	    }
+	    //System.out.println(dirRecursos.getAbsolutePath());
+	    File[] arr2 = dirRecursos.listFiles();
+	    for (int i = 0; i < arr2.length; i++) {
+	      //System.out.println(arr2[i].getAbsolutePath());
+	      if (arr2[i].getAbsolutePath().contains("zombies")) {
+	        //System.out.println("Entra al if de src      " + arr2[i].getAbsolutePath());
+	        dirtxt = new File(arr2[i].getAbsolutePath());
+	      }
+	    }
+		
 		String ruta = "";
 		switch (lvl) {
 			case 1: {
-				ruta = "C:\\Users\\FRAVEGA\\Desktop\\Flor\\Estudios\\Ingenieria en sistemas de la informacion\\(7951) Tecnologia de Programacion\\Proyecto-3\\tdp-proyecto-3\\Planta vs  Zombies\\recursos\\zombies.txt";
+				ruta = dirtxt.getAbsolutePath();
+				//System.out.println(dirtxt);
 				break;} 
 		}
 		
