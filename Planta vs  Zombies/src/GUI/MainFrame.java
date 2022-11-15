@@ -12,14 +12,13 @@ public class MainFrame extends JFrame{
 	final static String START = "Ventana Start";
 	final static String GAMEPLAY = "Ventana Gameplay";
 	
-	
 	startScreen panelInicio = new startScreen();
 	Gameplay panelGameplay = new Gameplay();
 	
 	public MainFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(new CardLayout(0,0));
-		this.setBounds(0, 0, 570, 450);
+		this.setBounds(0, 0, 583, 489);
 		this.setResizable(false);
 		//anadimos las ventanas al frame
 		getContentPane().add(panelInicio,START);//agregamos la ventana con el identificador
