@@ -44,6 +44,7 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 		add(btnRestart,Integer.valueOf(1));
 		
 		panelJardin = new PanelJardin();
+		panelJardin.setGameplay(this);
 		panelJardin.setBounds(-1, 1, 570, 380);
 		panelJardin.setOpaque(false);
 		add(panelJardin,Integer.valueOf(1));
@@ -111,12 +112,29 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 			for(int y = 0; y < 6; y++) {
 				label[x][y] =  new JLabel("poggers");//el string es para ver si aparecian > no funciono
 				label[x][y].setBounds((63*x)+0, (63*y)-10, 70, 87);
-				label[x][y].setIcon(new ImageIcon(Gameplay.class.getResource("/recursos/peashooter.gif")));
+				//label[x][y].setIcon(new ImageIcon(Gameplay.class.getResource("/recursos/peashooter.gif")));
 				label[x][y].setVisible(true);
 				add(label[x][y],Integer.valueOf(1));
 			}
 		}
 		
+	}
+	
+	public void modificar(int x, int y, int seleccion) {
+		switch (seleccion) {
+			case 1: label[x][y].setIcon(new ImageIcon(Gameplay.class.getResource("/recursos/peashooter.gif")));
+					break;
+			
+			case 2:
+				label[x][y].setIcon(new ImageIcon(Gameplay.class.getResource("/recursos/sunflower.gif")));
+				break;
+			case 3:
+				label[x][y].setIcon(new ImageIcon(Gameplay.class.getResource("/recursos/walnut_full_life.gif")));
+				break;
+			case 4:
+				label[x][y].setIcon(new ImageIcon(Gameplay.class.getResource("/recursos/repeater.gif")));
+				break;
+		}
 	}
 	
 	public void restart() {
