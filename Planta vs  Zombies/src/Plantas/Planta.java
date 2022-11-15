@@ -29,4 +29,13 @@ public abstract class Planta extends Entidad {
     public Posicion getPosicion() {
     	return posicion;
     }
+    public int compareTo (Planta p) {//
+    	int res = 0;
+    	if (posicion.getY() < p.getPosicion().getY()) 
+    		res = -1;
+    	else if (posicion.getY() > p.getPosicion().getY()) 
+    		res = 1;
+    	
+    	return res;
+    }
 }
