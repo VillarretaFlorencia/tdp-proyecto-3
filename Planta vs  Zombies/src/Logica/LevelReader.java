@@ -22,21 +22,40 @@ public class LevelReader {
 	    File dirRecursos = null;
 	    File dirtxt = null;
 	    for (int i = 0; i < arr.length; i++) {
-	      if (arr[i].contains("recursos")) {
+	      if (arr[i].contains("src")) {
+	    	  System.out.println(arr[i]);
 	        dirRecursos = new File(arr[i]);
 	      }
 	    }
-	    //System.out.println(dirRecursos.getAbsolutePath());
+	    
+	  
+	    //System.out.println(dirRecursos.getAbsolutePath()+"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
 	    File[] arr2 = dirRecursos.listFiles();
 	    for (int i = 0; i < arr2.length; i++) {
-	      //System.out.println(arr2[i].getAbsolutePath());
-	      if (arr2[i].getAbsolutePath().contains("zombies")) {
+	      System.out.println(arr2[i].getAbsolutePath());
+	      if (arr2[i].getAbsolutePath().contains("recursos")) {
 	        //System.out.println("Entra al if de src      " + arr2[i].getAbsolutePath());
 	        dirtxt = new File(arr2[i].getAbsolutePath());
 	      }
 	    }
+	    
+	    //System.out.println(dirtxt.getAbsolutePath()+"OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
+	    
+	    File[] arr3 = dirtxt.listFiles();
+	    for (int i = 0; i < arr3.length; i++) {
+	      //System.out.println(arr3[i].getAbsolutePath());
+	      if (arr3[i].getAbsolutePath().contains("zombies.txt")) {
+	        //System.out.println("Entra al if de src      " + arr3[i].getAbsolutePath());
+	        dirtxt = new File(arr3[i].getAbsolutePath());
+	      }
+	    }
 		
+	    
+	    //System.out.println(dirtxt.getAbsolutePath()+"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
 		String ruta = "";
+	    
+	    
+	    
 		switch (lvl) {
 			case 1: {
 				ruta = dirtxt.getAbsolutePath();
