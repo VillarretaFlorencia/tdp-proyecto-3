@@ -69,7 +69,7 @@ public class LevelReader {
 	    } catch (Exception e) { e.printStackTrace(); }
 	}
 	
-	private Zombie crearZombie (char c, Factory f) {
+	private Zombie crearZombie (char c, Factory f, Nivel n) {
 		Zombie z = null;
 		switch (c) {
 		case 'n': {
@@ -94,19 +94,28 @@ public class LevelReader {
 			z = f.createZombieBandera();
 			break;} 
 		}
-		
+		int fila = n.getFilas()-1;
+		int columna = n.getColumnas()-1;
+		switch (c) {
+		case 'v': {
+			z.setPosicion(new Posicion ((int)(Math.random()*fila),(int)(Math.random()*(2-columna)+columna))); //filas,columnas
+			break;}
+		default: {
+			z.setPosicion(new Posicion ((int)(Math.random()*fila),columna));
+			break;} 
+		}
 		return z;
 	}
 	
 	
-	public LinkedList<LinkedList<Zombie>> crearOleadas(Factory f){
+	public LinkedList<LinkedList<Zombie>> crearOleadas(Factory f, Nivel n){
 		LinkedList<LinkedList<Zombie>> oleadas = new LinkedList<LinkedList<Zombie>>() ;
 		for (Character c : zombies) {
 			if (c == '/') {
 				oleadas.add (new LinkedList<Zombie>());
 			}
 			else {
-				oleadas.getLast().add(crearZombie(c, f));
+				oleadas.getLast().add(crearZombie(c, f, n));
 			}
 		}
 		return oleadas;

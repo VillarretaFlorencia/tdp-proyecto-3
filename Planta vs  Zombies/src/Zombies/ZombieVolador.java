@@ -3,6 +3,7 @@ package Zombies;
 import Estados.EstadoComiendo;
 import Estados.EstadoEntidad;
 import Estados.EstadoZombieNormal;
+import Logica.Posicion;
 import Estados.EstadoZombie;
 import Visitores.Visitor;
 import Visitores.VisitorZombie;
@@ -12,10 +13,11 @@ public class ZombieVolador extends Zombie{
 	protected int vida;
 	protected int velocidad;
 	protected int danio;
+	protected Posicion posicion;
 	protected double multiplicador;
 	protected EstadoZombie estado;
 	protected Visitor visitor;
-	protected  boolean movimiento;
+	protected boolean movimiento;
 	
 	public ZombieVolador() {
 		vida = 5;
@@ -24,6 +26,6 @@ public class ZombieVolador extends Zombie{
 		multiplicador = 1;
 		estado = new EstadoZombieNormal();
 		visitor = new VisitorZombie(this);
-		movimiento=false;
+		movimiento = false;
 	}
 }

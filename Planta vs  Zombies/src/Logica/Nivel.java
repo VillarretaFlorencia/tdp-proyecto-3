@@ -24,8 +24,9 @@ public class Nivel {
 	protected Map<Integer,Entidad> fila;
 	protected LinkedList<LinkedList<Zombie>> oleadas;
 	
+	
 	//protected Singleton singleton;
-    private Entidad[][] nivel = new Entidad[6][9];
+    private Entidad[][] nivel = new Entidad[6][9]; //cambiar por filas y columnas
     
     
     public Nivel(int i){
@@ -48,7 +49,7 @@ public class Nivel {
         }
         
         LevelReader lr = new LevelReader(nivelLvl);
-    	oleadas = lr.crearOleadas(miFabrica);
+    	oleadas = lr.crearOleadas(miFabrica, this);
     }
     
     public int getColumnas(){
@@ -94,7 +95,7 @@ public class Nivel {
 		//fila.insertPlanta(p.getY(),nivel[p.getX()][p.getY()]);
     }
     
-    
+      
     
     public LinkedList<LinkedList<Zombie>> getOleadas () {
     	return oleadas;

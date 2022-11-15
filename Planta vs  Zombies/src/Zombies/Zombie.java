@@ -10,13 +10,15 @@ import Logica.Posicion;
 import Visitores.*;
 
 public abstract class Zombie extends Entidad{
-	protected boolean movimiento;
+	
 	protected int vida;
-	protected EstadoZombie estado;
+	protected int velocidad;
 	protected int danio;
 	protected Posicion posicion;
-	protected int velocidad;
 	protected double multiplicador;
+	protected EstadoZombie estado;
+	protected Visitor visitor;
+	protected boolean movimiento;
 
 	public int getVida(){
 		return vida;
