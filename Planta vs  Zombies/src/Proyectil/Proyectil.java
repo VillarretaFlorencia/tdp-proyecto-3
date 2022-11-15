@@ -1,8 +1,15 @@
-package Logica;
+package Proyectil;
 
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.util.Map;
+
+import Estados.EstadoEntidad;
+import Logica.Entidad;
+import Logica.Fila;
+import Logica.Nivel;
+import Logica.Posicion;
+import Visitores.Visitor;
 
 public class Proyectil extends Entidad{
 	private int danio;
@@ -16,6 +23,7 @@ public class Proyectil extends Entidad{
 		danio = 0;
 		move();
 	}
+	
 	public void atacar() {
 		
 	}
@@ -53,5 +61,40 @@ public class Proyectil extends Entidad{
 	
 	public Rectangle getBounds() {
 		return new Rectangle(pos.getX(), pos.getY(),50, 50);
+	}
+	@Override
+	public int getVida() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	@Override
+	public int getVelocidad() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	@Override
+	public int getDanio() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	@Override
+	public double getMultiplicador() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	@Override
+	public EstadoEntidad getEstado() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public void recibirDanio(int danio) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void accept(Visitor v) {
+		// TODO Auto-generated method stub
+		
 	}
 }
