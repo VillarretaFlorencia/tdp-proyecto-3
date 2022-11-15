@@ -19,7 +19,7 @@ public class MainFrame extends JFrame{
 	public MainFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(new CardLayout(0,0));
-		this.setBounds(0, 0, 570, 360);
+		this.setBounds(0, 0, 570, 450);
 		this.setResizable(false);
 		//anadimos las ventanas al frame
 		getContentPane().add(panelInicio,START);//agregamos la ventana con el identificador

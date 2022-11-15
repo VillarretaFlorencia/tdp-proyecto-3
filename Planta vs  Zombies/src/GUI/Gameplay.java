@@ -18,9 +18,9 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 	public Gameplay() {
 		JLabel lblGame = new JLabel("");
 		lblGame.setBounds(0, 0, 600, 341);
-		setBounds(0,0,570,335);
 		ImageIcon imagenInicio = new ImageIcon(this.getClass().getResource("/recursos/mainBG.png"));
 		Image start = imagenInicio.getImage();
+		setBounds(0,0,570,335);
 		start = start.getScaledInstance(570, 335,  java.awt.Image.SCALE_SMOOTH);
 		imagenInicio = new ImageIcon(start);
 		lblGame.setIcon(imagenInicio);
@@ -30,14 +30,14 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 		add(lblGame,Integer.valueOf(0));
 		
 		btnRestart = new JButton("Restart");
-		btnRestart.setBounds(481, 0, 89, 23);
+		btnRestart.setBounds(471, 301, 89, 23);
 		btnRestart.setOpaque(false);
 		btnRestart.setContentAreaFilled(false);
 		btnRestart.setBorderPainted(false);
 		add(btnRestart,Integer.valueOf(1));
 		
 		panelJardin = new PanelJardin();
-		panelJardin.setBounds(23, 48, 526, 293);
+		panelJardin.setBounds(0, 0, 570, 293);
 		add(panelJardin,Integer.valueOf(1));
 		
 		btnPlanta1 = new JButton("Planta1");
@@ -46,7 +46,7 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 		imgLanzaG = imgLanzaG.getScaledInstance(57, 23, java.awt.Image.SCALE_SMOOTH);
 		iconLanzaG = new ImageIcon(imgLanzaG);
 		btnPlanta1.setIcon(iconLanzaG);
-		btnPlanta1.setBounds(64, 14, 57, 23);
+		btnPlanta1.setBounds(31, 301, 57, 23);
 		btnPlanta1.setOpaque(false);
 		btnPlanta1.setContentAreaFilled(false);
 		btnPlanta1.setBorderPainted(false);
@@ -59,11 +59,10 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 		imgLanzaGDoble = imgLanzaGDoble.getScaledInstance(57, 23, java.awt.Image.SCALE_SMOOTH);
 		iconLanzaGDoble = new ImageIcon(imgLanzaGDoble);
 		btnPlanta2.setIcon(iconLanzaGDoble);
-		btnPlanta2.setBounds(64, 14, 57, 23);
 		btnPlanta2.setOpaque(false);
 		btnPlanta2.setContentAreaFilled(false);
 		btnPlanta2.setBorderPainted(false);
-		btnPlanta2.setBounds(131, 14, 57, 23);
+		btnPlanta2.setBounds(140, 301, 57, 23);
 		add(btnPlanta2,Integer.valueOf(1));
 		btnPlanta2.addActionListener(this);
 		
@@ -73,11 +72,10 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 		imgGirasol = imgGirasol.getScaledInstance(57, 23, java.awt.Image.SCALE_SMOOTH);
 		iconGirasol = new ImageIcon(imgGirasol);
 		btnPlanta3.setIcon(iconGirasol);
-		btnPlanta3.setBounds(64, 14, 57, 23);
+		btnPlanta3.setBounds(207, 301, 57, 23);
 		btnPlanta3.setOpaque(false);
 		btnPlanta3.setContentAreaFilled(false);
 		btnPlanta3.setBorderPainted(false);
-		btnPlanta3.setBounds(192, 14, 57, 23);
 		add(btnPlanta3,Integer.valueOf(1));
 		btnPlanta3.addActionListener(this);
 		
@@ -87,11 +85,10 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 		imgNuez = imgNuez.getScaledInstance(57, 23, java.awt.Image.SCALE_SMOOTH);
 		iconNuez = new ImageIcon(imgNuez);
 		btnPlanta4.setIcon(iconNuez);
-		btnPlanta4.setBounds(64, 14, 57, 23);
+		btnPlanta4.setBounds(81, 301, 57, 23);
 		btnPlanta4.setOpaque(false);
 		btnPlanta4.setContentAreaFilled(false);
 		btnPlanta4.setBorderPainted(false);
-		btnPlanta4.setBounds(258, 14, 57, 23);
 		add(btnPlanta4,Integer.valueOf(1));
 		btnPlanta4.addActionListener(this);
 		
@@ -117,7 +114,7 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 		return btnRestart;
 	}
 
-	@Override
+
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==btnPlanta1) {
 			System.out.println("CREANDO PLANTA 1");
