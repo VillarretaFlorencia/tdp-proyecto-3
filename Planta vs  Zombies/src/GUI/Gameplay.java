@@ -16,6 +16,7 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 	private JButton btnPlanta3;
 	private JButton btnPlanta4;
 	JLabel[][] label = new JLabel[9][6];
+	private int soles;
 	public Gameplay() {
 		setBackground(new Color(0, 204, 0));
 		JLabel lblGame = new JLabel("");
@@ -110,7 +111,7 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 		
 		for(int x = 0;x < 9; x++) {
 			for(int y = 0; y < 6; y++) {
-				label[x][y] =  new JLabel("");//el string es para ver si aparecian > no funciono
+				label[x][y] =  new JLabel("");
 				label[x][y].setBounds((63*x)+0, (63*y)-10, 70, 87);
 				//label[x][y].setIcon(new ImageIcon(Gameplay.class.getResource("/recursos/peashooter.gif")));
 				label[x][y].setVisible(true);
@@ -139,8 +140,16 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 	
 	public void restart() {
 		panelJardin.restart();
+		for(int x = 0; x < label.length; x++) {
+			for(int y = 0; y < label[0].length; y++) {
+				label[x][y].setIcon(null);
+			}
+		}
 	}
 	
+	public PanelJardin getJardin() {
+		return panelJardin;
+	}
 	public JButton getRestartButton() {
 		return btnRestart;
 	}

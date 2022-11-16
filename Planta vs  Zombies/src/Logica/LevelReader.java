@@ -44,7 +44,7 @@ public class LevelReader {
 	    File[] arr3 = dirtxt.listFiles();
 	    for (int i = 0; i < arr3.length; i++) {
 	      //System.out.println(arr3[i].getAbsolutePath());
-	      if (arr3[i].getAbsolutePath().contains("zombies.txt")) {
+	      if (arr3[i].getAbsolutePath().contains(lvl+".txt")) {
 	        //System.out.println("Entra al if de src      " + arr3[i].getAbsolutePath());
 	        dirtxt = new File(arr3[i].getAbsolutePath());
 	      }
@@ -54,14 +54,7 @@ public class LevelReader {
 	    //System.out.println(dirtxt.getAbsolutePath()+"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
 		String ruta = "";
 	    
-	    
-	    
-		switch (lvl) {
-			case 1: {
-				ruta = dirtxt.getAbsolutePath();
-				//System.out.println(dirtxt);
-				break;} 
-		}
+		ruta = dirtxt.getAbsolutePath();
 		
 		File file = new File(ruta); // abrimos el archivo dentro de java
 	    try {
@@ -83,8 +76,6 @@ public class LevelReader {
 	        }
 	      }
 	      for (Character c : zombies) {System.out.println (c);}
-	      
-	      //cerrar archivo?
 	    } catch (Exception e) { e.printStackTrace(); }
 	}
 	
@@ -117,10 +108,10 @@ public class LevelReader {
 		int columna = n.getColumnas()-1;
 		switch (c) {
 		case 'v': {
-			z.setPosicion(new Posicion ((int)(Math.random()*fila),(int)(Math.random()*(2-columna)+columna))); //filas,columnas
+			z.setPosicion(new Posicion ((int)(Math.random()*(2-columna)+columna), (int)(Math.random()*fila))); //filas,columnas
 			break;}
 		default: {
-			z.setPosicion(new Posicion ((int)(Math.random()*fila),columna));
+			z.setPosicion(new Posicion (columna, (int)(Math.random()*fila)));
 			break;} 
 		}
 		return z;
@@ -139,22 +130,6 @@ public class LevelReader {
 		}
 		return oleadas;
 	}
-	
-	/*public LinkedList<Zombie> [] crearOleadas(Factory f){
-		LinkedList<Zombie> [] oleadas = (LinkedList<Zombie>[]) new Object [5];
-		int i = -1; //numero de oleada
-		for (Character c : zombies) {
-			if (c == '/') {
-				i++;
-				oleadas [i] = new LinkedList<Zombie>();
-			}
-			else {
-				oleadas[i].add(crearZombie(c, f));
-			}
-		}
-		return oleadas;
-	}*/
-	
-	
+		
 }
 
