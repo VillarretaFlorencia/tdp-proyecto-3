@@ -1,8 +1,15 @@
-package Logica;
+package Proyectil;
 
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.util.Map;
+
+import Estados.EstadoEntidad;
+import Logica.Entidad;
+import Logica.Fila;
+import Logica.Nivel;
+import Logica.Posicion;
+import Visitores.Visitor;
 
 public class Proyectil extends Entidad{
 	private int danio;
@@ -10,12 +17,14 @@ public class Proyectil extends Entidad{
 	private Nivel juego;
 	private Map map;
 	private String imagen;
+	private boolean estado;
 	
 	public Proyectil(Posicion pos) {
 		this.pos = pos;
 		danio = 0;
 		move();
 	}
+	
 	public void atacar() {
 		
 	}
@@ -31,27 +40,12 @@ public class Proyectil extends Entidad{
 		Fila f = map.getFila(pos.posX());
 		return f.getZombies().getBounds().intersects(getBounds());
 	}
-	/*protected void Colisiones(){
-		Point l= arma.getLocation();
-		Point n;
-		if(vive() && arma.isVisible()){
-			for (NaveEnemiga Nave : MiNivel.obtenerNavesEnemigas()) {
-				if(Nave.isVisible()){
-					n= Nave.getLocation();
-					boolean morira= (l.getX()>=n.getX()) && (l.getX()<= n.getX()+ Nave.getWidth()) && n.getY()>=15;
-					if (morira ){
-						int puntos= Nave.serAtacado();
-						setPuntaje(puntos);
-						MiNivel.juego.jLabelPuntos.setText(" "+ obtenerPuntaje());				 
-					}
-				}
-			}
-		}
-	}
-	
-	*/
 	
 	public Rectangle getBounds() {
 		return new Rectangle(pos.getX(), pos.getY(),50, 50);
+	}
+
+	public boolean getActividad() {
+		return estado;
 	}
 }

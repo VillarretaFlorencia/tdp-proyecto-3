@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.PriorityQueue;
 
 import Plantas.Planta;
+import Proyectil.Proyectil;
 import Zombies.Zombie;
 
 public class Fila{
