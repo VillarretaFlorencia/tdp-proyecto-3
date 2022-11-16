@@ -44,7 +44,7 @@ public class LevelReader {
 	    File[] arr3 = dirtxt.listFiles();
 	    for (int i = 0; i < arr3.length; i++) {
 	      //System.out.println(arr3[i].getAbsolutePath());
-	      if (arr3[i].getAbsolutePath().contains("zombies.txt")) {
+	      if (arr3[i].getAbsolutePath().contains(lvl+".txt")) {
 	        //System.out.println("Entra al if de src      " + arr3[i].getAbsolutePath());
 	        dirtxt = new File(arr3[i].getAbsolutePath());
 	      }
@@ -54,14 +54,7 @@ public class LevelReader {
 	    //System.out.println(dirtxt.getAbsolutePath()+"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
 		String ruta = "";
 	    
-	    
-	    
-		switch (lvl) {
-			case 1: {
-				ruta = dirtxt.getAbsolutePath();
-				//System.out.println(dirtxt);
-				break;} 
-		}
+		ruta = dirtxt.getAbsolutePath();
 		
 		File file = new File(ruta); // abrimos el archivo dentro de java
 	    try {
