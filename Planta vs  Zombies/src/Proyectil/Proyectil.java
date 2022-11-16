@@ -17,6 +17,7 @@ public class Proyectil extends Entidad{
 	private Nivel juego;
 	private Map map;
 	private String imagen;
+	private boolean estado;
 	
 	public Proyectil(Posicion pos) {
 		this.pos = pos;
@@ -62,39 +63,8 @@ public class Proyectil extends Entidad{
 	public Rectangle getBounds() {
 		return new Rectangle(pos.getX(), pos.getY(),50, 50);
 	}
-	@Override
-	public int getVida() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	@Override
-	public int getVelocidad() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	@Override
-	public int getDanio() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	@Override
-	public double getMultiplicador() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	@Override
-	public EstadoEntidad getEstado() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public void recibirDanio(int danio) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void accept(Visitor v) {
-		// TODO Auto-generated method stub
-		
+
+	public boolean getActividad() {
+		return estado;
 	}
 }
