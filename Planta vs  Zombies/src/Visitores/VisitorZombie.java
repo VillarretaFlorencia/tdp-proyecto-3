@@ -11,7 +11,13 @@ public class VisitorZombie extends Visitor{
 		zombie = z;
 	}
 	
-	public void visit (Zombie z) {}
+	public void visit (Proyectil p) {
+		int daniar = p.getDanio();
+		if (p.getVida()>daniar)
+			z.recibirDanio (daniar);
+		else
+			z.morir();
+	}
 
 	
 	public void visit(Planta p) {
