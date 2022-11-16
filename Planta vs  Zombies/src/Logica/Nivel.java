@@ -95,7 +95,7 @@ public class Nivel {
 		//fila.insertPlanta(p.getY(),nivel[p.getX()][p.getY()]);
     }
     
-      
+   
     
     public LinkedList<LinkedList<Zombie>> getOleadas () {
     	return oleadas;
