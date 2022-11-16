@@ -6,17 +6,14 @@ import Logica.Fila;
 
 public class HiloProyectil implements Runnable{
 	//Atributos de instancia
-	protected int segundos;
 	protected Thread h1;
 	protected int n;
-	protected Proyectil proyectil;
-	protected 
+	protected Proyectil proyectil; 
 	//protected JFrame ventana;
 	
-	public HiloProyectil() {
-		//this.ventana=ventana;
-		segundos = 0;
+	public HiloProyectil(Proyectil p) {
 		proyectil = p;
+		
 	}
 	
 	public void run () {
@@ -25,7 +22,6 @@ public class HiloProyectil implements Runnable{
 				Thread.sleep(1000);
 				//this.ventana.getLabel().setText("Time "+segundos);
 				//System.out.println("Time "+segundos);
-				segundos++;
 				proyectil.move();
 			}catch (InterruptedException e) {
 				e.getMessage();
