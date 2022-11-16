@@ -19,14 +19,14 @@ public class PanelJardin extends JPanel{
 	Gameplay gameplay = null;
 	int seleccion = 0;
 	private JLabel[][] label = new JLabel[9][6];
-	Nivel nivel = new Nivel(1);
+	Nivel nivel;
 	public PanelJardin() {
+		nivel = new Nivel(1);
 		this.setBounds(0, 0, 570, 38);
 		setOpaque(false);
 		EventosDelRaton raton = new EventosDelRaton();
 		raton.setPanel(this);//dentro del controlador del panel ponemos este panel
 		setLayout(null);
-		
 		addMouseListener(raton);
 		for(int x = 0;x < 9; x++) {
 			for(int y = 0; y < 6; y++) {
@@ -42,6 +42,10 @@ public class PanelJardin extends JPanel{
 	}
 	public int getSeleccion() {
 		return  seleccion;
+	}
+	
+	public void setNivel(int i) {
+		nivel=new Nivel(i);
 	}
 	
 	public void setNivel(Nivel n) {
@@ -64,8 +68,7 @@ public class PanelJardin extends JPanel{
 		return gameplay;
 	}
 	public void insert(int posX, int posY) {
-		ImageIcon imagenIcon = null;
-		Image imagen = null;
+		System.out.println("Nivel: "+ nivel.getNivelLVL());
 		gameplay.modificar(posX, posY, seleccion);
 		
 	}
