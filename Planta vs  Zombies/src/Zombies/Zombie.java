@@ -23,18 +23,23 @@ public abstract class Zombie extends Entidad{
 	public int getVida(){
 		return vida;
 	}
+	
 	public Posicion getPosicion() {
 		return posicion;
 	}
+	
 	public void setPosicion(Posicion p) {
 		posicion = p;
 	}
+	
 	public int getVelocidad() {
 		return velocidad;
 	}
+	
 	public int getDanio() {
 		return danio;
 	}
+	
 	public double getMultiplicador(){
 		return multiplicador;
 	}
@@ -61,6 +66,11 @@ public abstract class Zombie extends Entidad{
 	}
 	public boolean enMovimiento() {
 		return movimiento;
+	}
+	
+	public void morir () {
+		vida = 0;
+		movimiento = false;
 	}
 	public Rectangle getBounds() {
 		return new Rectangle(getPosicion().getX(), getPosicion().getY(), 100, 200);

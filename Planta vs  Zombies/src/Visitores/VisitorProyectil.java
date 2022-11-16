@@ -13,7 +13,7 @@ public class VisitorProyectil extends Visitor{
 	
 	public void visit (Zombie z) {
 		p.setActivo (false);
-		z.accept();
+		z.accept(this);
 	}
 
 	
