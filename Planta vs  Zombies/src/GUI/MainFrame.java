@@ -14,7 +14,7 @@ public class MainFrame extends JFrame{
 	final static String SELECTOR = "ventana selector de nivel";
 	
 	startScreen panelInicio = new startScreen();
-	Gameplay panelGameplay = new Gameplay();
+	Gameplay panelGameplay = new Gameplay(1);//provisorio
 	LvlSelector panelSelector = new LvlSelector();
 	
 	public MainFrame() {
@@ -52,6 +52,7 @@ public class MainFrame extends JFrame{
 			public void actionPerformed(ActionEvent e) {//al momento de presionar el boton
 				CardLayout c1 = (CardLayout)(getContentPane().getLayout());//se cambia toma el panel
 				c1.show(getContentPane(),GAMEPLAY); // y lo cambiamos en el contentPane
+				panelGameplay  = new Gameplay(1);
 				panelGameplay.getJardin().setNivel(1);
 				//panelGameplay.restart();
 			}
@@ -62,6 +63,7 @@ public class MainFrame extends JFrame{
 			public void actionPerformed(ActionEvent e) {//al momento de presionar el boton
 				CardLayout c1 = (CardLayout)(getContentPane().getLayout());//se cambia toma el panel
 				c1.show(getContentPane(),GAMEPLAY); // y lo cambiamos en el contentPane
+				panelGameplay  = new Gameplay(2);
 				panelGameplay.getJardin().setNivel(2);
 				//panelGameplay.restart();
 			}
@@ -72,6 +74,7 @@ public class MainFrame extends JFrame{
 			public void actionPerformed(ActionEvent e) {//al momento de presionar el boton
 				CardLayout c1 = (CardLayout)(getContentPane().getLayout());//se cambia toma el panel
 				c1.show(getContentPane(),GAMEPLAY); // y lo cambiamos en el contentPane
+				panelGameplay  = new Gameplay(3);
 				panelGameplay.getJardin().setNivel(3);
 				//panelGameplay.restart();
 			}
@@ -82,6 +85,7 @@ public class MainFrame extends JFrame{
 			public void actionPerformed(ActionEvent e) {//al momento de presionar el boton
 				CardLayout c1 = (CardLayout)(getContentPane().getLayout());//se cambia toma el panel
 				c1.show(getContentPane(),GAMEPLAY); // y lo cambiamos en el contentPane
+				panelGameplay  = new Gameplay(4);
 				panelGameplay.getJardin().setNivel(4);
 				//panelGameplay.restart();
 			}

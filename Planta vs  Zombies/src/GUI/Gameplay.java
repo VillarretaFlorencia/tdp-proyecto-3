@@ -17,20 +17,38 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 	private JButton btnPlanta4;
 	JLabel[][] label = new JLabel[9][6];
 	private int soles;
-	public Gameplay() {
+	private JLabel lblGameN;
+	public Gameplay( int i) {
 		setBackground(new Color(0, 204, 0));
 		JLabel lblGame = new JLabel("");
 		lblGame.setBounds(-3, -8, 575, 394);
-		ImageIcon imagenInicio = new ImageIcon(this.getClass().getResource("/recursos/mainBG.png"));
-		Image start = imagenInicio.getImage();
+		
+		
+		ImageIcon imagenInicio  = new ImageIcon(this.getClass().getResource("/recursos/mainBG.png"));
+		Image start= imagenInicio.getImage();
 		setBounds(0,0,570,450);
 		start = start.getScaledInstance(570, 380,  java.awt.Image.SCALE_SMOOTH);
 		imagenInicio = new ImageIcon(start);
-		lblGame.setIcon(new ImageIcon(Gameplay.class.getResource("/recursos/mainBG.png")));
-		lblGame.setVisible(true);
+		
+		
+		lblGameN = new JLabel("");
+		lblGameN.setIcon(new ImageIcon(Gameplay.class.getResource("/recursos/mainBG_N.png")));
+		lblGameN.setBounds(-3, -8, 575, 394);
+		add(lblGameN,Integer.valueOf(0));
+		lblGame.setVisible(false);
+		lblGameN.setVisible(false);
+		
+		lblGame.setIcon(imagenInicio);
+		lblGameN.setVisible(true);
 		setVisible(true);
 		setLayout(null);
 		add(lblGame,Integer.valueOf(0));
+		
+		if(i <= 2) {
+			lblGame.setVisible(true);
+		}else {
+			lblGameN.setVisible(true);
+		}
 		
 		btnRestart = new JButton("Restart");
 		ImageIcon reStartIcon = new ImageIcon(Gameplay.class.getResource("/recursos/restart.png"));
@@ -106,6 +124,7 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 		madera.setIcon(new ImageIcon(Gameplay.class.getResource("/recursos/madera.jpg")));
 		madera.setBounds(-13, 379, 581, 71);
 		add(madera);
+		
 		
 		
 		
