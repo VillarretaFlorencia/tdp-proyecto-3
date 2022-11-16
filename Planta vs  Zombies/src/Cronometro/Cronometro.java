@@ -1,8 +1,6 @@
 package Cronometro;
 
-import javax.swing.JFrame;
-
-import GUI.GUI;
+import GUI.Gameplay;
 
 public class Cronometro implements Runnable{
 	//Atributos de instancia
@@ -11,7 +9,7 @@ public class Cronometro implements Runnable{
 	public int n;
 	//protected JFrame ventana;
 	
-	public Cronometro (JFrame ventana) {
+	public Cronometro (Gameplay ventana) {
 		//this.ventana=ventana;
 		segundos = 0;
 	}
@@ -24,9 +22,11 @@ public class Cronometro implements Runnable{
 				//this.ventana.getLabel().setText("Time "+segundos);
 				//System.out.println("Time "+segundos);
 				segundos++;
-				if (segundos % 30 == 0) {
-					//aca este metodo le avisa a la GUI que debe generar un sol
+				if (segundos % 10000 == 0) {//cambia la imagen del girasol, aumenta los soles respecto a la cantidad de girasoles, descansa, se vuelve al girasol normal
+					//ventana.girasolActivo();
+					Thread.sleep(1000);
 					//ventana.generarSol();
+					//ventana.girasolNormal();
 				}
 			}catch (InterruptedException e) {
 				e.getMessage();

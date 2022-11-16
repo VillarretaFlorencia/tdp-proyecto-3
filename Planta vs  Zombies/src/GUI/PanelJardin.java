@@ -4,6 +4,7 @@ import javax.swing.JPanel;
 
 import Logica.Nivel;
 import Logica.Posicion;
+import Logica.Sol;
 
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -67,6 +68,7 @@ public class PanelJardin extends JPanel{
 	public Gameplay getGameplay() {
 		return gameplay;
 	}
+	
 	public void insert(int posX, int posY) {
 		System.out.println("Nivel: "+ nivel.getNivelLVL());
 		gameplay.modificar(posX, posY, seleccion);
@@ -74,7 +76,9 @@ public class PanelJardin extends JPanel{
 	}
 	public void restart() {
 		nivel = new Nivel(1);
+		//limpiar labels
 	}
+	
 }
 
 class EventosDelRaton implements MouseListener{

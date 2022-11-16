@@ -1,29 +1,24 @@
 package Zombies;
 
 import java.util.LinkedList;
-
-import Excepciones.EmptyListException;
-import Excepciones.InvalidPositionException;
-import GUI.GUI;
-import TDALista.PositionList;
+import GUI.PanelJardin;
 
 //vienen predeterminados desde un txt solo los manejo de aca
 public class HiloZombies implements Runnable{
 	//Atributos de instancia
 	public LinkedList<LinkedList<Zombie>> oleadas;
 	public Thread h1;
-	protected GUI ventana;
+	protected PanelJardin ventana;
 	
-	public HiloZombies (GUI v) {
+	public HiloZombies (PanelJardin v) {
 		ventana = v;
 		oleadas = ventana.getNivel().getOleadas();
 	}
 		
 	public void run () {
-		int dormir = 20000;
+		int dormir = 10000;
 		while(!oleadas.isEmpty()) {
 			try {
-				
 				Thread.sleep(dormir);
 				LinkedList <Zombie> oleada = oleadas.getFirst();
 				if (!oleada.isEmpty()) {
@@ -34,6 +29,7 @@ public class HiloZombies implements Runnable{
 					dormir /= 2;  
 					oleadas.remove(oleadas.getFirst());
 					//ventana.getNuevaOleada();
+					Thread.sleep(20000);
 				}
 			} catch (InterruptedException e) {e.printStackTrace();}
 		}
