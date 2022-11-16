@@ -45,7 +45,7 @@ public class PanelJardin extends JPanel{
 		return  seleccion;
 	}
 	
-	public void setNivel(int i) {
+	public void setNivel(int i) {//aca hacemos el set del nivel
 		nivel=new Nivel(i);
 	}
 	

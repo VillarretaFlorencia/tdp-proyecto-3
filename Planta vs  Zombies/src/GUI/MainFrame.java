@@ -53,7 +53,7 @@ public class MainFrame extends JFrame{
 				CardLayout c1 = (CardLayout)(getContentPane().getLayout());//se cambia toma el panel
 				c1.show(getContentPane(),GAMEPLAY); // y lo cambiamos en el contentPane
 				panelGameplay.getJardin().setNivel(1);
-				panelGameplay.restart();
+				//panelGameplay.restart();
 			}
 			
 		});
@@ -63,7 +63,7 @@ public class MainFrame extends JFrame{
 				CardLayout c1 = (CardLayout)(getContentPane().getLayout());//se cambia toma el panel
 				c1.show(getContentPane(),GAMEPLAY); // y lo cambiamos en el contentPane
 				panelGameplay.getJardin().setNivel(2);
-				panelGameplay.restart();
+				//panelGameplay.restart();
 			}
 			
 		});
@@ -73,7 +73,7 @@ public class MainFrame extends JFrame{
 				CardLayout c1 = (CardLayout)(getContentPane().getLayout());//se cambia toma el panel
 				c1.show(getContentPane(),GAMEPLAY); // y lo cambiamos en el contentPane
 				panelGameplay.getJardin().setNivel(3);
-				panelGameplay.restart();
+				//panelGameplay.restart();
 			}
 			
 		});
@@ -83,7 +83,7 @@ public class MainFrame extends JFrame{
 				CardLayout c1 = (CardLayout)(getContentPane().getLayout());//se cambia toma el panel
 				c1.show(getContentPane(),GAMEPLAY); // y lo cambiamos en el contentPane
 				panelGameplay.getJardin().setNivel(4);
-				panelGameplay.restart();
+				//panelGameplay.restart();
 			}
 			
 		});
