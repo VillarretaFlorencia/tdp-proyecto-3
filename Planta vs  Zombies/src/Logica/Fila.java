@@ -9,12 +9,12 @@ import Proyectil.Proyectil;
 import Zombies.Zombie;
 
 public class Fila{
-	protected LinkedList<Zombie> listaZombies;
+	protected PriorityQueue<Zombie> listaZombies;
 	protected PriorityQueue <Planta> listaPlantas;
 	protected PriorityQueue <Proyectil> listaProyectiles;
 	
 	public Fila () {
-		listaZombies = new LinkedList<Zombie>();
+		listaZombies = new PriorityQueue<Zombie>();
 		listaPlantas = new PriorityQueue(new Comparador<Planta>());
 		listaProyectiles = new PriorityQueue(new Comparador<Proyectil>());
 	}
@@ -25,7 +25,11 @@ public class Fila{
 	
 	public void setProyectil (Proyectil p) {listaProyectiles.add(p);}
 	
-	public LinkedList<Zombie> getZombies() {return listaZombies;}
+	public Zombie getZombies() {
+		Zombie z = listaZombies.remove();
+		listaZombies.add(z);
+		return z;
+	}
 	
 	public Planta getPrimerPlanta() {
 		Planta p = listaPlantas.remove();
