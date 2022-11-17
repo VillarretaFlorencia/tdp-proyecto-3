@@ -14,9 +14,9 @@ public class Fila{
 	protected PriorityQueue <Proyectil> listaProyectiles;
 	
 	public Fila () {
-		listaZombies = new PriorityQueue<Zombie>();
-		listaPlantas = new PriorityQueue(new Comparador<Planta>());
-		listaProyectiles = new PriorityQueue(new Comparador<Proyectil>());
+		listaZombies = new PriorityQueue<Zombie>(new Comparador<Zombie>());
+		listaPlantas = new PriorityQueue<Planta>(new Comparador<Planta>());
+		listaProyectiles = new PriorityQueue<Proyectil>(new Comparador<Proyectil>());
 	}
 	
 	public void setZombie (Zombie z) {listaZombies.add(z);}
@@ -25,7 +25,7 @@ public class Fila{
 	
 	public void setProyectil (Proyectil p) {listaProyectiles.add(p);}
 	
-	public Zombie getZombies() {
+	public Zombie getPrimerZombie() {
 		Zombie z = listaZombies.remove();
 		listaZombies.add(z);
 		return z;
@@ -41,5 +41,15 @@ public class Fila{
 		Proyectil p = listaProyectiles.remove();
 		listaProyectiles.add(p);
 		return p;
+	}
+	
+	public boolean colision() {
+		Proyectil p = this.getPrimerProyectil();
+		Zombie z = this.getPrimerZombie();
+		boolean res = z.getBounds().intersects(p.getBounds());
+		if (res) {
+			p.accept(z.getVisitor());
+		}
+		return res;
 	}
 }
