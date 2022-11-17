@@ -49,6 +49,7 @@ public class Fila{
 		boolean res = z.getBounds().intersects(p.getBounds());
 		if (res) {
 			p.accept(z.getVisitor());
+			listaProyectiles.remove();
 		}
 		return res;
 	}//chequear choque de zombie planta
