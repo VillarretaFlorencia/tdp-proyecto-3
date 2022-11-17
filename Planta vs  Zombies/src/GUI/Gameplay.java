@@ -7,7 +7,8 @@ import javax.swing.*;
 import javax.swing.plaf.basic.BasicButtonListener;
 import java.awt.Color;
 
-
+/*NOTA:
+ * FALTA QUE EL CONTADOR DE SOLES SE ACTUALIZE PREGUNTAR COMO HACERLO*/
 public class Gameplay extends JLayeredPane implements ActionListener{
 	private PanelJardin panelJardin;
 	private JButton btnPlanta1;
@@ -72,7 +73,7 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 		btnPlanta1 = new JButton("Planta1");
 		ImageIcon iconLanzaG;
 		if(i <= 2) {
-			iconLanzaG = new ImageIcon(this.getClass().getResource("/recursos/repeaterCard.png"));
+			iconLanzaG = new ImageIcon(this.getClass().getResource("/recursos/peashooterCard.png"));
 		}else {
 			iconLanzaG = new ImageIcon(this.getClass().getResource("/recursos/PuffShroomCard.jpeg"));
 		}

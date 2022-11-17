@@ -25,7 +25,7 @@ public class PanelJardin extends JPanel{
 	int precioPlantaA;
 	int precioPlantaB;
 	public PanelJardin() {
-		soles = 50;
+		soles = 100;
 		nivel = new Nivel(1);
 		this.setBounds(0, 0, 570, 38);
 		setOpaque(false);
@@ -90,14 +90,24 @@ public class PanelJardin extends JPanel{
 		//limpiar labels
 	}
 	
-	public void incrementarSoles() {
-		soles = soles + 50;
+	/*Este tiene dos funciones, para incrementar soles de forma normal solo has: modificarsoles(50)\
+	 * en el caso de querer decrementar por que compro una planta simplemente usa un negativo: modificarsoles(-<precio>)*/
+	public void modificarSoles(int i) {
+		soles = soles + i;
 	}
 	
+
 	public int getSoles() {
 		return soles;
 	}
 	
+	public int getPrecioPlantaA() {
+		return precioPlantaA;
+	}
+	
+	public int getPrecioPlantaB() {
+		return precioPlantaB;
+	}
 }
 
 class EventosDelRaton implements MouseListener{
@@ -111,10 +121,40 @@ class EventosDelRaton implements MouseListener{
 			int posY= (int) (Math.floor((e.getY()/63)));
 			System.out.println("Posicion en la grilla: "+(posX)+ " | "+(5-posY));
 			System.out.println("Seleccion: "+ panel.getSeleccion());
+			
 			if(panel.getNivel().getEntidad(posX, posY)==null) {
-				System.out.println("Pongo una planta nueva");
-				panel.getNivel().modificar(new Posicion(posX,posY), panel.getSeleccion());
-				panel.insert(posX,posY);
+				//if(panel.getNivel().getNivelLVL()<=2) {
+					switch(panel.getSeleccion()) {
+					case 1: if((panel.getSoles()-panel.getPrecioPlantaA())>=0) {
+						panel.modificarSoles(-panel.getPrecioPlantaA());
+						System.out.println("Pongo una planta nueva, precio: "+panel.getPrecioPlantaA());
+						panel.getNivel().modificar(new Posicion(posX,posY), panel.getSeleccion());
+						panel.insert(posX,posY);
+					}break;
+					
+					case 2:if((panel.getSoles()-50)>=0) {
+						panel.modificarSoles(-50);
+						System.out.println("Pongo una planta nueva");
+						panel.getNivel().modificar(new Posicion(posX,posY), panel.getSeleccion());
+						panel.insert(posX,posY);
+					}break;
+					
+					case 3:if((panel.getSoles()-50)>=0) {
+						panel.modificarSoles(-50);
+						System.out.println("Pongo una planta nueva");
+						panel.getNivel().modificar(new Posicion(posX,posY), panel.getSeleccion());
+						panel.insert(posX,posY);
+					}break;
+					
+					case 4:if((panel.getSoles()-panel.getPrecioPlantaB())>=0) {
+						panel.modificarSoles(-panel.getPrecioPlantaB());
+						System.out.println("Pongo una planta nueva, precio: "+panel.getPrecioPlantaB());
+						panel.getNivel().modificar(new Posicion(posX,posY), panel.getSeleccion());
+						panel.insert(posX,posY);
+					}break;
+					}
+				//}
+				
 				panel.setSeleccion(0);
 			}else {
 				System.out.println("ya hay una planta aqui");
