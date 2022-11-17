@@ -1,13 +1,13 @@
 package Proyectil;
 
-import java.awt.Point;
 import java.awt.Rectangle;
-import java.util.Map;
 
 import Fila.*;
-import Estados.EstadoEntidad;
 import Logica.Entidad;
+<<<<<<< HEAD
+=======
 import Fila.Fila;
+>>>>>>> 257f9905b165b9a706678fcf0f0d85175a67cadf
 import Logica.Nivel;
 import Logica.Posicion;
 import Visitores.Visitor;
@@ -31,7 +31,6 @@ public class Proyectil extends Entidad{
 			pos.setY(pos.getY()+1);
 		}
 	}
-
 	/*private boolean colision() {
 		Fila f = arreglo.getFila(pos.posX());
 		return f.getZombies().getBounds().intersects(getBounds());

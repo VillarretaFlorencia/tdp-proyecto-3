@@ -7,6 +7,7 @@ public class Girasol extends Planta{
     protected int soles;
     protected EstadoEntidad estado;
     protected Visitor visitor;
+    protected int rango;
 
     public Girasol(){
         precio = 50;

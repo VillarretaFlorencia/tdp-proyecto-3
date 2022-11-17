@@ -1,6 +1,9 @@
 package Cronometro;
 
+import javax.swing.JLayeredPane;
+
 import GUI.Gameplay;
+import Logica.Nivel;
 import Zombies.HiloZombies;
 
 public class Cronometro implements Runnable{
@@ -11,12 +14,14 @@ public class Cronometro implements Runnable{
 	private Thread hiloZombies;
 	private HiloZombies misZombies;
 	//protected JFrame ventana;
+	private Nivel miNivel;
+	private Gameplay ventana;
 	
-	public Cronometro (Gameplay ventana) {
-		//this.ventana=ventana;
+	public Cronometro (Gameplay v) {
 		segundos = 0;
+		ventana = v;
+		miNivel = ventana.getJardin().getNivel();
 	}
-	
 	
 	public void run () {
 		while(true) {
@@ -37,6 +42,14 @@ public class Cronometro implements Runnable{
 				e.getMessage();
 			}
 		}
+	}
+	
+	public boolean chequearColision() {
+		
+	}
+	
+	public void setNivel() {
+		
 	}
 
 

@@ -26,7 +26,7 @@ public class ArregloFilas{
 	}
 	public Entidad getZombie(int f){
 		Entidad zombie;
-		zombie = arreglo[f-1].getZombies();
+		zombie = arreglo[f-1].getPrimerZombie();
 		return zombie;
 	}
 	public Entidad getPrimerPlanta(int f) {

@@ -51,5 +51,7 @@ public class Fila{
 			p.accept(z.getVisitor());
 		}
 		return res;
-	}
+	}//chequear choque de zombie planta
+	//hilo planta (si en su rango aparece un zombie: crear un metodo en la clase planta que sea ataque y cree el proyectil y que vaya 
+	//consultando si hay zombie en el rango que genere el proyectil), zombie, musica y general (este chequea a cada tick con chequearColisiones.
 }

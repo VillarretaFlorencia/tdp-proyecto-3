@@ -11,11 +11,13 @@ public abstract class Planta extends Entidad {
     protected EstadoEntidad estado;
     protected Visitor visitor;
     protected Posicion posicion;
+    protected int rango;
     
     public int getVida() {
     	return vida;
     }
     public abstract int Atacar();//este en el caso del girasol en vez de atacar lanza flores y la nuez no hace nada
+    
     public void recibirDanio(int danio) {
     	vida = vida - danio;
     	//aca faltaria que cuando la vida llegue a 0 desaparezca
@@ -35,7 +37,10 @@ public abstract class Planta extends Entidad {
     		res = -1;
     	else if (posicion.getY() > p.getPosicion().getY()) 
     		res = 1;
-    	
     	return res;
+    }
+    public void setPosicion(Posicion pos) {
+    	posicion = pos;
+    	rango = 8 - pos.getX();
     }
 }
