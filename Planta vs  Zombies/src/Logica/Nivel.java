@@ -29,8 +29,6 @@ public class Nivel {
 	
 	
 	//protected Singleton singleton;
-    private Entidad[][] nivel = new Entidad[9][6]; //cambiar por filas y columnas
-    
     
     public Nivel(int i){
     	
@@ -49,7 +47,7 @@ public class Nivel {
         
         LevelReader lr = new LevelReader(nivelLvl);
     	oleadas = lr.crearOleadas(miFabrica, this);
-    	System.out.println("dentro del nivel: ");// solo agrege esto flor perdoname
+    	System.out.println("dentro del nivel: ");// solo agrege esto flor perdoname //no hay na que perdonar jajaa
     	System.out.println("Estado: "+estado.getClass().getCanonicalName());
     }
     
@@ -63,15 +61,15 @@ public class Nivel {
     }    
     
     public void setZombie (Zombie z){
-    	filas.setZombie(z.getPosicion().getY(), z);
+    	filas.setZombie(z);
     }
     
     public void setProyectil (Proyectil p){
-    	filas.setProyectil(p.getPosicion().getY(), p);
+    	filas.setProyectil(p);
     }
     
     public void setPlanta (Planta p){
-    	filas.setPlanta(p.getPosicion().getY(), p);
+    	filas.setPlanta(p);
     }
     
     public void modificar(Posicion pos, int i) {
@@ -79,25 +77,25 @@ public class Nivel {
 		  case 1:{
 			Planta p = miFabrica.createPlantaA();
 			p.setPosicion(pos);
-			filas.setPlanta(pos.getX(), p);
+			filas.setPlanta(p);
 		    break;
 		  }
 		  case 2:{
 			Planta p =  miFabrica.createPlantaGirasol();
 			p.setPosicion(pos);
-			filas.setPlanta(pos.getX(), p);
+			filas.setPlanta(p);
 			break;
 		  }
 		  case 3:{
 			Planta p =  miFabrica.createPlantaNuez();
 			p.setPosicion(pos);
-			filas.setPlanta(pos.getX(), p);
+			filas.setPlanta(p);
 			break;
 		  }
 		  case 4:{
 			Planta p = miFabrica.createPlantaB();
 			p.setPosicion(pos);
-			filas.setPlanta(pos.getX(), p);
+			filas.setPlanta(p);
 			break;
 		  }
 	    }

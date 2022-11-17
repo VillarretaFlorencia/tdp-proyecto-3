@@ -3,11 +3,8 @@ package Fila;
 import java.util.LinkedList;
 
 import Logica.Entidad;
-<<<<<<< HEAD
-import Fila.Fila;
-=======
->>>>>>> 1377349d5a3092cf5c4da15351c6be2ff835257a
 
+import Fila.Fila;
 import Plantas.Planta;
 import Proyectil.Proyectil;
 import Zombies.Zombie;
@@ -22,16 +19,19 @@ public class ArregloFilas{
 		}
 	}
 	
-	public void setZombie(int f, Zombie e) {
-		arreglo[f-1].setZombie(e);
+	public void setZombie(Zombie z) {
+		int f = z.getPosicion().getY();
+		arreglo[f].setZombie(z);
 	}
 	
-	public void setPlanta(int f, Planta e) {
-		arreglo[f-1].setPlanta(e);
+	public void setPlanta(Planta p) {
+		int f = p.getPosicion().getY();
+		arreglo[f].setPlanta(p);
 	}
 	
-	public void setProyectil(int f, Proyectil e) {
-		arreglo[f-1].setProyectil(e);
+	public void setProyectil(Proyectil p) {
+		int f = p.getPosicion().getY();
+		arreglo[f].setProyectil(p);
 	}
 	
 	public Entidad getZombie(int f){
