@@ -27,8 +27,13 @@ public class Proyectil extends Entidad{
 	}
 	
 	public void move() {
+<<<<<<< HEAD
 		while(activo != true) {
 			pos.setY(pos.getY()+1);
+=======
+		if(activo==true) {
+			pos.setX(pos.getX()+1);
+>>>>>>> 1377349d5a3092cf5c4da15351c6be2ff835257a
 		}
 	}
 	/*private boolean colision() {

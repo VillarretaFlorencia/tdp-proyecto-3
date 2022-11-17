@@ -3,7 +3,10 @@ package Fila;
 import java.util.LinkedList;
 
 import Logica.Entidad;
+<<<<<<< HEAD
 import Fila.Fila;
+=======
+>>>>>>> 1377349d5a3092cf5c4da15351c6be2ff835257a
 
 import Plantas.Planta;
 import Proyectil.Proyectil;
