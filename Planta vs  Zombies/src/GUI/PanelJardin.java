@@ -21,7 +21,11 @@ public class PanelJardin extends JPanel{
 	int seleccion = 0;
 	private JLabel[][] label = new JLabel[9][6];
 	Nivel nivel;
+	int soles = 0;
+	int precioPlantaA;
+	int precioPlantaB;
 	public PanelJardin() {
+		soles = 50;
 		nivel = new Nivel(1);
 		this.setBounds(0, 0, 570, 38);
 		setOpaque(false);
@@ -47,6 +51,13 @@ public class PanelJardin extends JPanel{
 	
 	public void setNivel(int i) {//aca hacemos el set del nivel
 		nivel=new Nivel(i);
+		if(i<=2) {
+			precioPlantaA=100;
+			precioPlantaB=200;
+		}else {
+			precioPlantaA=25;
+			precioPlantaB=75;
+		}
 	}
 	
 	public void setNivel(Nivel n) {
@@ -79,6 +90,14 @@ public class PanelJardin extends JPanel{
 		//limpiar labels
 	}
 	
+	public void incrementarSoles() {
+		soles = soles + 50;
+	}
+	
+	public int getSoles() {
+		return soles;
+	}
+	
 }
 
 class EventosDelRaton implements MouseListener{
@@ -92,7 +111,6 @@ class EventosDelRaton implements MouseListener{
 			int posY= (int) (Math.floor((e.getY()/63)));
 			System.out.println("Posicion en la grilla: "+(posX)+ " | "+(5-posY));
 			System.out.println("Seleccion: "+ panel.getSeleccion());
-			
 			if(panel.getNivel().getEntidad(posX, posY)==null) {
 				System.out.println("Pongo una planta nueva");
 				panel.getNivel().modificar(new Posicion(posX,posY), panel.getSeleccion());

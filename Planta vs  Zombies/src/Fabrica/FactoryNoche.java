@@ -19,14 +19,14 @@ public class FactoryNoche extends Factory {
 	@Override
 	public Planta createPlantaA() {
 		
-		Planta plantaA= new HumoSeta();
+		Planta plantaA= new SetaDesporadora();
 		
 		return plantaA;
 	}
 
 	@Override
 	public Planta createPlantaB() {
-		Planta plantaB= new SetaDesporadora();
+		Planta plantaB= new HumoSeta();
 		
 		return plantaB;
 	}

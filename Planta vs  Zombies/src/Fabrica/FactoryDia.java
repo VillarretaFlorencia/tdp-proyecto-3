@@ -2,6 +2,7 @@ package Fabrica;
 
 import Plantas.Girasol;
 import Plantas.LanzaGuisantes;
+import Plantas.LanzaGuisantesDoble;
 import Plantas.Nuez;
 import Plantas.Planta;
 import Zombies.Zombie;
@@ -22,7 +23,7 @@ public class FactoryDia extends Factory {
 	}
 
 	public Planta createPlantaB() {
-		Planta lanzaGuisantesD = new LanzaGuisantes();
+		Planta lanzaGuisantesD = new LanzaGuisantesDoble();
 		return lanzaGuisantesD;
 	}
 }
