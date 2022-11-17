@@ -24,7 +24,7 @@ public class MainFrame extends JFrame{
 		this.setResizable(false);
 		//anadimos las ventanas al frame
 		getContentPane().add(panelInicio,START);//agregamos la ventana con el identificador
-		getContentPane().add(panelGameplay,GAMEPLAY);
+		//getContentPane().add(panelGameplay,GAMEPLAY);
 		getContentPane().add(panelSelector,SELECTOR);
 		
 		
@@ -38,22 +38,13 @@ public class MainFrame extends JFrame{
 			
 		});
 		
-		//agregamos el listener del boton de restart del gameplay
-		panelGameplay.getRestartButton().addActionListener(new ActionListener() {//tomamos el boton del start
-			public void actionPerformed(ActionEvent e) {//al momento de presionar el boton
-				CardLayout c1 = (CardLayout)(getContentPane().getLayout());//se cambia toma el panel
-				c1.show(getContentPane(),START); // y lo cambiamos en el contentPane
-				panelGameplay.restart();
-			}
-			
-		});
-		
 		panelSelector.getSelect1().addActionListener(new ActionListener() {//tomamos el boton del start
 			public void actionPerformed(ActionEvent e) {//al momento de presionar el boton
 				CardLayout c1 = (CardLayout)(getContentPane().getLayout());//se cambia toma el panel
-				c1.show(getContentPane(),GAMEPLAY); // y lo cambiamos en el contentPane
 				panelGameplay  = new Gameplay(1);
 				panelGameplay.getJardin().setNivel(1);
+				getContentPane().add(panelGameplay,GAMEPLAY);
+				c1.show(getContentPane(),GAMEPLAY); // y lo cambiamos en el contentPane
 				//panelGameplay.restart();
 			}
 			
@@ -62,9 +53,10 @@ public class MainFrame extends JFrame{
 		panelSelector.getSelect2().addActionListener(new ActionListener() {//tomamos el boton del start
 			public void actionPerformed(ActionEvent e) {//al momento de presionar el boton
 				CardLayout c1 = (CardLayout)(getContentPane().getLayout());//se cambia toma el panel
-				c1.show(getContentPane(),GAMEPLAY); // y lo cambiamos en el contentPane
 				panelGameplay  = new Gameplay(2);
 				panelGameplay.getJardin().setNivel(2);
+				getContentPane().add(panelGameplay,GAMEPLAY);
+				c1.show(getContentPane(),GAMEPLAY); // y lo cambiamos en el contentPane
 				//panelGameplay.restart();
 			}
 			
@@ -73,9 +65,10 @@ public class MainFrame extends JFrame{
 		panelSelector.getSelect3().addActionListener(new ActionListener() {//tomamos el boton del start
 			public void actionPerformed(ActionEvent e) {//al momento de presionar el boton
 				CardLayout c1 = (CardLayout)(getContentPane().getLayout());//se cambia toma el panel
-				c1.show(getContentPane(),GAMEPLAY); // y lo cambiamos en el contentPane
 				panelGameplay  = new Gameplay(3);
 				panelGameplay.getJardin().setNivel(3);
+				getContentPane().add(panelGameplay,GAMEPLAY);
+				c1.show(getContentPane(),GAMEPLAY); // y lo cambiamos en el contentPane
 				//panelGameplay.restart();
 			}
 			
@@ -84,9 +77,10 @@ public class MainFrame extends JFrame{
 		panelSelector.getSelect4().addActionListener(new ActionListener() {//tomamos el boton del start
 			public void actionPerformed(ActionEvent e) {//al momento de presionar el boton
 				CardLayout c1 = (CardLayout)(getContentPane().getLayout());//se cambia toma el panel
-				c1.show(getContentPane(),GAMEPLAY); // y lo cambiamos en el contentPane
 				panelGameplay  = new Gameplay(4);
 				panelGameplay.getJardin().setNivel(4);
+				getContentPane().add(panelGameplay,GAMEPLAY);
+				c1.show(getContentPane(),GAMEPLAY); // y lo cambiamos en el contentPane
 				//panelGameplay.restart();
 			}
 			

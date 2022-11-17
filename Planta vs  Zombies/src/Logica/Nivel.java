@@ -29,6 +29,8 @@ public class Nivel {
     
     
     public Nivel(int i){
+    	
+    	System.out.println("GENERANDO NIVEL");
     	nivelLvl = i;
     	
     	
