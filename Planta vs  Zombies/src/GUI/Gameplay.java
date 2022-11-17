@@ -17,6 +17,7 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 	private JButton btnPlanta4;
 	JLabel[][] label = new JLabel[9][6];
 	private JLabel lblGameN;
+	JLabel cantSoles;
 	private int numeroNivel = 0;
 	public Gameplay( int i) {
 		numeroNivel = i;
@@ -139,7 +140,7 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 		madera.setBounds(-13, 379, 581, 71);
 		add(madera);
 		
-		JLabel cantSoles = new JLabel(String.valueOf(panelJardin.getSoles()));
+		cantSoles = new JLabel(String.valueOf(panelJardin.getSoles()));
 		cantSoles.setBounds(490, 415, 46, 14);
 		add(cantSoles,Integer.valueOf(2));
 		
@@ -181,6 +182,8 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 				}
 				break;
 		}
+		System.out.println("nuevos soles: "+panelJardin.getSoles());
+		cantSoles.setText(String.valueOf(panelJardin.getSoles()));
 	}
 	
 	public void restart() {
