@@ -75,5 +75,8 @@ public abstract class Zombie extends Entidad{
 	public Rectangle getBounds() {
 		return new Rectangle(getPosicion().getX(), getPosicion().getY(), 100, 200);
 	}
+	public Visitor getVisitor() {
+		return visitor;
+	}
 }
 
