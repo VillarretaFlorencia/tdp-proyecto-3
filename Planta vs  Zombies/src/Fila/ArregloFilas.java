@@ -3,7 +3,6 @@ package Fila;
 import java.util.LinkedList;
 
 import Logica.Entidad;
-import Logica.Fila;
 
 import Plantas.Planta;
 import Proyectil.Proyectil;

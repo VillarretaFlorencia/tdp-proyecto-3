@@ -61,8 +61,8 @@ public abstract class Zombie extends Entidad{
 		v.visit (this);
 	}
 	
-	public void caminar () {
-		movimiento = true;
+	public void move() {
+		posicion.setX(posicion.getX()-1);
 	}
 	public boolean enMovimiento() {
 		return movimiento;

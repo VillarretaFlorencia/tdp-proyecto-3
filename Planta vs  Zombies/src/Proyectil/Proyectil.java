@@ -27,8 +27,8 @@ public class Proyectil extends Entidad{
 	}
 	
 	public void move() {
-		while(activo!=true) {
-			pos.setY(pos.getY()+1);
+		if(activo==true) {
+			pos.setX(pos.getX()+1);
 		}
 	}
 	/*private boolean colision() {
