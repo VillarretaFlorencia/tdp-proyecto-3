@@ -18,6 +18,8 @@ public abstract class Planta extends Entidad {
     }
     public abstract int Atacar();//este en el caso del girasol en vez de atacar lanza flores y la nuez no hace nada
     
+    public int getRango () {return rango;}
+    
     public void recibirDanio(int danio) {
     	vida = vida - danio;
     	//aca faltaria que cuando la vida llegue a 0 desaparezca

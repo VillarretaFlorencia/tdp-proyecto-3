@@ -27,7 +27,7 @@ public class PanelJardin extends JPanel{
 	public PanelJardin() {
 		soles = 100;
 		nivel = new Nivel(1);
-		this.setBounds(0, 0, 570, 38);
+		this.setBounds(0, 0, 570, 380);
 		setOpaque(false);
 		EventosDelRaton raton = new EventosDelRaton();
 		raton.setPanel(this);//dentro del controlador del panel ponemos este panel

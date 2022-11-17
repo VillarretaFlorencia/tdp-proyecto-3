@@ -27,7 +27,7 @@ public class Proyectil extends Entidad{
 	}
 	
 	public void move() {
-		while(activo!=true) {
+		while(activo != true) {
 			pos.setY(pos.getY()+1);
 		}
 	}
@@ -38,6 +38,10 @@ public class Proyectil extends Entidad{
 	*/
 	public int getDanio() {
 		return danio;
+	}
+	
+	public Posicion getPosicion () {
+		return pos;
 	}
 	
 	public Rectangle getBounds() {

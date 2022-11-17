@@ -1,7 +1,10 @@
 package Zombies;
 
 import java.util.LinkedList;
+
+import Fila.ArregloFilas;
 import GUI.PanelJardin;
+import Logica.Nivel;
 
 //vienen predeterminados desde un txt solo los manejo de aca
 public class HiloZombies implements Runnable{
@@ -9,30 +12,30 @@ public class HiloZombies implements Runnable{
 	public LinkedList<LinkedList<Zombie>> oleadas;
 	public Thread h1;
 	protected PanelJardin ventana;
-	
+	protected Nivel nivel;
+	protected ArregloFilas filas;
+	 
 	public HiloZombies (PanelJardin v) {
 		ventana = v;
-		oleadas = ventana.getNivel().getOleadas();
+		nivel = ventana.getNivel();
+		filas = nivel.getFilas();
+		oleadas = nivel.getOleadas();
 	}
 		
 	public void run () {
 		int dormir = 10000;
 		while(!oleadas.isEmpty()) {
 			try {
-				Thread.sleep(dormir);
 				LinkedList <Zombie> oleada = oleadas.getFirst();
-				if (!oleada.isEmpty()) {
+				while (!oleada.isEmpty()) {
 					Zombie zombie = oleada.remove(); // primer zombie de la lista
-					zombie.caminar();
+					nivel.setZombie (zombie);
+					Thread.sleep(dormir);
 				}
-				else {
-					dormir /= 2;  
-					oleadas.remove(oleadas.getFirst());
-					//ventana.getNuevaOleada();
-					Thread.sleep(20000);
-				}
+				oleadas.remove(oleadas.getFirst());
+				//ventana.getNuevaOleada();
+				Thread.sleep(20000);
 			} catch (InterruptedException e) {e.printStackTrace();}
 		}
 	}
-
 }

@@ -10,6 +10,9 @@ import Estados.EstadoNoche;
 import Fabrica.Factory;
 import Fabrica.FactoryDia;
 import Fabrica.FactoryNoche;
+import Fila.ArregloFilas;
+import Plantas.Planta;
+import Proyectil.Proyectil;
 import Zombies.Zombie;
 import Zombies.ZombieNormal;
 
@@ -20,8 +23,9 @@ public class Nivel {
 	protected Estado estado;
 	protected int nivelLvl;
 	protected Factory miFabrica;
-	protected Map<Integer,Entidad> fila;
+	protected ArregloFilas filas;
 	protected LinkedList<LinkedList<Zombie>> oleadas;
+	
 	
 	
 	//protected Singleton singleton;
@@ -32,14 +36,8 @@ public class Nivel {
     	
     	System.out.println("GENERANDO NIVEL");
     	nivelLvl = i;
+    	filas = new ArregloFilas();
     	
-    	
-    	
-        for(int x = 0; x<9; x++){
-            for(int y = 0; y<6; y++){
-                nivel[x][y] = null;
-            }
-        }
         if (i == 1 || i == 2) {
         	estado = new EstadoDia();
     		miFabrica = new FactoryDia();
@@ -55,50 +53,58 @@ public class Nivel {
     	System.out.println("Estado: "+estado.getClass().getCanonicalName());
     }
     
-    public int getColumnas(){
-        return nivel[0].length;
-    }
-    public int getFilas(){
-        return nivel.length;
-    }
-    
-    //devuelve la lista de entidades existentes en una fila    
-    public LinkedList<Entidad> getEntidadesFila (int fila){
-    	LinkedList<Entidad> entidades = new LinkedList<Entidad>();
-    	for (int i=0; i < getColumnas(); i++) {
-    		entidades.addLast(nivel[fila][i]);
-    	}
-    	return entidades;
-    }
-    
-    public Entidad getEntidad(int x, int y){
-    	return nivel[x][y];
-    }
     
     public int getNivelLVL() {
     	return nivelLvl;
     }
     
-    public void modificar(Posicion p, int i) {
+    public ArregloFilas getFilas() {
+    	return filas;
+    }    
+    
+    public void setZombie (Zombie z){
+    	filas.setZombie(z.getPosicion().getY(), z);
+    }
+    
+    public void setProyectil (Proyectil p){
+    	filas.setProyectil(p.getPosicion().getY(), p);
+    }
+    
+    public void setPlanta (Planta p){
+    	filas.setPlanta(p.getPosicion().getY(), p);
+    }
+    
+    public void modificar(Posicion pos, int i) {
 		switch(i) {
-		  case 1:
-			nivel[p.getX()][p.getY()] = miFabrica.createPlantaA();
+		  case 1:{
+			Planta p = miFabrica.createPlantaA();
+			p.setPosicion(pos);
+			filas.setPlanta(pos.getX(), p);
 		    break;
-		  case 2:
-			nivel[p.getX()][p.getY()] = miFabrica.createPlantaGirasol();
-		    break;
-		  case 3:
-			nivel[p.getX()][p.getY()] = miFabrica.createPlantaNuez();
-		    break;
-		  case 4:
-		    nivel[p.getX()][p.getY()] = miFabrica.createPlantaB();
-		    break;
+		  }
+		  case 2:{
+			Planta p =  miFabrica.createPlantaGirasol();
+			p.setPosicion(pos);
+			filas.setPlanta(pos.getX(), p);
+			break;
+		  }
+		  case 3:{
+			Planta p =  miFabrica.createPlantaNuez();
+			p.setPosicion(pos);
+			filas.setPlanta(pos.getX(), p);
+			break;
+		  }
+		  case 4:{
+			Planta p = miFabrica.createPlantaB();
+			p.setPosicion(pos);
+			filas.setPlanta(pos.getX(), p);
+			break;
+		  }
 	    }
 		//ENVIAR A LA GUI, LA ENTIDAD QUE AGREGAMOS Y LA POSICION (ACTUALIZAR)
 		//fila.insertPlanta(p.getY(),nivel[p.getX()][p.getY()]);
     }
-    
-   
+      
     
     public LinkedList<LinkedList<Zombie>> getOleadas () {
     	return oleadas;

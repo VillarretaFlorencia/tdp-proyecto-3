@@ -8,7 +8,7 @@ import Zombies.Zombie;
 
 public class HiloPlantas implements Runnable{
 	//Atributos de instancia
-	public LinkedList<Planta> lantas;
+	public LinkedList<Planta> plantas;
 	public Thread h1;
 	protected PanelJardin ventana;
 	
@@ -20,7 +20,7 @@ public class HiloPlantas implements Runnable{
 	public void run () {
 		while (!plantas.isEmpty()) {
 			for (Planta p: plantas) {
-				;
+				if (p.getRango());
 			}
 		}
 	}

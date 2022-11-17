@@ -105,14 +105,14 @@ public class LevelReader {
 			z = f.createZombieBandera();
 			break;} 
 		}
-		int fila = n.getFilas()-1;
-		int columna = n.getColumnas()-1;
+		int fila = 5; // y 
+		int x = 570;
 		switch (c) {
 		case 'v': {
-			z.setPosicion(new Posicion ((int)(Math.random()*(2-columna)+columna), (int)(Math.random()*fila))); //filas,columnas
+			z.setPosicion(new Posicion ((int)(Math.random()*(315-x)+x), (int)(Math.random()*fila))); //x,y eje 
 			break;}
 		default: {
-			z.setPosicion(new Posicion (columna, (int)(Math.random()*fila)));
+			z.setPosicion(new Posicion (x,(int)(Math.random()*fila)));
 			break;} 
 		}
 		return z;

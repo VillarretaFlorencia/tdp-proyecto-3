@@ -18,7 +18,6 @@ public class FactoryDia extends Factory {
 
 	public Planta createPlantaA() {
 		Planta lanzaGuisantes = new LanzaGuisantes();
-		
 		return lanzaGuisantes;
 	}
 
