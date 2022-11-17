@@ -17,7 +17,9 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 	JLabel[][] label = new JLabel[9][6];
 	private int soles;
 	private JLabel lblGameN;
+	private int numeroNivel = 0;
 	public Gameplay( int i) {
+		numeroNivel = i;
 		soles = 50;
 		System.out.println("-------------- valor i: "+i);
 		setBackground(new Color(0, 204, 0));
@@ -159,7 +161,11 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 	
 	public void modificar(int x, int y, int seleccion) {
 		switch (seleccion) {
-			case 1: label[x][y].setIcon(new ImageIcon(Gameplay.class.getResource("/recursos/peashooter.gif")));
+			case 1: if(numeroNivel <=2) {
+						label[x][y].setIcon(new ImageIcon(Gameplay.class.getResource("/recursos/peashooter.gif")));
+					}else {
+						label[x][y].setIcon(new ImageIcon(Gameplay.class.getResource("/recursos/PuffShroom.gif")));
+					}
 					break;
 			
 			case 2:
@@ -169,7 +175,11 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 				label[x][y].setIcon(new ImageIcon(Gameplay.class.getResource("/recursos/walnut_full_life.gif")));
 				break;
 			case 4:
-				label[x][y].setIcon(new ImageIcon(Gameplay.class.getResource("/recursos/repeater.gif")));
+				if(numeroNivel <=2) {
+					label[x][y].setIcon(new ImageIcon(Gameplay.class.getResource("/recursos/repeater.gif")));
+				}else {
+					label[x][y].setIcon(new ImageIcon(Gameplay.class.getResource("/recursos/FumeShroom.gif")));
+				}
 				break;
 		}
 	}

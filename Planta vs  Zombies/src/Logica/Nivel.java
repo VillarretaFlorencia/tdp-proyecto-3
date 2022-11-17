@@ -51,6 +51,8 @@ public class Nivel {
         
         LevelReader lr = new LevelReader(nivelLvl);
     	oleadas = lr.crearOleadas(miFabrica, this);
+    	System.out.println("dentro del nivel: ");// solo agrege esto flor perdoname
+    	System.out.println("Estado: "+estado.getClass().getCanonicalName());
     }
     
     public int getColumnas(){
