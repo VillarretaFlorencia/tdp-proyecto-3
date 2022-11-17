@@ -2,7 +2,7 @@ package Proyectil;
 
 import javax.swing.JFrame;
 
-import Logica.Fila;
+import Fila.Fila;
 
 public class HiloProyectil implements Runnable{
 	//Atributos de instancia

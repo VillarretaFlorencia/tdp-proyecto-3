@@ -7,7 +7,7 @@ import java.util.Map;
 import Fila.*;
 import Estados.EstadoEntidad;
 import Logica.Entidad;
-import Logica.Fila;
+import Fila.Fila;
 import Logica.Nivel;
 import Logica.Posicion;
 import Visitores.Visitor;

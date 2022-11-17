@@ -1,9 +1,9 @@
-package Logica;
-
+package Fila;
 
 import java.util.LinkedList;
 import java.util.PriorityQueue;
 
+import Logica.Comparador;
 import Plantas.Planta;
 import Proyectil.Proyectil;
 import Zombies.Zombie;
