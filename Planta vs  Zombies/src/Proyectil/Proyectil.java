@@ -4,6 +4,7 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.util.Map;
 
+import Fila.*;
 import Estados.EstadoEntidad;
 import Logica.Entidad;
 import Logica.Fila;
@@ -15,37 +16,42 @@ public class Proyectil extends Entidad{
 	private int danio;
 	private Posicion pos;
 	private Nivel juego;
-	private Map map;
+	private ArregloFilas arreglo;
 	private String imagen;
-	private boolean estado;
+	private boolean activo;
 	
 	public Proyectil(Posicion pos) {
 		this.pos = pos;
-		danio = 0;
-		move();
+		danio = 20;
+		activo = true;
 	}
 	
-	public void atacar() {
-		
-	}
-	//public Posicion getPosicion(Posicion p) {}
-
 	public void move() {
-		while(this.colision()!=true) {
+		while(activo!=true) {
 			pos.setY(pos.getY()+1);
 		}
 	}
 
-	private boolean colision() {
-		Fila f = map.getFila(pos.posX());
+	/*private boolean colision() {
+		Fila f = arreglo.getFila(pos.posX());
 		return f.getZombies().getBounds().intersects(getBounds());
+	}
+	*/
+	public int getDanio() {
+		return danio;
 	}
 	
 	public Rectangle getBounds() {
 		return new Rectangle(pos.getX(), pos.getY(),50, 50);
 	}
-
-	public boolean getActividad() {
-		return estado;
+	public void setActivo(boolean est) {
+		activo = est;
+	}
+	public boolean getActivo() {
+		return activo;
+	}
+	@Override
+	public void accept(Visitor v) {
+		
 	}
 }

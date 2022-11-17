@@ -18,6 +18,7 @@ public class LevelReader {
 	public LevelReader(int lvl) {
 		
 		File directorio = new File(System.getProperty("user.dir"));
+		System.out.println(directorio.getAbsolutePath()+"dddddd");
 	    String[] arr = directorio.list();
 	    File dirRecursos = null;
 	    File dirtxt = null;

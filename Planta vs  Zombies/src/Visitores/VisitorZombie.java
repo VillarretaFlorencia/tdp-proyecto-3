@@ -1,6 +1,7 @@
 package Visitores;
 
 import Plantas.Planta;
+import Proyectil.Proyectil;
 import Zombies.Zombie;
 
 public class VisitorZombie extends Visitor{
@@ -13,15 +14,21 @@ public class VisitorZombie extends Visitor{
 	
 	public void visit (Proyectil p) {
 		int daniar = p.getDanio();
-		if (p.getVida()>daniar)
-			z.recibirDanio (daniar);
+		if (zombie.getVida()>daniar)
+			zombie.recibirDanio (daniar);
 		else
-			z.morir();
+			zombie.morir();
 	}
 
 	
 	public void visit(Planta p) {
 		zombie.comer();
+	}
+
+	@Override
+	public void visit(Zombie z) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

@@ -13,15 +13,12 @@ public class HiloProyectil implements Runnable{
 	
 	public HiloProyectil(Proyectil p) {
 		proyectil = p;
-		
 	}
 	
 	public void run () {
-		while(proyectil.getActividad()) {
+		while(proyectil.getActivo()) {
 			try {
 				Thread.sleep(1000);
-				//this.ventana.getLabel().setText("Time "+segundos);
-				//System.out.println("Time "+segundos);
 				proyectil.move();
 			}catch (InterruptedException e) {
 				e.getMessage();
