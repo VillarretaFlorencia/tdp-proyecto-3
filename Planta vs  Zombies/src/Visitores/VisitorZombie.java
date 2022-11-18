@@ -29,7 +29,7 @@ public class VisitorZombie extends Visitor{
 	
 	public void visit(Planta p) {
 		p.recibirDanio (zombie.getDanio());
-		zombie.comer();
+		zombie.atacar();
 		if (p.getVida() <= 0)
 			n.matarPlanta(p);
 	}

@@ -2,9 +2,6 @@ package Zombies;
 
 import java.awt.Image;
 import java.awt.Rectangle;
-
-import Estados.EstadoComiendo;
-import Estados.EstadoEntidad;
 import Estados.EstadoZombie;
 import Logica.Entidad;
 import Logica.Posicion;
@@ -36,7 +33,7 @@ public abstract class Zombie extends Entidad{
 	public void setPosicion(Posicion p) {
 		posicion = p;
 	}
-	public EstadoEntidad getEstado() {
+	public EstadoZombie getEstado() {
 		return estado;
 	}
 	public void setEstado(EstadoZombie e) {
@@ -56,15 +53,16 @@ public abstract class Zombie extends Entidad{
 	public void move() {
 		posicion.setX(posicion.getX()-1);
 	}
-	public void atacar() {
-		estado = new EstadoAtacando();	
-	}	
+		
 	public Rectangle getBounds() {
 		return new Rectangle(getPosicion().getX(), getPosicion().getY(), 60, 60);
 	}
+	
 	public boolean enMovimiento() {
 		return movimiento;
 	}
+	
+	public abstract void atacar();
 	
 }
 

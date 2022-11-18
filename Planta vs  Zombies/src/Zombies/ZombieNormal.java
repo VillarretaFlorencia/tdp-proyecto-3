@@ -1,7 +1,6 @@
 package Zombies;
 
 import javax.swing.ImageIcon;
-
 import Estados.*;
 import Logica.Posicion;
 import Visitores.*;
@@ -24,5 +23,9 @@ public class ZombieNormal extends Zombie{
 		visitor = new VisitorZombie(this);
 		movimiento = true;
 		this.setIcon(new ImageIcon(estado.getImagen()));
+	}
+	
+	public void atacar(){
+		estado = new EstadoZombieComiendo(0);	
 	}
 }

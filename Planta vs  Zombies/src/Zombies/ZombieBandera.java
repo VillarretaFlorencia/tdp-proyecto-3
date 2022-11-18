@@ -26,4 +26,7 @@ public class ZombieBandera extends Zombie{
 		movimiento = true;
 		this.setIcon(new ImageIcon(estado.getImagen()));
 	}
+	public void atacar(){
+		estado = new EstadoZombieComiendo(6);	
+	}
 }

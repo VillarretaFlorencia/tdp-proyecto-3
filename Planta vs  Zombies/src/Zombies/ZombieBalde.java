@@ -26,4 +26,8 @@ public class ZombieBalde extends Zombie{
 		movimiento = true;
 		this.setIcon(new ImageIcon(estado.getImagen()));
 	}
+	
+	public void atacar(){
+		estado = new EstadoZombieComiendo(3);	
+	}
 }

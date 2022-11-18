@@ -4,7 +4,6 @@ import java.awt.Image;
 
 import javax.swing.ImageIcon;
 
-import Estados.EstadoEntidad;
 import Logica.Nivel;
 import Logica.Posicion;
 import Proyectil.Proyectil;
