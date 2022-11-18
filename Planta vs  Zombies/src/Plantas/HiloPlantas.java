@@ -13,7 +13,7 @@ public class HiloPlantas implements Runnable{
 	public HiloPlantas () {
 		plantas = n.getFilas().getTodasLasPlantas();
 	}
-		
+	
 	public void run () {
 		while (!plantas.isEmpty()) {
 			for (Planta p: plantas) {

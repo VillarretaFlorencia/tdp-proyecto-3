@@ -5,6 +5,7 @@ import javax.swing.JPanel;
 import Logica.Nivel;
 import Logica.Posicion;
 import Logica.Sol;
+import Plantas.Planta;
 
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -20,13 +21,12 @@ public class PanelJardin extends JPanel{
 	Gameplay gameplay = null;
 	int seleccion = 0;
 	private JLabel[][] label = new JLabel[9][6];
-	Nivel nivel;
+	Nivel nivel = Nivel.getNivel();
 	int soles = 0;
 	int precioPlantaA;
 	int precioPlantaB;
 	public PanelJardin() {
 		soles = 100;
-		nivel = new Nivel(1);
 		this.setBounds(0, 0, 570, 380);
 		setOpaque(false);
 		EventosDelRaton raton = new EventosDelRaton();
@@ -42,6 +42,9 @@ public class PanelJardin extends JPanel{
 		
 		
 	}
+	
+	// NIVEL YA NO LO OBTENGO DE PANEL ES GLOBAL LO EN TODOS
+	// DONDE DICE MODIFICAR IRIA SETPLANTA
 	public void setSeleccion(int selec) {
 		seleccion = selec;
 	}
@@ -50,23 +53,10 @@ public class PanelJardin extends JPanel{
 	}
 	
 	public void setNivel(int i) {//aca hacemos el set del nivel
-		nivel=new Nivel(i);
-		if(i<=2) {
-			precioPlantaA=100;
-			precioPlantaB=200;
-		}else {
-			precioPlantaA=25;
-			precioPlantaB=75;
-		}
+		nivel.iniciarJuego(i);
 	}
 	
-	public void setNivel(Nivel n) {
-		nivel = n;
-	}
-	
-	public Nivel getNivel() {
-		return nivel;
-	}
+		
 	
 	public JLabel[][] getLabels(){
 		return label;
@@ -86,8 +76,7 @@ public class PanelJardin extends JPanel{
 		
 	}
 	public void restart() {
-		nivel = new Nivel(1);
-		//limpiar labels
+		nivel.iniciarJuego(1);	//limpiar labels
 	}
 	
 	/*Este tiene dos funciones, para incrementar soles de forma normal solo has: modificarsoles(50)\
@@ -163,6 +152,8 @@ class EventosDelRaton implements MouseListener{
 			}
 		}
 	}
+	
+	public void colocarPlanta (Planta p) {}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
