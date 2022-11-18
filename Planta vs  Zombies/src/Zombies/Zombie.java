@@ -52,13 +52,6 @@ public abstract class Zombie extends Entidad{
 	}
 	public void recibirDanio (int danio) {
 		vida -= danio;
-		if (vida<=0) {
-			//autoreMove
-			//opcional que se haga desde el nivel
-		} 
-	}
-	public void accept (Visitor v) {
-		v.visit (this);
 	}
 	
 	public void move() {

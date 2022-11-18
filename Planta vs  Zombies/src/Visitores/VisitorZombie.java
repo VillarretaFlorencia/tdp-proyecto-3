@@ -1,5 +1,6 @@
 package Visitores;
 
+import Logica.Nivel;
 import Plantas.Planta;
 import Proyectil.Proyectil;
 import Zombies.Zombie;
@@ -7,6 +8,7 @@ import Zombies.Zombie;
 public class VisitorZombie extends Visitor{
 	
 	Zombie zombie;
+	Nivel n = Nivel.getNivel();
 
 	public VisitorZombie (Zombie z) {
 		zombie = z;
@@ -14,21 +16,24 @@ public class VisitorZombie extends Visitor{
 	
 	public void visit (Proyectil p) {
 		int daniar = p.getDanio();
-		if (zombie.getVida()>daniar)
+		if (zombie.getVida() > daniar) {
 			zombie.recibirDanio (daniar);
-		else
-			zombie.morir();
+			n.matarProyectil(p);
+		}
+		else {
+			n.matarZombie(zombie);
+		}
+		
 	}
 
 	
 	public void visit(Planta p) {
+		p.recibirDanio (zombie.getDanio());
 		zombie.comer();
+		if (p.getVida() <= 0)
+			n.matarPlanta(p);
 	}
 
-	@Override
-	public void visit(Zombie z) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 	
 }

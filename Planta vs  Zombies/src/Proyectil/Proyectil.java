@@ -4,38 +4,26 @@ import java.awt.Rectangle;
 
 import Fila.*;
 import Logica.Entidad;
-<<<<<<< HEAD
-=======
-import Fila.Fila;
->>>>>>> 257f9905b165b9a706678fcf0f0d85175a67cadf
 import Logica.Nivel;
 import Logica.Posicion;
-import Visitores.Visitor;
 
 public class Proyectil extends Entidad{
 	private int danio;
 	private Posicion pos;
-	private Nivel juego;
-	private ArregloFilas arreglo;
 	private String imagen;
 	private boolean activo;
 	
-	public Proyectil(Posicion pos) {
+	public Proyectil(Posicion pos, String i) {
 		this.pos = pos;
 		danio = 20;
 		activo = true;
+		imagen = i;
 	}
 	
 	public void move() {
-<<<<<<< HEAD
-		while(activo != true) {
-			pos.setY(pos.getY()+1);
-=======
-		if(activo==true) {
-			pos.setX(pos.getX()+1);
->>>>>>> 1377349d5a3092cf5c4da15351c6be2ff835257a
-		}
+		pos.setY(pos.getX()+1);
 	}
+	
 	/*private boolean colision() {
 		Fila f = arreglo.getFila(pos.posX());
 		return f.getZombies().getBounds().intersects(getBounds());
@@ -57,9 +45,5 @@ public class Proyectil extends Entidad{
 	}
 	public boolean getActivo() {
 		return activo;
-	}
-	@Override
-	public void accept(Visitor v) {
-		
 	}
 }

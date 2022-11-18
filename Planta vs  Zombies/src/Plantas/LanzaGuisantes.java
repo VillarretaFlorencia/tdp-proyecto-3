@@ -1,7 +1,12 @@
 package Plantas;
 
+import java.util.Iterator;
+
 import Estados.EstadoEntidad;
+import Logica.Nivel;
+import Proyectil.Proyectil;
 import Visitores.Visitor;
+import Zombies.Zombie;
 
 public class LanzaGuisantes extends Planta{
     protected int precio;
@@ -17,9 +22,10 @@ public class LanzaGuisantes extends Planta{
         //estado = new EstadoPlanta();
     }
 
-    public int Atacar() {
+    public void atacar() {
         /*aca dispara un gisante asi que se debe hacer la clase guisante */
-        return 0;
+    	if (hayZombiesEnRango())
+    		n.setProyectil(new Proyectil(this.posicion, "imagen proyectil"));      
     }
 
     public void recibirDanio(int danio) {
@@ -30,9 +36,6 @@ public class LanzaGuisantes extends Planta{
 		} 
     }
 
-    public void accept(Visitor v) {
-        v.visit(this);        
-    }
 
     public EstadoEntidad getEstadoEntidad() {
         return estado;
@@ -52,4 +55,6 @@ public class LanzaGuisantes extends Planta{
         // TODO Auto-generated method stub
         return 0;
     }
+
+	
 }

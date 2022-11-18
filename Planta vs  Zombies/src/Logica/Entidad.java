@@ -7,5 +7,4 @@ import Visitores.Visitor;
 
 public abstract class Entidad extends JLabel{
 	public abstract int getDanio();
-	public abstract void accept (Visitor v);
 }

@@ -48,8 +48,4 @@ public class ZombieNormal extends Zombie{
 		return movimiento;
 	}
 	
-	
-	public void accept (Visitor v) {
-		v.visit (this);
-	}
 }

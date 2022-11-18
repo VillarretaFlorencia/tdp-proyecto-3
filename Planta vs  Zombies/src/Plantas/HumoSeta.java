@@ -17,11 +17,11 @@ public class HumoSeta extends Planta{
         //estado = new EstadoPlanta();
     }
 
-    public int Atacar() {
+    public void atacar() {
         /*aca dispara un monton de esporas en 3 cuadrados delante de el
          * como una escopeta
         */
-        return 0;
+        
     }
 
     public void recibirDanio(int danio) {
@@ -50,4 +50,6 @@ public class HumoSeta extends Planta{
         // TODO Auto-generated method stub
         return 0;
     }
+
+	
 }

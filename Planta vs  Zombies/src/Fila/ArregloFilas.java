@@ -2,9 +2,6 @@ package Fila;
 
 import java.util.LinkedList;
 
-import Logica.Entidad;
-
-import Fila.Fila;
 import Plantas.Planta;
 import Proyectil.Proyectil;
 import Zombies.Zombie;
@@ -17,6 +14,10 @@ public class ArregloFilas{
 		for (int i = 0; i < arreglo.length; i++) {
 			arreglo[i] = new Fila();
 		}
+	}
+	
+	public Fila getFila (int i) {
+		return arreglo[i];
 	}
 	
 	public void setZombie(Zombie z) {
@@ -34,21 +35,14 @@ public class ArregloFilas{
 		arreglo[f].setProyectil(p);
 	}
 	
-	public Entidad getZombie(int f){
-		Entidad zombie;
-		zombie = arreglo[f-1].getPrimerZombie();
-		return zombie;
+	public LinkedList <Planta> getTodasLasPlantas() {
+		LinkedList <Planta> plantas = new LinkedList <Planta> ();
+		for (int i = 0; i < arreglo.length; i++) {
+			for (Planta p: arreglo[i].getPlantas()) {
+				plantas.add(p);
+			}
+		}
+		return plantas;
 	}
 	
-	public Entidad getPrimerPlanta(int f) {
-		Entidad planta;
-		planta = arreglo[f-1].getPrimerPlanta();
-		return planta;
-	}
-	
-	public Entidad getPrimerProyectil(int f) {
-		Entidad proyectil;
-		proyectil = arreglo[f-1].getPrimerProyectil();
-		return proyectil;
-	}
 }

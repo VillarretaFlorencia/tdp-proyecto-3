@@ -1,6 +1,9 @@
 package Plantas;
 
 import Estados.EstadoEntidad;
+import Logica.Nivel;
+import Logica.Posicion;
+import Proyectil.Proyectil;
 import Visitores.Visitor;
 
 public class LanzaGuisantesDoble extends Planta {
@@ -10,15 +13,21 @@ public class LanzaGuisantesDoble extends Planta {
     protected EstadoEntidad estado;
     protected Visitor visitor;
 
+    
+
     public LanzaGuisantesDoble(){
         precio = 200;
         vida = 10;
         danio = 2; //pero dispara dos veces
         //estado = new EstadoPlanta();
     }
-    public int Atacar() {
+    public void atacar() {
         /*aca dispara un gisante asi que se debe hacer la clase guisante */
-        return 0;
+    	if (hayZombiesEnRango()) {
+    		n.setProyectil(new Proyectil(this.posicion, "imagen proyectil"));
+    		Posicion p = new Posicion (this.posicion.getX() + 50 , this.posicion.getY());
+    		n.setProyectil(new Proyectil(p, "imagen proyectil"));
+    	}
     }
 
     public void recibirDanio(int danio) {

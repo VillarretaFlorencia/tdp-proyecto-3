@@ -32,11 +32,19 @@ public class Fila{
 	
 	public LinkedList <Zombie> getZombies() {return listaZombies;}
 	
-	public Planta[] getPlantas() {return plantas;}
+	public LinkedList <Planta> getPlantas() {
+		LinkedList <Planta> plan = new LinkedList <Planta>();
+		for (int i = 0; i < plantas.length; i++) {
+			Planta p = plantas[i];
+			if (p != null) {
+				plan.add(p);
+			}
+		}
+		return plan;}
 	
 	public LinkedList <Proyectil> getPrimerProyectil() {return listaProyectiles;}
 	
-	public void colision() {
+	public void colisiones() {
 		for (Zombie z: listaZombies) {
 			Iterator<Proyectil> it = listaProyectiles.iterator();
 			boolean colisionProyectil = false;
@@ -45,17 +53,18 @@ public class Fila{
 				Proyectil p = it.next();
 				if (z.getBounds().intersects(p.getBounds())) {
 					colisionProyectil = true;
-					p.accept(z.getVisitor());
-					listaProyectiles.remove();					
+					z.getVisitor().visit (p);
+					listaProyectiles.remove();	
 				}
 			}
-			//pensar si visita todas las plantas  o hay un corte
-			for (int i = plantas.length - 1; i >= 0 ; i--) {
+			for (int i = plantas.length - 1; i >= 0 && !colisionPlanta; i--) {
 				Planta p = plantas[i];
 				if (p != null) {
 					if (z.getBounds().intersects(p.getBounds())) {
 						colisionPlanta = true;
-						p.accept(z.getVisitor());					
+						z.getVisitor().visit (p);
+						if (p.getVida() <= 0)
+							plantas[i] = null;
 					}
 				}
 			}// ya que todo se conoce con todo que el zombie solo sea el visitor y visite a los demas 

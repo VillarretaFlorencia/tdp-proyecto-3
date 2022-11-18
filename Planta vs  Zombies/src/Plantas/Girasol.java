@@ -20,9 +20,8 @@ public class Girasol extends Planta{
         return vida;
     }
 
-    public int Atacar() {
+    public void atacar() {
         /*aca en vez de atacar lo que hace es soltar un sol */
-        return 0;
     }
     public void recibirDanio(int danio) {
         vida -= danio;
