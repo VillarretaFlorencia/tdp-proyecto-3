@@ -10,7 +10,6 @@ import Logica.Posicion;
 public class Proyectil extends Entidad{
 	private int danio;
 	private Posicion pos;
-	private String imagen;
 	private boolean activo; //borrar
 	
 	public Proyectil(Posicion pos, String i) {

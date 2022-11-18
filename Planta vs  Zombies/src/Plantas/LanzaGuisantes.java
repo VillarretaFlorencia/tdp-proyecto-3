@@ -12,7 +12,6 @@ import Visitores.Visitor;
 import Zombies.Zombie;
 
 public class LanzaGuisantes extends Planta{
-	protected String imagen;
     protected int vida;
     protected Posicion posicion;
     protected int precio;
@@ -28,9 +27,5 @@ public class LanzaGuisantes extends Planta{
     	if (hayZombiesEnRango())
     		n.setProyectil(new Proyectil(this.posicion, "imagen proyectil"));      
     }
-	@Override
-	public String getImagen() {
-		// TODO Auto-generated method stub
-		return imagen;
-	}	
+		
 }

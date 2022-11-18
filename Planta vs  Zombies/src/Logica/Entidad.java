@@ -7,8 +7,8 @@ import javax.swing.JLabel;
 import Visitores.Visitor;
 
 public abstract class Entidad {
-	
+	protected String imagen;
 	public abstract Rectangle getBounds();
-	public abstract String getImagen();
+	public  String getImagen() {return imagen;}
 
 }

@@ -10,7 +10,6 @@ import Proyectil.Proyectil;
 import Visitores.Visitor;
 
 public class HumoSeta extends Planta{
-	protected String imagen;
     protected int vida;
     protected Posicion posicion;
     protected int precio;
@@ -28,9 +27,5 @@ public class HumoSeta extends Planta{
     		n.setProyectil(new Proyectil(this.posicion, "imagen proyectil"));      
     }
     
-    public String getImagen() {
-		// TODO Auto-generated method stub
-		return imagen;
-	}
     
 }

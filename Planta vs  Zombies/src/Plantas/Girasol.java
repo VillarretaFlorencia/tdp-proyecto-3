@@ -10,8 +10,6 @@ import Logica.Nivel;
 import Logica.Posicion;
 
 public class Girasol extends Planta{
-	
-	protected String imagen;
     protected int vida;
     protected Posicion posicion;
     protected int precio;
@@ -27,10 +25,7 @@ public class Girasol extends Planta{
     public void atacar() {
     }
     
-    public String getImagen() {
-		// TODO Auto-generated method stub
-		return imagen;
-	}
+   
     public void setNormal() {
     	//ACA IRIA LA BRILLATE
     	imagen = "/recursos/sunflower.png";

@@ -15,7 +15,6 @@ import Zombies.Zombie;
 
 public abstract class Planta extends Entidad {
 	
-	protected String imagen;
     protected int vida;
     protected Posicion posicion;
     protected int precio;
@@ -52,5 +51,4 @@ public abstract class Planta extends Entidad {
 		return new Rectangle(getPosicion().getX(), getPosicion().getY(), 60, 60);
 	}
     
-    public String getImagen () {return imagen;}
 }

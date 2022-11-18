@@ -11,7 +11,6 @@ import Visitores.Visitor;
 
 public class LanzaGuisantesDoble extends Planta {
 	
-	protected String imagen;
     protected int vida;
     protected Posicion posicion;
     protected int precio;
@@ -31,8 +30,5 @@ public class LanzaGuisantesDoble extends Planta {
     	}
     }
     
-    public String getImagen() {
-		// TODO Auto-generated method stub
-		return imagen;
-	}
+  
 }
