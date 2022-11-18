@@ -7,10 +7,9 @@ import javax.swing.ImageIcon;
 import GUI.Gameplay;
 
 public class EstadoZombieNormal extends EstadoZombie{
-	protected  Image imagen;
 	
 	public EstadoZombieNormal(int i) {
-		String ruta="";
+		String ruta = "";
 		switch (i) {
 		case 0: ruta = "/recursos/Zombie.gif"; break;
 		case 1: ruta = "/recursos/Newspaper.gif"; break;
@@ -21,7 +20,7 @@ public class EstadoZombieNormal extends EstadoZombie{
 		case 6: ruta = "/recursos/FlagZombie.gif"; break;
 		}
 		
-		imagen = new ImageIcon(Gameplay.class.getResource(ruta)).getImage();
+		imagen = ruta;
 	}
-	public Image getImagen() {return imagen;}
+	
 }

@@ -24,7 +24,6 @@ public class ZombieVolador extends Zombie{
 		estado = new EstadoZombieNormal(5);
 		visitor = new VisitorZombie(this);
 		movimiento = true;
-		this.setIcon(new ImageIcon(estado.getImagen()));
 	}
 	
 	public void atacar(){

@@ -26,7 +26,6 @@ public class ZombieCono extends Zombie{
 		estado = new EstadoZombieNormal(2);
 		visitor = new VisitorZombie(this);
 		movimiento = true;
-		this.setIcon(new ImageIcon(estado.getImagen()));
 	}
 	
 	public void atacar(){

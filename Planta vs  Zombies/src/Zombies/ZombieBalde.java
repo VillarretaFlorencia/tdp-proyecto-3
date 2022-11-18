@@ -24,7 +24,6 @@ public class ZombieBalde extends Zombie{
 		estado = new EstadoZombieNormal(3);
 		visitor = new VisitorZombie(this);
 		movimiento = true;
-		this.setIcon(new ImageIcon(estado.getImagen()));
 	}
 	
 	public void atacar(){
