@@ -25,24 +25,10 @@ public class Nuez extends Planta{
 		imagen = "/recursos/walnut_half_life.gif";
 		
 	}
-	
-<<<<<<< Updated upstream
-	
-=======
-<<<<<<< HEAD
-	public String getImagen() {
-		// TODO Auto-generated method stub
-		return imagen;
-	}
 
-	@Override
 	public void move() {
 		// TODO Auto-generated method stub
 		
 	}
-=======
-	
->>>>>>> 04ea838d3ee732737fafee29d0a73888593914f5
->>>>>>> Stashed changes
  
 }

@@ -18,20 +18,22 @@ public class VisitorZombie extends Visitor{
 		int daniar = p.getDanio();
 		if (zombie.getVida() > daniar) {
 			zombie.recibirDanio (daniar);
-			n.matarProyectil(p);
 		}
 		else {
 			n.matarZombie(zombie);
 		}
+		n.matarProyectil(p);
 		
 	}
 
 	
 	public void visit(Planta p) {
+		zombie.setMovimiento(false);
 		p.recibirDanio (zombie.getDanio());
-		zombie.atacar();
-		if (p.getVida() <= 0)
+		if (p.getVida() <= 0) {
 			n.matarPlanta(p);
+			zombie.setMovimiento(true);
+		}
 	}
 
 	
