@@ -6,9 +6,9 @@ import javax.swing.JLabel;
 
 import Visitores.Visitor;
 
-public abstract class Entidad extends JLabel{
+public abstract class Entidad {
 	
 	public abstract Rectangle getBounds();
-	
+	public abstract String getImagen();
 
 }
