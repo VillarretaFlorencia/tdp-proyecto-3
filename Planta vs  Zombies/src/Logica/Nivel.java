@@ -26,6 +26,7 @@ public class Nivel {
 	protected ArregloFilas filas;
 	protected LinkedList<LinkedList<Zombie>> oleadas;
 	protected PanelJardin panelJardin;
+	private int [] precios;
 	
 	static private Nivel nivel = new Nivel();
 	
@@ -43,13 +44,20 @@ public class Nivel {
     	nivelLvl = i;
     	filas = new ArregloFilas();
     	
+    	precios = new int[4];
+    	precios [2] = precios [1] = 50; 
+    	
         if (i == 1 || i == 2) {
         	estado = new EstadoDia();
     		miFabrica = new FactoryDia();
+    		precios [0] = 100;
+    		precios [3] = 200;    		
         }
         if (i == 3 || i == 4) {
         	estado = new EstadoNoche();
     		miFabrica = new FactoryNoche();
+    		precios [0] = 25;
+    		precios [3] = 75;
         }
 
     	System.out.println("GENERANDO NIVEL");
@@ -76,35 +84,34 @@ public class Nivel {
     	filas.setProyectil(p);
     }
     
-    public void setPlanta (Planta p){
-    	filas.setPlanta(p);
-    }
-    
-    public void modificar(Posicion pos, int i) {
+        
+    public void setPlanta(Posicion pos, int i) {
     	Planta p = null;
-		switch(i) {
-		  case 1:{
-			p = miFabrica.createPlantaA();
-			
-		    break;
-		  }
-		  case 2:{
-			p =  miFabrica.createPlantaGirasol();
-			break;
-		  }
-		  case 3:{
-			p =  miFabrica.createPlantaNuez();
-			break;
-		  }
-		  case 4:{
-			p = miFabrica.createPlantaB();
-			break;
-		  }
-	    }
-		if (p != null) {
-			p.setPosicion(pos);
-			filas.setPlanta(p);
-		}
+    	if (soles >= precios[i-1] && filas.getFila(pos.getY()).hayLugar(pos.getX())) {
+			switch(i) {
+			  case 1:{
+				p = miFabrica.createPlantaA();
+			    break;
+			  }
+			  case 2:{
+				p =  miFabrica.createPlantaGirasol();
+				break;
+			  }
+			  case 3:{
+				p =  miFabrica.createPlantaNuez();
+				break;
+			  }
+			  case 4:{
+				p = miFabrica.createPlantaB();
+				break;
+			  }
+		    }
+			if (p != null) {
+				p.setPosicion(pos);
+				filas.setPlanta(p);
+		    	panelJardin.colocarPlanta (p);
+			}
+    	}
 		//ENVIAR A LA GUI, LA ENTIDAD QUE AGREGAMOS Y LA POSICION (ACTUALIZAR)
 		//fila.insertPlanta(p.getY(),nivel[p.getX()][p.getY()]);
     }

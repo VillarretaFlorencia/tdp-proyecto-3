@@ -26,7 +26,11 @@ public class Fila{
 	
 	public void setPlanta (Planta p) {
 		plantas [p.getPosicion().getX()] = p;
-	} // tengo plantas hasta en 9 posiciones dependiendo en la x que estoy, calculo el rango para disparar y colisiones 
+	} 
+	
+	public boolean hayLugar (int x) {
+		return plantas[x] == null;
+	}
 	
 	public void setProyectil (Proyectil p) {listaProyectiles.add(p);}
 	
