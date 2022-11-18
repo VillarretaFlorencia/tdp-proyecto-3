@@ -8,19 +8,16 @@ import Logica.Nivel;
 import Logica.Posicion;
 
 public class Proyectil extends Entidad{
-	private int vida;
 	private int danio;
-	private Posicion pos;
 	
-	public Proyectil(Posicion pos, String i) {
-		this.pos = pos;
-		danio = 20;
-		activo = true;
+	public Proyectil(Posicion pos, String i, int d) {
+		posicion = pos;
+		danio = d;
 		imagen = i;
 	}
 	
 	public void move() {
-		pos.setY(pos.getX()+1);
+		posicion.setX(posicion.getX()+1);
 	}
 	
 	/*private boolean colision() {
@@ -32,17 +29,9 @@ public class Proyectil extends Entidad{
 		return danio;
 	}
 	
-	public Posicion getPosicion () {
-		return pos;
-	}
 	
 	public Rectangle getBounds() {
-		return new Rectangle(pos.getX(), pos.getY(),50, 50);
+		return new Rectangle(posicion.getX(), posicion.getY(),50, 50);
 	}
-	public void setActivo(boolean est) {
-		activo = est;
-	}
-	public boolean getActivo() {
-		return activo;
-	}
+	
 }

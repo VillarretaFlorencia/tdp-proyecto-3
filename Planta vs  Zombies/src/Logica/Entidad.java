@@ -11,6 +11,7 @@ public abstract class Entidad {
 	protected String imagen;
 	protected Posicion posicion;
 	
+	
 	public abstract Rectangle getBounds();
 	public  String getImagen() {return imagen;}
 	public abstract void move();

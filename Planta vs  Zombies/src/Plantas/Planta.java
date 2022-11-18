@@ -14,31 +14,15 @@ import Visitores.*;
 import Zombies.Zombie;
 
 public abstract class Planta extends Entidad {
+	  
+	protected int vida;
+	Nivel n = Nivel.getNivel();
 	
-    protected int vida;
-    protected Posicion posicion;
-    protected int precio;
-    protected Nivel n = Nivel.getNivel();
-    
-    //Setters y Getters
-    public int getVida() {
-    	return vida;
-    }
-    public Posicion getPosicion() {
-    	return posicion;
-    }
-    public void setPosicion(Posicion pos) {
-    	posicion = pos;
-    }
-    
-    //Metodos propios
-    public void recibirDanio(int danio) {
-    	vida = vida - danio;
-    }
+	public int getVida() {return vida;}
     public abstract void atacar();//este en el caso del girasol en vez de atacar lanza soles y la nuez no hace nada
   
     public boolean hayZombiesEnRango() {
-    	Nivel n = Nivel.getNivel();
+    	
     	Iterator <Zombie> it = n.getFilas().getFila(posicion.getY()).getZombies().iterator();
     	boolean hayEnRango = false;
     	while (it.hasNext() && !hayEnRango) {
