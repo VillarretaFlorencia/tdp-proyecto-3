@@ -26,7 +26,7 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 	private JLabel lblGameN;
 	JLabel cantSoles;
 	private int numeroNivel = 0;
-	private List<JLabel> zombies;
+	private List<Pair<Entidad,JLabel>> zombies;
 	public Gameplay( int i) {
 		numeroNivel = i;
 		System.out.println("-------------- valor i: "+i);
@@ -179,13 +179,20 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 	}
 	
 	public void modificarDinamico(Entidad e) {
+		/*en esta parte hay que entender que las entidades que no son plantas
+		 * las posiciones funcionan de forma distinta donde x -> [0,570] y Y->[0,5]
+		 * y representa la fila donde esta y X es su posicion de izquierda o derecha*/
+		int yAbsolute = 31;
 		int x=e.getPosicion().getX(); int y = e.getPosicion().getY(); 
 		System.out.println("Path: "+String.valueOf(e.getImagen()));
-		
-		label[x][y].setIcon(new ImageIcon(Gameplay.class.getResource(String.valueOf(e.getImagen()))));
-		label[x][y].setVisible(true);
-		System.out.println("nuevos soles: "+panelJardin.getSoles());
-		cantSoles.setText(String.valueOf(panelJardin.getSoles()));
+		JLabel lbl = new JLabel();
+		lbl.setIcon(new ImageIcon(Gameplay.class.getResource(String.valueOf(e.getImagen()))));
+		this.add(lbl);
+		yAbsolute = y+(e.getPosicion().getY()*63);
+		lbl.setLocation(e.getPosicion().getX(),yAbsolute);
+		zombies.add(new Pair<Entidad, JLabel>(e,lbl));
+		lbl.setVisible(true);
+		System.out.println("Posicion del zombie: "+lbl.getAlignmentX()+","+lbl.getAlignmentY());
 	}
 	
 	public void restart() {
@@ -226,3 +233,23 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 	}
 }
 
+class Pair<K,V>{
+	K key; V value;
+	Pair(K k, V v){
+		key = k;
+		value = v;
+	}
+	public K getKey() {
+		return key;
+	}
+	public void setKey(K key) {
+		this.key = key;
+	}
+	public V getValue() {
+		return value;
+	}
+	public void setValue(V value) {
+		this.value = value;
+	}
+	
+}
