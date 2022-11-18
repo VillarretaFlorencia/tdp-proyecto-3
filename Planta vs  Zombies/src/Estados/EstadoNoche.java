@@ -1,16 +1,23 @@
 package Estados;
 
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
+
+import GUI.Gameplay;
+
 public class EstadoNoche extends Estado{
-	protected String imagen;
+	protected Image imagen;
 	
 	public EstadoNoche() {
-		imagen = null;
+		
+		imagen = new ImageIcon(Gameplay.class.getResource("/recursos/mainBG_N.png")).getImage();
 	}
 	
-	public String getImage() {
+	public Image getImage() {
 		return imagen;
 	}
-	public void setImage(String i) {
+	public void setImage(Image i) {
 		imagen = i;
 	}
 }

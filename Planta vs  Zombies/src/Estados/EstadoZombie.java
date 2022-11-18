@@ -1,7 +1,10 @@
 package Estados;
 
-public abstract class EstadoZombie extends EstadoEntidad{
+import java.awt.Image;
 
-	public abstract String getImagen();
+public abstract class EstadoZombie extends Estado{
+	
+	
+	public abstract Image getImagen();
 
 }

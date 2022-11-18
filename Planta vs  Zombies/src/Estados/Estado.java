@@ -1,7 +1,9 @@
 package Estados;
 
+import java.awt.Image;
+
 public abstract class Estado {
 	
-	public abstract String getImage();
+	public abstract Image getImagen();
 
 }

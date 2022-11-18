@@ -1,5 +1,8 @@
 package Fabrica;
 
+import javax.swing.ImageIcon;
+
+import GUI.Gameplay;
 import Plantas.Girasol;
 import Plantas.LanzaGuisantes;
 import Plantas.LanzaGuisantesDoble;
@@ -17,11 +20,15 @@ import Zombies.ZombieVolador;
 public class FactoryDia extends Factory {
 
 	public Planta createPlantaA() {
+		ImageIcon icono = new ImageIcon(Gameplay.class.getResource("/recursos/peashooter.gif"));
+		//										   icon.getImage()
 		Planta lanzaGuisantes = new LanzaGuisantes();
 		return lanzaGuisantes;
 	}
 
 	public Planta createPlantaB() {
+		ImageIcon icono = new ImageIcon(Gameplay.class.getResource("/recursos/repeater.gif"));
+		//											   icon.getImage()
 		Planta lanzaGuisantesD = new LanzaGuisantesDoble();
 		return lanzaGuisantesD;
 	}
