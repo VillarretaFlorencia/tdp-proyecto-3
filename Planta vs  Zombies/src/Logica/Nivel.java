@@ -11,6 +11,7 @@ import Fabrica.Factory;
 import Fabrica.FactoryDia;
 import Fabrica.FactoryNoche;
 import Fila.ArregloFilas;
+import Fila.Fila;
 import GUI.PanelJardin;
 import Plantas.Planta;
 import Proyectil.Proyectil;
@@ -120,6 +121,10 @@ public class Nivel {
     	for (int i = 0; i< 7; i++) {
     		filas.getFila(i).colisiones();
     	}
+    }
+    
+    public Entidad getEntidad (int x, int y) {
+    	return filas.getFila(y).plantaEnPos(x);    	
     }
       
     public void matarZombie (Zombie z) {

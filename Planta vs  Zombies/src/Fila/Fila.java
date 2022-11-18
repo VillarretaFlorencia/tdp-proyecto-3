@@ -31,6 +31,8 @@ public class Fila{
 	public boolean hayLugar (int x) {
 		return plantas[x] == null;
 	}
+
+	public Planta plantaEnPos(int x) {return plantas[x];}
 	
 	public void setProyectil (Proyectil p) {listaProyectiles.add(p);}
 	
