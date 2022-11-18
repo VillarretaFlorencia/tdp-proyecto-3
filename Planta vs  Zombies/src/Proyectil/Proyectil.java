@@ -8,9 +8,9 @@ import Logica.Nivel;
 import Logica.Posicion;
 
 public class Proyectil extends Entidad{
+	private int vida;
 	private int danio;
 	private Posicion pos;
-	private boolean activo; //borrar
 	
 	public Proyectil(Posicion pos, String i) {
 		this.pos = pos;
