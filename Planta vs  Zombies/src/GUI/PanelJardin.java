@@ -100,6 +100,7 @@ public class PanelJardin extends JPanel{
 }
 
 class EventosDelRaton implements MouseListener{
+	Nivel nivel = Nivel.getNivel();
 	private PanelJardin panel;
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -110,44 +111,12 @@ class EventosDelRaton implements MouseListener{
 			int posY= (int) (Math.floor((e.getY()/63)));
 			System.out.println("Posicion en la grilla: "+(posX)+ " | "+(5-posY));
 			System.out.println("Seleccion: "+ panel.getSeleccion());
-			
-			if(panel.getNivel().getEntidad(posX, posY)==null) {
-				//if(panel.getNivel().getNivelLVL()<=2) {
-					switch(panel.getSeleccion()) {
-					case 1: if((panel.getSoles()-panel.getPrecioPlantaA())>=0) {
-						panel.modificarSoles(-panel.getPrecioPlantaA());
-						System.out.println("Pongo una planta nueva, precio: "+panel.getPrecioPlantaA());
-						panel.getNivel().modificar(new Posicion(posX,posY), panel.getSeleccion());
-						panel.insert(posX,posY);
-					}break;
-					
-					case 2:if((panel.getSoles()-50)>=0) {
-						panel.modificarSoles(-50);
-						System.out.println("Pongo una planta nueva");
-						panel.getNivel().modificar(new Posicion(posX,posY), panel.getSeleccion());
-						panel.insert(posX,posY);
-					}break;
-					
-					case 3:if((panel.getSoles()-50)>=0) {
-						panel.modificarSoles(-50);
-						System.out.println("Pongo una planta nueva");
-						panel.getNivel().modificar(new Posicion(posX,posY), panel.getSeleccion());
-						panel.insert(posX,posY);
-					}break;
-					
-					case 4:if((panel.getSoles()-panel.getPrecioPlantaB())>=0) {
-						panel.modificarSoles(-panel.getPrecioPlantaB());
-						System.out.println("Pongo una planta nueva, precio: "+panel.getPrecioPlantaB());
-						panel.getNivel().modificar(new Posicion(posX,posY), panel.getSeleccion());
-						panel.insert(posX,posY);
-					}break;
-					}
-				//}
+			nivel.setPlanta(new Posicion(posX,posY), panel.getSeleccion());
 				
 				panel.setSeleccion(0);
 			}else {
 				System.out.println("ya hay una planta aqui");
-				System.out.println("Aqui hay: "+panel.getNivel().getEntidad(posX, posY).getClass().getSimpleName());
+				System.out.println("Aqui hay: "+nivel.getEntidad(posX, posY).getClass().getSimpleName());
 				panel.setSeleccion(0);
 			}
 		}
