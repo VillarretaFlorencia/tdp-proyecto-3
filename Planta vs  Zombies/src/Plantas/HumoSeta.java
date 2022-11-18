@@ -27,5 +27,21 @@ public class HumoSeta extends Planta{
     		n.setProyectil(new Proyectil(this.posicion, "imagen proyectil"));      
     }
     
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+    public String getImagen() {
+		// TODO Auto-generated method stub
+		return imagen;
+	}
+
+	@Override
+	public void move() {
+		// TODO Auto-generated method stub
+		
+	}
+=======
+>>>>>>> 04ea838d3ee732737fafee29d0a73888593914f5
+>>>>>>> Stashed changes
     
 }

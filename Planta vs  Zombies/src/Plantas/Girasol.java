@@ -34,6 +34,12 @@ public class Girasol extends Planta{
     public void setBrillate() {
     	imagen = "/recursos/sunflowerB.png";
     }
+
+	@Override
+	public void move() {
+		// TODO Auto-generated method stub
+		
+	}
     
     
 }
