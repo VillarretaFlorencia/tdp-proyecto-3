@@ -34,7 +34,7 @@ public class Nivel {
 	//protected Singleton singleton;
     
     private Nivel(){
-    	
+    	soles = 100;
     }
     
     static public Nivel getNivel() {
@@ -88,7 +88,9 @@ public class Nivel {
         
     public void setPlanta(Posicion pos, int i) {
     	Planta p = null;
+    	System.out.println("Entro en set planta");
     	if (soles >= precios[i-1] && filas.getFila(pos.getY()).hayLugar(pos.getX())) {
+    		System.out.println("Entro en set planta");
 			switch(i) {
 			  case 1:{
 				p = miFabrica.createPlantaA();
@@ -107,12 +109,16 @@ public class Nivel {
 				break;
 			  }
 		    }
-			if (p != null) {
-				p.setPosicion(pos);
-				filas.setPlanta(p);
-		    	panelJardin.colocarPlanta (p);
-			}
     	}
+    	
+    	if (p != null) {
+			p.setPosicion(pos);
+			filas.setPlanta(p);
+	    	panelJardin.colocarPlanta (p);
+	    	System.out.println("crea planta");
+		}else {
+			System.out.println("ya hay planta o crea el saldo");
+		}
 		//ENVIAR A LA GUI, LA ENTIDAD QUE AGREGAMOS Y LA POSICION (ACTUALIZAR)
 		//fila.insertPlanta(p.getY(),nivel[p.getX()][p.getY()]);
     }
