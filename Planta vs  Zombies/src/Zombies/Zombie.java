@@ -64,7 +64,5 @@ public abstract class Zombie extends Entidad{
 	
 	public abstract void atacar();
 	
-	public String getImagen() {return estado.getImagen();}
-	
 }
 

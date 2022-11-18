@@ -24,6 +24,7 @@ public class ZombiePeriodico extends Zombie{
 		estado = new EstadoZombieNormal(1);
 		visitor = new VisitorZombie(this);
 		movimiento = true;
+		this.setIcon(new ImageIcon(estado.getImagen()));
 	}
 	
 	public void atacar(){
