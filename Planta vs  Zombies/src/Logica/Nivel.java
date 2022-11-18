@@ -4,7 +4,7 @@ import java.util.Deque;
 import java.util.LinkedList;
 import java.util.Map;
 
-import Estados.Estado;
+import Estados.EstadoNivel;
 import Estados.EstadoDia;
 import Estados.EstadoNoche;
 import Fabrica.Factory;
@@ -21,7 +21,7 @@ import Zombies.ZombieNormal;
 
 public class Nivel {
 	protected int soles;
-	protected Estado estado;
+	protected EstadoNivel estado;
 	protected int nivelLvl;
 	protected Factory miFabrica;
 	protected ArregloFilas filas;

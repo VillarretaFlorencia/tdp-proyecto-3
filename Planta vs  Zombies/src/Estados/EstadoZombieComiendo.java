@@ -6,7 +6,7 @@ import javax.swing.ImageIcon;
 
 import GUI.Gameplay;
 
-public class EstadoZombieComiendo {
+public class EstadoZombieComiendo extends EstadoZombie{
 	Image imagen;
 	public EstadoZombieComiendo(int i) {
 		String ruta="";
@@ -21,5 +21,10 @@ public class EstadoZombieComiendo {
 		}
 		
 		imagen = new ImageIcon(Gameplay.class.getResource(ruta)).getImage();
+	}
+	@Override
+	public Image getImagen() {
+		// TODO Auto-generated method stub
+		return imagen;
 	}
 }
