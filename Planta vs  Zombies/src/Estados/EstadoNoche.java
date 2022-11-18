@@ -6,7 +6,7 @@ import javax.swing.ImageIcon;
 
 import GUI.Gameplay;
 
-public class EstadoNoche extends Estado{
+public class EstadoNoche extends EstadoNivel{
 	protected Image imagen;
 	
 	public EstadoNoche() {
@@ -14,7 +14,7 @@ public class EstadoNoche extends Estado{
 		imagen = new ImageIcon(Gameplay.class.getResource("/recursos/mainBG_N.png")).getImage();
 	}
 	
-	public Image getImage() {
+	public Image getImagen() {
 		return imagen;
 	}
 	public void setImage(Image i) {

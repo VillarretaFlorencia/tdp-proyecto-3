@@ -6,14 +6,14 @@ import javax.swing.ImageIcon;
 
 import GUI.Gameplay;
 
-public class EstadoDia extends Estado{
+public class EstadoDia extends EstadoNivel{
 	protected Image imagen;
 	
 	public EstadoDia() {
 		imagen = new ImageIcon(Gameplay.class.getResource("/recursos/mainBG.png")).getImage();
 	}
 	
-	public Image getImage() {
+	public Image getImagen() {
 		return imagen;
 	}
 	public void setImage(Image i) {
