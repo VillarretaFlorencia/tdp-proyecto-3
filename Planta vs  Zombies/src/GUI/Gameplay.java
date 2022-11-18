@@ -5,6 +5,9 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicButtonListener;
+
+import Plantas.Planta;
+
 import java.awt.Color;
 
 /*NOTA:
@@ -159,29 +162,9 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 		
 	}
 	
-	public void modificar(int x, int y, int seleccion) {
-		switch (seleccion) {
-			case 1: if(numeroNivel <=2) {
-						label[x][y].setIcon(new ImageIcon(Gameplay.class.getResource("/recursos/peashooter.gif")));
-					}else {
-						label[x][y].setIcon(new ImageIcon(Gameplay.class.getResource("/recursos/PuffShroom.gif")));
-					}
-					break;
-			
-			case 2:
-				label[x][y].setIcon(new ImageIcon(Gameplay.class.getResource("/recursos/sunflower.gif")));
-				break;
-			case 3:
-				label[x][y].setIcon(new ImageIcon(Gameplay.class.getResource("/recursos/walnut_full_life.gif")));
-				break;
-			case 4:
-				if(numeroNivel <=2) {
-					label[x][y].setIcon(new ImageIcon(Gameplay.class.getResource("/recursos/repeater.gif")));
-				}else {
-					label[x][y].setIcon(new ImageIcon(Gameplay.class.getResource("/recursos/FumeShroom.gif")));
-				}
-				break;
-		}
+	public void modificar(int x, int y, Planta p) {
+		label[x][y] = p;
+		label[x][y].setVisible(true);
 		System.out.println("nuevos soles: "+panelJardin.getSoles());
 		cantSoles.setText(String.valueOf(panelJardin.getSoles()));
 	}

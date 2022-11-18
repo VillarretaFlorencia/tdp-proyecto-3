@@ -70,9 +70,9 @@ public class PanelJardin extends JPanel{
 		return gameplay;
 	}
 	
-	public void insert(int posX, int posY) {
+	public void insert(int posX, int posY, Planta p) {
 		System.out.println("Nivel: "+ nivel.getNivelLVL());
-		gameplay.modificar(posX, posY, seleccion);
+		gameplay.modificar(posX, posY, p);
 		
 	}
 	public void restart() {
@@ -90,7 +90,9 @@ public class PanelJardin extends JPanel{
 		return soles;
 	}
 	
-	public void colocarPlanta (Planta p) {}
+	public void colocarPlanta (Planta p) {
+		gameplay.modificar(precioPlantaB, precioPlantaA, p);
+	}
 	
 	public int getPrecioPlantaA() {
 		return precioPlantaA;
@@ -116,7 +118,6 @@ class EventosDelRaton implements MouseListener{
 			nivel.setPlanta(new Posicion(posX,posY), panel.getSeleccion());
 			panel.setSeleccion(0);
 			}else {
-				
 				System.out.println("ya hay una planta aqui");
 				System.out.println("Aqui hay: "+nivel.getEntidad(posX, posY).getClass().getSimpleName());
 				panel.setSeleccion(0);
