@@ -72,7 +72,7 @@ public class PanelJardin extends JPanel{
 	
 	public void insert(int posX, int posY, Planta p) {
 		System.out.println("Nivel: "+ nivel.getNivelLVL());
-		gameplay.modificar(posX, posY, p);
+		gameplay.modificar(p);
 		
 	}
 	public void restart() {

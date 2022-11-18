@@ -2,12 +2,15 @@ package GUI;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicButtonListener;
 
+import Logica.Entidad;
 import Logica.Nivel;
 import Plantas.Planta;
+import Zombies.Zombie;
 
 import java.awt.Color;
 
@@ -23,6 +26,7 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 	private JLabel lblGameN;
 	JLabel cantSoles;
 	private int numeroNivel = 0;
+	private List<JLabel> zombies;
 	public Gameplay( int i) {
 		numeroNivel = i;
 		System.out.println("-------------- valor i: "+i);
@@ -174,6 +178,16 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 		cantSoles.setText(String.valueOf(panelJardin.getSoles()));
 	}
 	
+	public void modificarDinamico(Entidad e) {
+		int x=e.getPosicion().getX(); int y = e.getPosicion().getY(); 
+		System.out.println("Path: "+String.valueOf(e.getImagen()));
+		
+		label[x][y].setIcon(new ImageIcon(Gameplay.class.getResource(String.valueOf(e.getImagen()))));
+		label[x][y].setVisible(true);
+		System.out.println("nuevos soles: "+panelJardin.getSoles());
+		cantSoles.setText(String.valueOf(panelJardin.getSoles()));
+	}
+	
 	public void restart() {
 		panelJardin.restart();
 		for(int x = 0; x < label.length; x++) {
@@ -211,3 +225,4 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 		}
 	}
 }
+
