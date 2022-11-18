@@ -1,51 +1,31 @@
 package Plantas;
 
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
+
 import Estados.EstadoEntidad;
+import Logica.Nivel;
+import Logica.Posicion;
+import Proyectil.Proyectil;
 import Visitores.Visitor;
 
 public class SetaDesporadora extends Planta{
-    protected int precio;
+	protected Image imagen;
     protected int vida;
-    protected int danio;
-    protected EstadoEntidad estado;
-    protected Visitor visitor;
+    protected Posicion posicion;
+    protected int precio;
+    protected Nivel n = Nivel.getNivel();
 
     public SetaDesporadora(){
-        precio = 25;
-        vida = 4;
-        danio = 1;
-        //estado = new EstadoPlanta();
+    	imagen = new ImageIcon(this.getClass().getResource("/recursos/PuffSroom.png")).getImage();
+        vida = 7;
+        precio = 50;
     }
     
-    public int Atacar() {
-        /*aca dispara una espora asi que se debe hacer la clase espora */
-        return 0;
-    }
-
-    public void recibirDanio(int danio) {
-        vida -= danio;
-		if (vida<=0) {
-			//autoreMove
-			//opcional que se haga desde el nivel
-		} 
-    }
-
-    public EstadoEntidad getEstadoEntidad() {
-        return estado;
-    }
-
-    public int getVelocidad() {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-
-    public int getDanio() {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-
-    public double getMultiplicador() {
-        // TODO Auto-generated method stub
-        return 0;
+    public void atacar() {
+        /*aca dispara un gisante asi que se debe hacer la clase guisante */
+    	if (hayZombiesEnRango())
+    		n.setProyectil(new Proyectil(this.posicion, "imagen proyectil"));      
     }
 }
