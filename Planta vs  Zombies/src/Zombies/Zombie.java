@@ -3,6 +3,8 @@ package Zombies;
 import java.awt.Image;
 import java.awt.Rectangle;
 import Estados.EstadoZombie;
+import Estados.EstadoZombieComiendo;
+import Estados.EstadoZombieNormal;
 import Logica.Entidad;
 import Logica.Posicion;
 import Visitores.*;
@@ -16,6 +18,7 @@ public abstract class Zombie extends Entidad{
 	protected EstadoZombie estado;
 	protected Visitor visitor;
 	protected boolean movimiento;
+	protected int identificacion;
 	
 	//Setters & Getters
 	public int getVida(){
@@ -36,8 +39,11 @@ public abstract class Zombie extends Entidad{
 	public EstadoZombie getEstado() {
 		return estado;
 	}
-	public void setEstado(EstadoZombie e) {
-		estado = e;
+	public void setEstado() {
+		if (movimiento)
+			estado = new EstadoZombieNormal(identificacion);
+		if (!movimiento)
+			estado = new EstadoZombieComiendo(identificacion);
 	}
 	public Visitor getVisitor() {
 		return visitor;
@@ -62,9 +68,9 @@ public abstract class Zombie extends Entidad{
 		return movimiento;
 	}
 	
-	public abstract void atacar();
-	
-	public String getImagen() {return estado.getImagen();}
-	
+	//public abstract void atacar();
+	public String getImagen() {
+		return estado.getImagen();
+	}
 }
 

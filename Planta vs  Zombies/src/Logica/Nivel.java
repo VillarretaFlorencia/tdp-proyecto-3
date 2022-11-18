@@ -155,6 +155,20 @@ public class Nivel {
     public LinkedList<LinkedList<Zombie>> getOleadas () {
     	return oleadas;
     }
-    
-    
+    public void moverProyectiles() {
+    	for (int i = 0; i < 6; i ++) {
+    		Fila fila = filas.getFila(i);
+		    for(Proyectil p: fila.getProyectiles()) {
+		    	p.move();
+		    }
+	    }
+    }
+    public void moverZombies() {
+    	for (int i = 0; i < 6; i ++) {
+    		Fila fila = filas.getFila(i);
+		    for(Zombie z: fila.getZombies()) {
+		    	z.move();
+		    }
+	    }
+    }
 }

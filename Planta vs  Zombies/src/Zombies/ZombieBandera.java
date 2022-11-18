@@ -16,6 +16,7 @@ public class ZombieBandera extends Zombie{
 	protected EstadoZombie estado;
 	protected Visitor visitor;
 	protected boolean movimiento;
+	protected int identificacion;
 	
 	public ZombieBandera() {
 		vida = 5;
@@ -24,8 +25,9 @@ public class ZombieBandera extends Zombie{
 		estado = new EstadoZombieNormal(6);
 		visitor = new VisitorZombie(this);
 		movimiento = true;
+		identificacion = 6;
 	}
-	public void atacar(){
+	/*public void atacar(){
 		estado = new EstadoZombieComiendo(6);	
-	}
+	}*/
 }

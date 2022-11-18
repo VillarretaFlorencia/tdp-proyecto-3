@@ -14,6 +14,7 @@ public class ZombieNormal extends Zombie{
 	protected EstadoZombie estado;
 	protected Visitor visitor;
 	protected boolean movimiento;
+	protected int identificacion;
 	
 	public ZombieNormal() {
 		vida = 5;
@@ -22,9 +23,10 @@ public class ZombieNormal extends Zombie{
 		estado = new EstadoZombieNormal(0);
 		visitor = new VisitorZombie(this);
 		movimiento = true;
+		identificacion = 0;
 	}
 	
-	public void atacar(){
+	/*public void atacar(){
 		estado = new EstadoZombieComiendo(0);	
-	}
+	}*/
 }

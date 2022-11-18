@@ -16,6 +16,7 @@ public class ZombieBalde extends Zombie{
 	protected EstadoZombie estado;
 	protected Visitor visitor;
 	protected boolean movimiento;
+	protected int identificacion;
 	
 	public ZombieBalde() {
 		vida = 5;
@@ -24,9 +25,10 @@ public class ZombieBalde extends Zombie{
 		estado = new EstadoZombieNormal(3);
 		visitor = new VisitorZombie(this);
 		movimiento = true;
+		identificacion = 3;
 	}
 	
-	public void atacar(){
+	/*public void atacar(){
 		estado = new EstadoZombieComiendo(3);	
-	}
+	}*/
 }

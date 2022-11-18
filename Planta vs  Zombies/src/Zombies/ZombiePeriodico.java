@@ -16,6 +16,7 @@ public class ZombiePeriodico extends Zombie{
 	protected EstadoZombie estado;
 	protected Visitor visitor;
 	protected boolean movimiento;
+	protected int identificacion;
 	
 	public ZombiePeriodico() {
 		vida = 5;
@@ -24,9 +25,10 @@ public class ZombiePeriodico extends Zombie{
 		estado = new EstadoZombieNormal(1);
 		visitor = new VisitorZombie(this);
 		movimiento = true;
+		identificacion = 1;
 	}
 	
-	public void atacar(){
+	/*public void atacar(){
 		estado = new EstadoZombieComiendo(1);	
-	}
+	}*/
 }

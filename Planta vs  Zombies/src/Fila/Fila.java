@@ -48,7 +48,7 @@ public class Fila{
 		}
 		return plan;}
 	
-	public LinkedList <Proyectil> getPrimerProyectil() {return listaProyectiles;}
+	public LinkedList <Proyectil> getProyectiles() {return listaProyectiles;}
 	
 	public void colisiones() {
 		for (Zombie z: listaZombies) {

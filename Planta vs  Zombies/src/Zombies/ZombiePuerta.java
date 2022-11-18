@@ -17,6 +17,7 @@ public class ZombiePuerta extends Zombie{
 	protected EstadoZombie estado;
 	protected Visitor visitor;
 	protected boolean movimiento;
+	protected int identificacion;
 	
 	public ZombiePuerta() {
 		vida = 5;
@@ -25,9 +26,10 @@ public class ZombiePuerta extends Zombie{
 		estado = new EstadoZombieNormal(4);
 		visitor = new VisitorZombie(this);
 		movimiento = true;
+		identificacion = 4;
 	}
 	
-	public void atacar(){
+	/*public void atacar(){
 		estado = new EstadoZombieComiendo(4);	
-	}
+	}*/
 }

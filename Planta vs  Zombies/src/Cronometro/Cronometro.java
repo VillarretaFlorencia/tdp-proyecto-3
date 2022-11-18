@@ -17,28 +17,24 @@ public class Cronometro implements Runnable{
 	public int n;
 	private Thread hiloZombies;
 	private HiloZombies misZombies;
-	//protected JFrame ventana;
-	private Nivel miNivel;
+	private Nivel nivel;
 	private Gameplay ventana;
 	
 	public Cronometro (Gameplay v) {
 		segundos = 0;
 		ventana = v;
-		miNivel = ventana.getJardin().getNivel();
+		nivel = Nivel.getNivel();
 	}
 	
 	public void run () {
 		while(true) {
 			try {
 				Thread.sleep(1000);
-				//this.ventana.getLabel().setText("Time "+segundos);
-				//System.out.println("Time "+segundos);
 				segundos++;
 				hiloZombies.start();
-				miNivel.moverProyectiles();
-				miNivel.moverZombies();
-				miNivel.chequearColisiones();
-				chequearColisiones();
+				nivel.moverProyectiles();
+				nivel.moverZombies();
+				nivel.checkColisiones();
 				if (segundos % 10000 == 0) {//cambia la imagen del girasol, aumenta los soles respecto a la cantidad de girasoles, descansa, se vuelve al girasol normal
 					//ventana.girasolActivo();
 					Thread.sleep(1000);
@@ -49,13 +45,5 @@ public class Cronometro implements Runnable{
 				e.getMessage();
 			}
 		}
-	}
-	
-	private boolean chequearColisiones() {	
-		LinkedList<Proyectil> listaProyectiles;
-		listaProyectiles= miNivel.getProyectilesEnPantalla();
-		LinkedList<Zombie> listaZombies;
-		listaZombies = miNivel.getZombiesEnPantalla();
-		
 	}
 }

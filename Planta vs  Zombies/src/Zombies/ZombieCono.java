@@ -18,6 +18,7 @@ public class ZombieCono extends Zombie{
 	protected EstadoZombie estado;
 	protected Visitor visitor;
 	protected boolean movimiento;
+	protected int identificacion;
 	
 	public ZombieCono() {
 		vida = 5;
@@ -26,9 +27,10 @@ public class ZombieCono extends Zombie{
 		estado = new EstadoZombieNormal(2);
 		visitor = new VisitorZombie(this);
 		movimiento = true;
+		identificacion = 2;
 	}
 	
-	public void atacar(){
+	/*public void atacar(){
 		estado = new EstadoZombieComiendo(2);	
-	}
+	}*/
 }
