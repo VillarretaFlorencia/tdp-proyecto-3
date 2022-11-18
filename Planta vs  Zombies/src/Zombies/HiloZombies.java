@@ -12,12 +12,11 @@ public class HiloZombies implements Runnable{
 	public LinkedList<LinkedList<Zombie>> oleadas;
 	public Thread h1;
 	protected PanelJardin ventana;
-	protected Nivel nivel;
+	protected Nivel nivel = Nivel.getNivel();
 	protected ArregloFilas filas;
 	 
 	public HiloZombies (PanelJardin v) {
 		ventana = v;
-		nivel = ventana.getNivel();
 		filas = nivel.getFilas();
 		oleadas = nivel.getOleadas();
 	}

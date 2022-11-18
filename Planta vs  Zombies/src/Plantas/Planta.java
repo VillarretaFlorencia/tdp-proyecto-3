@@ -3,6 +3,8 @@ package Plantas;
 import java.awt.Rectangle;
 import java.util.Iterator;
 
+import javax.swing.ImageIcon;
+
 import Estados.*;
 import Logica.Entidad;
 import Logica.Nivel;
@@ -13,7 +15,7 @@ import Zombies.Zombie;
 
 public abstract class Planta extends Entidad {
 	
-	protected Image imagen;
+	protected ImageIcon imagen;
     protected int vida;
     protected Posicion posicion;
     protected int precio;
@@ -49,4 +51,6 @@ public abstract class Planta extends Entidad {
     public Rectangle getBounds() {
 		return new Rectangle(getPosicion().getX(), getPosicion().getY(), 60, 60);
 	}
+    
+    public ImageIcon getImagen () {return imagen;}
 }

@@ -10,16 +10,17 @@ import Proyectil.Proyectil;
 import Visitores.Visitor;
 
 public class SetaDesporadora extends Planta{
-	protected Image imagen;
+	protected ImageIcon imagen;
     protected int vida;
     protected Posicion posicion;
     protected int precio;
     protected Nivel n = Nivel.getNivel();
 
     public SetaDesporadora(){
-    	imagen = new ImageIcon(this.getClass().getResource("/recursos/PuffSroom.png")).getImage();
+    	imagen = new ImageIcon(this.getClass().getResource("/recursos/PuffSroom.png"));
         vida = 7;
         precio = 50;
+        this.setIcon(imagen);
     }
     
     public void atacar() {

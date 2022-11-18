@@ -11,16 +11,17 @@ import Logica.Posicion;
 
 public class Girasol extends Planta{
 	
-	protected Image imagen;
+	protected ImageIcon imagen;
     protected int vida;
     protected Posicion posicion;
     protected int precio;
     protected Nivel n = Nivel.getNivel();
 
     public Girasol(){
-    	imagen = new ImageIcon(this.getClass().getResource("/recursos/sunflower.png")).getImage();
+    	imagen = new ImageIcon(this.getClass().getResource("/recursos/sunflower.png"));
         vida = 7;
         precio = 50;
+        this.setIcon(imagen);
     }
 
     public void atacar() {
@@ -28,10 +29,14 @@ public class Girasol extends Planta{
     
     public void setNormal() {
     	//ACA IRIA LA BRILLATE
-    	imagen = new ImageIcon(this.getClass().getResource("/recursos/sunflower.png")).getImage(); 
+    	imagen = new ImageIcon(this.getClass().getResource("/recursos/sunflower.png")); 
+    	this.setIcon(imagen);
     }
     
     public void setBrillate() {
-    	imagen = new ImageIcon(this.getClass().getResource("/recursos/sunflower.png")).getImage();
+    	imagen = new ImageIcon(this.getClass().getResource("/recursos/sunflower.png"));
+    	this.setIcon(imagen);
     }
+    
+    
 }
