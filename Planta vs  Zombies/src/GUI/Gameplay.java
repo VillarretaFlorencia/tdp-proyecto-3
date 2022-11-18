@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicButtonListener;
 
+import Logica.Nivel;
 import Plantas.Planta;
 
 import java.awt.Color;
@@ -73,6 +74,7 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 		panelJardin.setBounds(-1, 1, 570, 380);
 		panelJardin.setOpaque(false);
 		add(panelJardin,Integer.valueOf(1));
+		Nivel.getNivel().setPanelJardin(panelJardin);
 		
 		btnPlanta1 = new JButton("Planta1");
 		ImageIcon iconLanzaG;
@@ -163,7 +165,9 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 	}
 	
 	public void modificar(int x, int y, Planta p) {
-		label[x][y] = p;
+		System.out.println("Path: "+String.valueOf(p.getImagen()));
+		
+		label[x][y].setIcon(new ImageIcon(Gameplay.class.getResource(String.valueOf(p.getImagen()))));
 		label[x][y].setVisible(true);
 		System.out.println("nuevos soles: "+panelJardin.getSoles());
 		cantSoles.setText(String.valueOf(panelJardin.getSoles()));
