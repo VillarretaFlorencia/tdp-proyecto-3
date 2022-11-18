@@ -1,49 +1,28 @@
 package Plantas;
 
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
+
 import Estados.EstadoEntidad;
+import Logica.Nivel;
+import Logica.Posicion;
 import Visitores.Visitor;
 
 public class Nuez extends Planta{
-    protected int precio;
+	protected Image imagen;
     protected int vida;
-    protected EstadoEntidad estado;
-    protected Visitor visitor;
+    protected Posicion posicion;
+    protected int precio;
+    protected Nivel n = Nivel.getNivel();
 
     public Nuez(){
+    	imagen = new ImageIcon(this.getClass().getResource("/recursos/wallnut_full_life.png")).getImage();
+        vida = 7;
         precio = 50;
-        vida = 20;
-        //estado = new EstadoPlanta();
     }
 
-    public int Atacar() {
-        /*aca no hace nada*/
-        return 0;
-    }
-
-    public void recibirDanio(int danio) {
-        vida -= danio;
-		if (vida<=0) {
-			//autoreMove
-			//opcional que se haga desde el nivel
-		} 
-    }
-
-    public EstadoEntidad getEstadoEntidad() {
-        return estado;
-    }
-
-    public int getVelocidad() {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-    
-    public int getDanio() {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-
-    public double getMultiplicador() {
-        // TODO Auto-generated method stub
-        return 0;
-    }
+    public void atacar() {
+    	imagen = new ImageIcon(this.getClass().getResource("/recursos/wallnut_half_life.png")).getImage();
+    }    
 }

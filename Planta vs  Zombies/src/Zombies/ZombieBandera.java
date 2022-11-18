@@ -1,17 +1,18 @@
 package Zombies;
 
+import javax.swing.ImageIcon;
+
 import Estados.*;
 import Logica.Posicion;
 import Visitores.Visitor;
 import Visitores.VisitorZombie;
 
 public class ZombieBandera extends Zombie{
-	
+
 	protected int vida;
 	protected int velocidad;
 	protected int danio;
 	protected Posicion posicion;
-	protected double multiplicador;
 	protected EstadoZombie estado;
 	protected Visitor visitor;
 	protected boolean movimiento;
@@ -20,9 +21,9 @@ public class ZombieBandera extends Zombie{
 		vida = 5;
 		velocidad = 1;
 		danio = 1;
-		multiplicador = 1;
-		estado = new EstadoZombieNormal();
+		estado = new EstadoZombieNormal(6);
 		visitor = new VisitorZombie(this);
-		movimiento=false;
+		movimiento = true;
+		this.setIcon(new ImageIcon(estado.getImagen()));
 	}
 }

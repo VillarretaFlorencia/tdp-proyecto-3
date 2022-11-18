@@ -1,5 +1,7 @@
 package Plantas;
-    import java.util.Iterator;
+    import java.awt.Image;
+import java.awt.Rectangle;
+import java.util.Iterator;
 
 import Estados.*;
 import Logica.Entidad;
@@ -10,38 +12,30 @@ import Visitores.*;
 import Zombies.Zombie;
 
 public abstract class Planta extends Entidad {
-	protected int precio;
+	
+	protected Image imagen;
     protected int vida;
-    protected int soles;
-    protected EstadoEntidad estado;
-    protected Visitor visitor;
     protected Posicion posicion;
-    protected int rango;
+    protected int precio;
     protected Nivel n = Nivel.getNivel();
+    
+    //Setters y Getters
     public int getVida() {
     	return vida;
-    }
-    public abstract void atacar();//este en el caso del girasol en vez de atacar lanza flores y la nuez no hace nada
-    
-    public int getRango () {return rango;}
-    
-    public void recibirDanio(int danio) {
-    	vida = vida - danio;
-    	//aca faltaria que cuando la vida llegue a 0 desaparezca
-    }
-    
-    
-    public EstadoEntidad getEstadoEntidad() {
-    	return estado;
     }
     public Posicion getPosicion() {
     	return posicion;
     }
     public void setPosicion(Posicion pos) {
     	posicion = pos;
-    	rango = 8 - pos.getX();
     }
     
+    //Metodos propios
+    public void recibirDanio(int danio) {
+    	vida = vida - danio;
+    }
+    public abstract void atacar();//este en el caso del girasol en vez de atacar lanza soles y la nuez no hace nada
+  
     public boolean hayZombiesEnRango() {
     	Nivel n = Nivel.getNivel();
     	Iterator <Zombie> it = n.getFilas().getFila(posicion.getY()).getZombies().iterator();
@@ -52,4 +46,7 @@ public abstract class Planta extends Entidad {
     	}        
     	return hayEnRango;
     }
+    public Rectangle getBounds() {
+		return new Rectangle(getPosicion().getX(), getPosicion().getY(), 60, 60);
+	}
 }

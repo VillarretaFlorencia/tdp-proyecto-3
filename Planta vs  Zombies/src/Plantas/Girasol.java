@@ -1,57 +1,37 @@
 package Plantas;
 import Visitores.*;
+
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
+
 import Estados.*;
+import Logica.Nivel;
+import Logica.Posicion;
+
 public class Girasol extends Planta{
-    protected int precio;
+	
+	protected Image imagen;
     protected int vida;
-    protected int soles;
-    protected EstadoEntidad estado;
-    protected Visitor visitor;
-    protected int rango;
+    protected Posicion posicion;
+    protected int precio;
+    protected Nivel n = Nivel.getNivel();
 
     public Girasol(){
-        precio = 50;
+    	imagen = new ImageIcon(this.getClass().getResource("/recursos/sunflower.png")).getImage();
         vida = 7;
-        soles = 50;
-        //estado = new EstadoPlanta();
-    }
-    
-    public int getVida() {
-        return vida;
+        precio = 50;
     }
 
     public void atacar() {
-        /*aca en vez de atacar lo que hace es soltar un sol */
-    }
-    public void recibirDanio(int danio) {
-        vida -= danio;
-		if (vida<=0) {
-			//autoreMove
-			//opcional que se haga desde el nivel
-		} 
-    }
-
-    public EstadoEntidad getEstadoEntidad() {
-        return estado;
-    }
-
-    public int getVelocidad() {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-
-    public int getDanio() {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-
-    public double getMultiplicador() {
-        // TODO Auto-generated method stub
-        return 0;
     }
     
-    public EstadoEntidad getEstado() {
-        // TODO Auto-generated method stub
-        return null;
+    public void setNormal() {
+    	//ACA IRIA LA BRILLATE
+    	imagen = new ImageIcon(this.getClass().getResource("/recursos/sunflower.png")).getImage(); 
+    }
+    
+    public void setBrillate() {
+    	imagen = new ImageIcon(this.getClass().getResource("/recursos/sunflower.png")).getImage();
     }
 }
