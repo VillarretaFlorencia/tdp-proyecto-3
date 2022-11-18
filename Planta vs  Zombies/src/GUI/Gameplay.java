@@ -164,7 +164,8 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 		
 	}
 	
-	public void modificar(int x, int y, Planta p) {
+	public void modificar(Planta p) {
+		int x=p.getPosicion().getX(); int y = p.getPosicion().getY(); 
 		System.out.println("Path: "+String.valueOf(p.getImagen()));
 		
 		label[x][y].setIcon(new ImageIcon(Gameplay.class.getResource(String.valueOf(p.getImagen()))));

@@ -91,7 +91,7 @@ public class PanelJardin extends JPanel{
 	}
 	
 	public void colocarPlanta (Planta p) {
-		gameplay.modificar(precioPlantaB, precioPlantaA, p);
+		gameplay.modificar(p);
 	}
 	
 	public int getPrecioPlantaA() {
@@ -113,7 +113,7 @@ class EventosDelRaton implements MouseListener{
 		int posY= (int) (Math.floor((e.getY()/63)));
 		if(panel.getSeleccion()!=0) {//solo si ha seleccionado algo
 			System.out.println("Coordenadas del mouse: "+e.getX()+ " | "+e.getY());
-			System.out.println("Posicion en la grilla: "+(posX)+ " | "+(5-posY));
+			System.out.println("Posicion en la grilla: "+(posX)+ " | "+(posY));
 			System.out.println("Seleccion: "+ panel.getSeleccion());
 			nivel.setPlanta(new Posicion(posX,posY), panel.getSeleccion());
 			panel.setSeleccion(0);
