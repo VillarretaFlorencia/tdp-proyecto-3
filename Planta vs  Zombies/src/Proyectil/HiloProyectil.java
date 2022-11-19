@@ -16,7 +16,7 @@ public class HiloProyectil implements Runnable{
 	}
 	
 	public void run () {
-		while(proyectil.getActivo()) {
+		while(true) { //haya proyctiles en la lista de proyectiles
 			try {
 				Thread.sleep(1000);
 				proyectil.move();

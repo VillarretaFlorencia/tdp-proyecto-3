@@ -1,24 +1,18 @@
 package Plantas;
 
-import java.awt.Image;
-
-import javax.swing.ImageIcon;
-
-import Logica.Nivel;
-import Logica.Posicion;
-import Visitores.Visitor;
 
 public class Nuez extends Planta{
    
+	int vidaInicial;
     public Nuez(){
     	imagen = "/recursos/walnut_full_life.gif";
-        vida = 7;
+        vida = vidaInicial = 20000;
     }
 
 	@Override
 	public void atacar() {
-		imagen = "/recursos/walnut_half_life.gif";
-		
+		if (vida == vidaInicial / 2)
+			imagen = "/recursos/walnut_half_life.gif";		
 	}
 
 	public void move() {

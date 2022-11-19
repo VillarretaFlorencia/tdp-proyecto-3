@@ -14,13 +14,13 @@ public class HumoSeta extends Planta{
 
     public HumoSeta(){
     	imagen = "/recursos/FumeShroom.gif";
-        vida = 7;
+        danio = 250;
     }
     
     public void atacar() {
         /*aca dispara un gisante asi que se debe hacer la clase guisante */
     	if (hayZombiesEnRango())
-    		n.setProyectil(new Proyectil(this.posicion, "imagen proyectil", 50));      
+    		n.setProyectil(new Proyectil(this.posicion, "imagen proyectil", danio));      
     }
     
 	public void move() {

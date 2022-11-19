@@ -10,11 +10,15 @@ public abstract class Entidad {
 
 	protected String imagen;
 	protected Posicion posicion;
+	protected int danio;
 	
 	
 	public abstract Rectangle getBounds();
 	public  String getImagen() {return imagen;}
-	public abstract void move();
+	public void setPosicion (Posicion p) {posicion = p;}
 	public Posicion getPosicion() {return posicion;}
+	public abstract void move();
+	public int getDanio() {return danio;}
+	public abstract void recibirDanio (int d);
 
 }

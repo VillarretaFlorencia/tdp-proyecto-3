@@ -14,13 +14,13 @@ public class SetaDesporadora extends Planta{
    
     public SetaDesporadora(){
     	imagen = "/recursos/PuffShroom.gif";
-        vida = 7;
+        danio = 500;
     }
     
     public void atacar() {
         /*aca dispara un gisante asi que se debe hacer la clase guisante */
     	if (hayZombiesEnRango())
-    		n.setProyectil(new Proyectil(this.posicion, "imagen proyectil", 20));      
+    		n.setProyectil(new Proyectil(this.posicion, "imagen proyectil", danio));      
     }
     
 

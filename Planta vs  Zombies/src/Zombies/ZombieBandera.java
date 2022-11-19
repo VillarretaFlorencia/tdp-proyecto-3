@@ -20,7 +20,7 @@ public class ZombieBandera extends Zombie{
 	
 	public ZombieBandera() {
 		vida = 5;
-		velocidad = 1;
+		velocidad = 3;
 		danio = 1;
 		estado = new EstadoZombieNormal(6);
 		visitor = new VisitorZombie(this);

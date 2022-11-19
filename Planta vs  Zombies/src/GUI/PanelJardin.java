@@ -79,19 +79,11 @@ public class PanelJardin extends JPanel{
 		nivel.iniciarJuego(1);	//limpiar labels
 	}
 	
-	/*Este tiene dos funciones, para incrementar soles de forma normal solo has: modificarsoles(50)\
-	 * en el caso de querer decrementar por que compro una planta simplemente usa un negativo: modificarsoles(-<precio>)*/
-	public void modificarSoles(int i) {
-		soles = soles + i;
-	}
-	
 
-	public int getSoles() {
-		return soles;
-	}
-	
+		
 	public void colocarPlanta (Planta p) {
 		gameplay.modificar(p);
+		gameplay.actualizarSoles ();
 	}
 	
 	public int getPrecioPlantaA() {

@@ -11,13 +11,24 @@ import Logica.Posicion;
 
 public class Girasol extends Planta{
    
+	private int tiempo; 
+	
     public Girasol(){
-    	
-        vida = 7;
+    	tiempo = 0;
         imagen = "/recursos/sunflower.gif";
+        danio = 0;
     }
 
     public void atacar() {
+    	tiempo ++;
+    	if (tiempo == 29000) {
+    		imagen = "/recursos/sunflowerB.png";
+    		n.aumentarSoles();
+    	}
+    	if (tiempo == 30000) {
+    		imagen = "/recursos/sunflower.png";
+    	}
+  	
     	// quizas poner sol con contador de tiempo;
     	// que en determinado tiempo vuelva a la imagen normal
     }  

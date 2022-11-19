@@ -11,12 +11,10 @@ public class HiloZombies implements Runnable{
 	//Atributos de instancia
 	public LinkedList<LinkedList<Zombie>> oleadas;
 	public Thread h1;
-	protected PanelJardin ventana;
 	protected Nivel nivel = Nivel.getNivel();
 	protected ArregloFilas filas;
 	 
-	public HiloZombies (PanelJardin v) {
-		ventana = v;
+	public HiloZombies () {
 		filas = nivel.getFilas();
 		oleadas = nivel.getOleadas();
 	}

@@ -20,7 +20,7 @@ public class ZombiePeriodico extends Zombie{
 	
 	public ZombiePeriodico() {
 		vida = 5;
-		velocidad = 1;
+		velocidad = 2;
 		danio = 1;
 		estado = new EstadoZombieNormal(1);
 		visitor = new VisitorZombie(this);

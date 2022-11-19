@@ -29,6 +29,8 @@ public class Proyectil extends Entidad{
 		return danio;
 	}
 	
+	public void recibirDanio (int d) {}
+	
 	
 	public Rectangle getBounds() {
 		return new Rectangle(posicion.getX(), posicion.getY(),50, 50);

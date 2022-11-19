@@ -20,7 +20,8 @@ import Zombies.ZombieNormal;
 
 
 public class Nivel {
-	protected int soles;
+	protected int cantSoles;
+	protected int valorSol;
 	protected EstadoNivel estado;
 	protected int nivelLvl;
 	protected Factory miFabrica;
@@ -34,7 +35,7 @@ public class Nivel {
 	//protected Singleton singleton;
     
     private Nivel(){
-    	soles = 100;
+    	cantSoles = 100;
     }
     
     static public Nivel getNivel() {
@@ -52,13 +53,15 @@ public class Nivel {
         	estado = new EstadoDia();
     		miFabrica = new FactoryDia();
     		precios [0] = 100;
-    		precios [3] = 200;    		
+    		precios [3] = 200;   
+    		valorSol = 50;
         }
         if (i == 3 || i == 4) {
         	estado = new EstadoNoche();
     		miFabrica = new FactoryNoche();
     		precios [0] = 25;
     		precios [3] = 75;
+    		valorSol = 25;
         }
 
     	System.out.println("GENERANDO NIVEL");
@@ -88,8 +91,9 @@ public class Nivel {
         
     public void setPlanta(Posicion pos, int i) {
     	Planta p = null;
+    	int precio = precios[i-1];
     	System.out.println("Entro en set planta");
-    	if (soles >= precios[i-1] && filas.getFila(pos.getY()).hayLugar(pos.getX())) {
+    	if (cantSoles >= precio  && filas.getFila(pos.getY()).hayLugar(pos.getX())) {
     		System.out.println("Entro en set planta");
 			switch(i) {
 			  case 1:{
@@ -114,7 +118,8 @@ public class Nivel {
     	if (p != null) {
 			p.setPosicion(pos);
 			filas.setPlanta(p);
-	    	panelJardin.colocarPlanta (p);
+			cantSoles -= precio;
+	    	panelJardin.colocarPlanta (p); //actualiza el label soles 
 	    	System.out.println("crea planta");
 		}else {
 			System.out.println("ya hay planta o crea el saldo");
@@ -128,6 +133,12 @@ public class Nivel {
     		filas.getFila(i).colisiones();
     	}
     }
+    
+    public void aumentarSoles () {
+    	cantSoles += valorSol;
+    }
+    
+    public int getSoles () {return cantSoles;}
     
     public Entidad getEntidad (int x, int y) {
     	return filas.getFila(y).plantaEnPos(x);    	
@@ -155,6 +166,7 @@ public class Nivel {
     public LinkedList<LinkedList<Zombie>> getOleadas () {
     	return oleadas;
     }
+    
     public void moverProyectiles() {
     	for (int i = 0; i < 6; i ++) {
     		Fila fila = filas.getFila(i);
@@ -163,6 +175,7 @@ public class Nivel {
 		    }
 	    }
     }
+    
     public void moverZombies() {
     	for (int i = 0; i < 6; i ++) {
     		Fila fila = filas.getFila(i);
@@ -171,4 +184,13 @@ public class Nivel {
 		    }
 	    }
     }
+    
+    public void activarDefensa () {
+    	LinkedList<Planta> todasPlantas = filas.getTodasLasPlantas();
+		for (Planta p: todasPlantas) {
+			p.atacar();
+		}
+    }
+    
+    
 }

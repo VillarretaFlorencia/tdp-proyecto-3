@@ -15,7 +15,7 @@ import Zombies.Zombie;
 
 public abstract class Planta extends Entidad {
 	  
-	protected int vida;
+	protected int vida = 10000;
 	Nivel n = Nivel.getNivel();
 	
 	public int getVida() {return vida;}
@@ -31,6 +31,9 @@ public abstract class Planta extends Entidad {
     	}        
     	return hayEnRango;
     }
+    
+    public void recibirDanio (int d) {vida -= d;}
+    
     public Rectangle getBounds() {
 		return new Rectangle(getPosicion().getX(), getPosicion().getY(), 60, 60);
 	}

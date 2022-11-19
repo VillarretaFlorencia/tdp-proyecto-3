@@ -18,6 +18,7 @@ import java.awt.Color;
  * FALTA QUE EL CONTADOR DE SOLES SE ACTUALIZE PREGUNTAR COMO HACERLO*/
 public class Gameplay extends JLayeredPane implements ActionListener{
 	private PanelJardin panelJardin;
+	private Nivel nivel = Nivel.getNivel();
 	private JButton btnPlanta1;
 	private JButton btnPlanta2;
 	private JButton btnPlanta3;
@@ -149,7 +150,7 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 		madera.setBounds(-13, 379, 581, 71);
 		add(madera);
 		
-		cantSoles = new JLabel(String.valueOf(panelJardin.getSoles()));
+		cantSoles = new JLabel(String.valueOf(nivel.getSoles()));
 		cantSoles.setBounds(490, 415, 46, 14);
 		add(cantSoles,Integer.valueOf(2));
 		
@@ -174,9 +175,14 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 		
 		label[x][y].setIcon(new ImageIcon(Gameplay.class.getResource(String.valueOf(p.getImagen()))));
 		label[x][y].setVisible(true);
-		System.out.println("nuevos soles: "+panelJardin.getSoles());
-		cantSoles.setText(String.valueOf(panelJardin.getSoles()));
+		
 	}
+	
+	public void actualizarSoles() {
+		System.out.println("nuevos soles: "+nivel.getSoles());
+		cantSoles.setText(String.valueOf(nivel.getSoles()));
+	}
+	
 	
 	public void modificarDinamico(Entidad e) {
 		/*en esta parte hay que entender que las entidades que no son plantas
