@@ -28,11 +28,8 @@ public class Cronometro implements Runnable{
 	public void run () {
 		while(true) {
 			try {
-				Thread.sleep(1000);
-				segundos++;
-				hiloZombies.run();
-				if (segundos % 3000 == 0) 
-					nivel.activarDefensa();
+				hiloZombies.run(); 
+				nivel.activarDefensa();
 				nivel.moverProyectiles();
 				nivel.moverZombies();
 				nivel.checkColisiones();

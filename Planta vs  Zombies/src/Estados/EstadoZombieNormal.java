@@ -23,4 +23,9 @@ public class EstadoZombieNormal extends EstadoZombie{
 		imagen = ruta;
 	}
 	
+	public void accionar(Zombie z) {
+		//mover al zombie
+		//posicion.setX(posicion.getX()-velocidad);
+	}
+	
 }

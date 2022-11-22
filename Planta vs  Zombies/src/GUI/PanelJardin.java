@@ -109,12 +109,12 @@ class EventosDelRaton implements MouseListener{
 			System.out.println("Seleccion: "+ panel.getSeleccion());
 			nivel.setPlanta(new Posicion(posX,posY), panel.getSeleccion());
 			panel.setSeleccion(0);
-			}else {
-				System.out.println("ya hay una planta aqui");
-				System.out.println("Aqui hay: "+nivel.getEntidad(posX, posY).getClass().getSimpleName());
-				panel.setSeleccion(0);
-			}
+		}else {
+			System.out.println("ya hay una planta aqui");
+			System.out.println("Aqui hay: "+nivel.getEntidad(posX, posY).getClass().getSimpleName());
+			panel.setSeleccion(0);
 		}
+	}
 
 	
 

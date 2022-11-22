@@ -56,7 +56,9 @@ public abstract class Zombie extends Entidad{
 	public void recibirDanio (int danio) {
 		vida -= danio;
 	}
-	
+	public void accionar() {
+		estado.accionar();
+	}
 	public void move() {
 		posicion.setX(posicion.getX()-velocidad);
 	}

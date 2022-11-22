@@ -12,6 +12,7 @@ import Logica.Posicion;
 public class Girasol extends Planta{
    
 	private int tiempo; 
+	private String imagenAtaque = "/recursos/sunflowerB.png";
 	
     public Girasol(){
     	tiempo = 0;
@@ -22,11 +23,12 @@ public class Girasol extends Planta{
     public void atacar() {
     	tiempo ++;
     	if (tiempo == 29000) {
-    		imagen = "/recursos/sunflowerB.png";
+    		imagen = imagenAtaque;
     		n.aumentarSoles();
     	}
     	if (tiempo == 30000) {
     		imagen = "/recursos/sunflower.png";
+    		tiempo = 0;
     	}
   	
     	// quizas poner sol con contador de tiempo;
