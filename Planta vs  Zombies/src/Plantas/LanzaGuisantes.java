@@ -16,16 +16,11 @@ public class LanzaGuisantes extends Planta{
 
     public LanzaGuisantes(){
     	imagen = "/recursos/peashooter.gif";
+    	imagenProyectil = "/recursos/pea.png";
         danio = 1000;
+        tiempoDeAtaque = 3000;
     }
-    public void atacar() {
-        /*aca dispara un gisante asi que se debe hacer la clase guisante */
-    	if (hayZombiesEnRango())
-    		n.setProyectil(new Proyectil(this.posicion, "imagen proyectil", danio));      
-    }
-
-	public void move() {
-		// TODO Auto-generated method stub
-	}
+    
+  
 	
 }

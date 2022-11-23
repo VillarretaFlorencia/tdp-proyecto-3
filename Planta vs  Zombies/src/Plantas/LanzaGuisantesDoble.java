@@ -14,20 +14,10 @@ public class LanzaGuisantesDoble extends Planta {
     
     public LanzaGuisantesDoble(){
     	imagen = "/recursos/repeater.gif";
+    	imagenProyectil = "/recursos/pea.png";
         danio = 2000;
+        tiempoDeAtaque = 1500;
     }
-    
-    public void atacar() {
-        /*aca dispara un gisante asi que se debe hacer la clase guisante */
-    	if (hayZombiesEnRango()) {
-    		n.setProyectil(new Proyectil(this.posicion, "imagen proyectil", danio));
-    		//Posicion p = new Posicion (this.posicion.getX() + 50 , this.posicion.getY());
-    		//n.setProyectil(new Proyectil(p, "imagen proyectil"));
-    	}
-    }
-
-	public void move() {
-		// TODO Auto-generated method stub
-	}
+  
   
 }

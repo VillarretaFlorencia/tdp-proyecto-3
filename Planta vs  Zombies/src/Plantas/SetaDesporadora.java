@@ -14,18 +14,9 @@ public class SetaDesporadora extends Planta{
    
     public SetaDesporadora(){
     	imagen = "/recursos/PuffShroom.gif";
+    	imagenProyectil = "/recursos/PuffShroom_puff2.png";
         danio = 500;
+        tiempoDeAtaque = 1500;
     }
     
-    public void atacar() {
-        /*aca dispara un gisante asi que se debe hacer la clase guisante */
-    	if (hayZombiesEnRango())
-    		n.setProyectil(new Proyectil(this.posicion, "imagen proyectil", danio));      
-    }
-    
-
-	public void move() {
-		// TODO Auto-generated method stub
-		
-	}
 }

@@ -17,7 +17,7 @@ public abstract class Entidad {
 	public  String getImagen() {return imagen;}
 	public void setPosicion (Posicion p) {posicion = p;}
 	public Posicion getPosicion() {return posicion;}
-	public abstract void move();
+	public abstract void atacar();
 	public int getDanio() {return danio;}
 	public abstract void recibirDanio (int d);
 

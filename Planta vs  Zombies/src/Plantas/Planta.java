@@ -16,10 +16,23 @@ import Zombies.Zombie;
 public abstract class Planta extends Entidad {
 	  
 	protected int vida = 10000;
+	protected int tiempoDeAtaque;
+	protected int tiempo = 0;
+	protected String imagenProyectil;
+	
 	Nivel n = Nivel.getNivel();
 	
 	public int getVida() {return vida;}
-    public abstract void atacar();//este en el caso del girasol en vez de atacar lanza soles y la nuez no hace nada
+	
+	
+    public void atacar() {
+    	if (hayZombiesEnRango()) {
+    		if (tiempo % tiempoDeAtaque == 0) {
+    			n.setProyectil(new Proyectil(this.posicion, imagenProyectil, danio));     
+    		}
+    	}
+    	tiempo ++;
+    }
   
     public boolean hayZombiesEnRango() {
     	
@@ -37,5 +50,10 @@ public abstract class Planta extends Entidad {
     public Rectangle getBounds() {
 		return new Rectangle(getPosicion().getX(), getPosicion().getY(), 60, 60);
 	}
+    
+    public void accept (Visitor v) {
+    	v.visit (this);
+    }
+    
     
 }

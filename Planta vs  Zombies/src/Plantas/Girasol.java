@@ -11,42 +11,29 @@ import Logica.Posicion;
 
 public class Girasol extends Planta{
    
-	private int tiempo; 
-	
+		String imagenNormal = "/recursos/sunflowerB.png";
+		String imagenBrillante = "/recursos/sunflowerB.png";
+		int tiempoEnAccion = 1000;
+		
     public Girasol(){
-    	tiempo = 0;
-        imagen = "/recursos/sunflower.gif";
+        imagen = imagenNormal;
         danio = 0;
+        tiempoDeAtaque = 29000;
     }
 
+    //generalizarlo con rango amplio, o sobrescribir el hay zombie en rango con true, o sobrescribir el metodo para evitar el habilidad ya que todos en el fono hacen lo mismo 
     public void atacar() {
-    	tiempo ++;
-    	if (tiempo == 29000) {
-    		imagen = "/recursos/sunflowerB.png";
+    	if (tiempo % tiempoDeAtaque == 0) {
+    		imagen = imagenBrillante;
     		n.aumentarSoles();
     	}
-    	if (tiempo == 30000) {
-    		imagen = "/recursos/sunflower.png";
+    	if (tiempo % (tiempoDeAtaque + tiempoEnAccion) == 0) {
+    		imagen = imagenNormal;
     	}
-  	
-    	// quizas poner sol con contador de tiempo;
-    	// que en determinado tiempo vuelva a la imagen normal
-    }  
-           
-    public void setNormal() {
-    	//ACA IRIA LA BRILLATE
-    	imagen = "/recursos/sunflower.png";
-    }
-    
-    public void setBrillate() {
-    	imagen = "/recursos/sunflowerB.png";
+    	tiempo ++;
     }
 
-	@Override
-	public void move() {
-		// TODO Auto-generated method stub
-		
-	}
-    
+	
+     
     
 }
