@@ -19,9 +19,11 @@ public class Cronometro implements Runnable{
 		while(!terminar) {
 			hiloZombies.run();
 			terminar = nivel.moverZombies();
-			nivel.activarDefensa();
-			nivel.moverProyectiles();			
-			nivel.checkColisiones();
+			if (!terminar) {
+				nivel.activarDefensa();
+				nivel.moverProyectiles();			
+				nivel.checkColisiones();
+			}
 		}
 	}
 }

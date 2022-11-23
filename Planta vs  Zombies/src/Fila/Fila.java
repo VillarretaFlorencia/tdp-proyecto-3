@@ -63,6 +63,14 @@ public class Fila{
 		listaProyectiles.remove(listaProyectiles.indexOf(p));
 	}
 	
+	public void limpiarFila() {
+		listaZombies.clear();
+		for (int i = 0; i < plantas.length; i++) {
+			plantas[i] = null;
+		}
+		listaProyectiles.clear();
+	}
+	
 	public void colisiones() {
 		for (Zombie z: listaZombies) {
 			Iterator<Proyectil> it = listaProyectiles.iterator();

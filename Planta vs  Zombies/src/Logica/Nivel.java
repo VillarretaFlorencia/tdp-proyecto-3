@@ -129,7 +129,7 @@ public class Nivel {
     }
     
     public void checkColisiones() {
-    	for (int i = 0; i< 7; i++) {
+    	for (int i = 0; i < 6; i++) {
     		filas.getFila(i).colisiones();
     	}
     }
@@ -176,38 +176,41 @@ public class Nivel {
     	return oleadas;
     }
     
-    
-    public LinkedList<Zombie> getZombies(){//solo los que deben aparecer
-    	LinkedList<Zombie> zombiesActivos = new LinkedList<Zombie> ();
-    	for (int i = 0; i < 6; i ++) {
-    		Fila fila = filas.getFila(i);
-		    for(Zombie z: fila.getZombies()) {
-		    	zombiesActivos.add(z);
-		    }
-	    }
-    	return zombiesActivos;
-    }
+       
     
     public void moverProyectiles() {
+    	LinkedList<Proyectil> proyectilesActivos = new LinkedList<Proyectil> ();
     	for (int i = 0; i < 6; i ++) {
     		Fila fila = filas.getFila(i);
 		    for(Proyectil p: fila.getProyectiles()) {
 		    	p.atacar();
+		    	proyectilesActivos.add(p);
 		    }
 	    }
+    	panelJardin.getGameplay().modificarDinamico(proyectilesActivos);
     }
     
     public boolean moverZombies() {
+    	LinkedList<Zombie> zombiesActivos = new LinkedList<Zombie> ();
     	boolean terminar = false;
-    	for (int i = 0; i < 6; i ++) {
+    	for (int i = 0; i < 6 && !terminar; i ++) {
     		Fila fila = filas.getFila(i);
 		    for(Zombie z: fila.getZombies()) { //usar un iterador para cortarlo y no seguir 
 		    	if (z.getPosicion().getX() == 1) {
 		    		terminar = true;
 		    	}
-		    	else z.atacar();
+		    	else {
+		    		z.atacar();
+		    		zombiesActivos.add(z);
+		    	}
 		    }
 	    }
+    	
+    	if (terminar) {
+    		terminarJuego();
+    	}
+    	else panelJardin.getGameplay().modificarDinamico(zombiesActivos);
+	
     	return terminar;
     }
     
@@ -216,6 +219,14 @@ public class Nivel {
 		for (Planta p: todasPlantas) {
 			p.atacar();
 		}
+    }
+    
+    public void terminarJuego () {
+    	for (int i = 0; i< 6; i++) {
+    		filas.getFila(i).limpiarFila();
+    	}
+    	
+    	panelJardin.getGameplay().terminarJuego();
     }
     
     
