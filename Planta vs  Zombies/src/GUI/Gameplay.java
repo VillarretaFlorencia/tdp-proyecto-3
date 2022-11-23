@@ -175,7 +175,6 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 			
 		
 		
-		
 	}
 	
 	public void inicializarZombies() {
@@ -188,7 +187,7 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 					JLabel lblZombie = new JLabel();
 					lblZombie.setIcon(new ImageIcon(Gameplay.class.getResource(z.getImagen())));
 					lblZombie.setVisible(true);
-					//setbounds
+					lblZombie.setBounds(z.getPosicion().getX(), z.getPosicion().getY(), 46, 14);
 					add(lblZombie, Integer.valueOf(1));
 					
 					Pair<Entidad, JLabel> par = new Pair<>(z,lblZombie);
@@ -197,7 +196,12 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 				}
 	}
 	
-	
+	public void actualizarZombies() {
+		//asumimos qe la lista esta inicializada
+		for(Pair<Entidad, JLabel> par : zombies) {
+			par.getValue().setBounds(par.getKey().getPosicion().getX(), par.getKey().getPosicion().getY(), 46, 14);
+		}
+	}
 	
 	public void modificar(Planta p) {
 		int x=p.getPosicion().getX(); int y = p.getPosicion().getY(); 

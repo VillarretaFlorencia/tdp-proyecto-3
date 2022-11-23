@@ -93,6 +93,10 @@ public class PanelJardin extends JPanel{
 	public int getPrecioPlantaB() {
 		return precioPlantaB;
 	}
+	
+	public void terminarJuego() {
+		gameplay.restart();
+	}
 }
 
 class EventosDelRaton implements MouseListener{
