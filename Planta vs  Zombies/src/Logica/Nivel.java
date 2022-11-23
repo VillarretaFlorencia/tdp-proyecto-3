@@ -1,6 +1,7 @@
 package Logica;
 
 import java.util.Deque;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Map;
 
@@ -28,6 +29,7 @@ public class Nivel {
 	protected ArregloFilas filas;
 	protected LinkedList<LinkedList<Zombie>> oleadas;
 	protected PanelJardin panelJardin;
+	protected LinkedList<Entidad> entidadesDinamicas;
 	private int [] precios;
 	
 	static private Nivel nivel = new Nivel();
@@ -176,43 +178,50 @@ public class Nivel {
     	return oleadas;
     }
     
-       
-    
-    public void moverProyectiles() {
-    	LinkedList<Proyectil> proyectilesActivos = new LinkedList<Proyectil> ();
+        
+    private void moverProyectiles() {
     	for (int i = 0; i < 6; i ++) {
     		Fila fila = filas.getFila(i);
 		    for(Proyectil p: fila.getProyectiles()) {
 		    	p.atacar();
-		    	proyectilesActivos.add(p);
+		    	entidadesDinamicas.add(p);
 		    }
 	    }
-    	panelJardin.getGameplay().modificarDinamico(proyectilesActivos);
     }
     
-    public boolean moverZombies() {
-    	LinkedList<Zombie> zombiesActivos = new LinkedList<Zombie> ();
+    private boolean moverZombies() {
     	boolean terminar = false;
     	for (int i = 0; i < 6 && !terminar; i ++) {
     		Fila fila = filas.getFila(i);
-		    for(Zombie z: fila.getZombies()) { //usar un iterador para cortarlo y no seguir 
+    		Iterator <Zombie> it = fila.getZombies().iterator();
+		    while(it.hasNext() && !terminar) { //usar un iterador para cortarlo y no seguir 
+		    	Zombie z = it.next();
 		    	if (z.getPosicion().getX() == 1) {
 		    		terminar = true;
 		    	}
 		    	else {
 		    		z.atacar();
-		    		zombiesActivos.add(z);
+		    		entidadesDinamicas.add(z);//ver si mandar la entidad o una copia de esta
 		    	}
 		    }
 	    }
-    	
+    	return terminar;
+    }
+    
+    
+    public boolean moverEntidades() {
+    	entidadesDinamicas.clear();
+    	boolean terminar = moverZombies();
     	if (terminar) {
     		terminarJuego();
     	}
-    	else panelJardin.getGameplay().modificarDinamico(zombiesActivos);
-	
+    	else { 
+    		moverProyectiles();
+    		panelJardin.getGameplay().modificarDinamico(entidadesDinamicas);
+    	}
     	return terminar;
     }
+    
     
     public void activarDefensa () {
     	LinkedList<Planta> todasPlantas = filas.getTodasLasPlantas();
@@ -226,7 +235,7 @@ public class Nivel {
     		filas.getFila(i).limpiarFila();
     	}
     	
-    	panelJardin.getGameplay().terminarJuego();
+    	panelJardin.terminarJuego();
     }
     
     

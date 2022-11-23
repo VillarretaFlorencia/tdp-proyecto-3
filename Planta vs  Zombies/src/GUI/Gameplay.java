@@ -29,9 +29,9 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 	private JLabel lblGameN;
 	JLabel cantSoles;
 	private int numeroNivel = 0;
-	private List<Pair<Entidad,JLabel>> zombies = new LinkedList<>();
-	//Iterator<LinkedList<Zombie>> iteradorOleadas;
-	LinkedList<Zombie> oleada;
+	private List<Pair<Entidad,JLabel>> entidades = new LinkedList<>();
+
+	
 	public Gameplay( int i) {
 		numeroNivel = i;
 		System.out.println("-------------- valor i: "+i);
@@ -177,28 +177,31 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 		
 	}
 	
-	public void inicializarZombies() {
+	public void modificarDinamico(LinkedList<Entidad> lista) {
 		//agregamos los zombies
-				oleada = Nivel.getNivel().getZombies();
-				Iterator<Zombie> it = oleada.iterator();
+			//	oleada = Nivel.getNivel().getZombies();
+				entidades.clear();
+				
+				Iterator<Entidad> it = lista.iterator();
 				
 				while(it.hasNext()) {
-					Zombie z = it.next();
-					JLabel lblZombie = new JLabel();
-					lblZombie.setIcon(new ImageIcon(Gameplay.class.getResource(z.getImagen())));
-					lblZombie.setVisible(true);
-					lblZombie.setBounds(z.getPosicion().getX(), z.getPosicion().getY(), 46, 14);
-					add(lblZombie, Integer.valueOf(1));
+					Entidad z = it.next();
+					JLabel lblEntidad = new JLabel();
+					lblEntidad.setIcon(new ImageIcon(Gameplay.class.getResource(z.getImagen())));
+					lblEntidad.setVisible(true);
+					lblEntidad.setBounds(z.getPosicion().getX(), z.getPosicion().getY(), 46, 14);
+					add(lblEntidad, Integer.valueOf(1));
 					
-					Pair<Entidad, JLabel> par = new Pair<>(z,lblZombie);
+					Pair<Entidad, JLabel> par = new Pair<>(z,lblEntidad);
 					
-					zombies.add(par); //guardamos cada zombie con su label asociado
+					entidades.add(par); //guardamos cada zombie con su label asociado
 				}
+								
 	}
 	
 	public void actualizarZombies() {
 		//asumimos qe la lista esta inicializada
-		for(Pair<Entidad, JLabel> par : zombies) {
+		for(Pair<Entidad, JLabel> par : entidades) {
 			par.getValue().setBounds(par.getKey().getPosicion().getX(), par.getKey().getPosicion().getY(), 46, 14);
 		}
 	}
@@ -217,11 +220,13 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 		cantSoles.setText(String.valueOf(nivel.getSoles()));
 	}
 	
-	
+
+	/*en esta parte hay que entender que las entidades que no son plantas
+	 * las posiciones funcionan de forma distinta donde x -> [0,570] y Y->[0,5]
+	 * y representa la fila donde esta y X es su posicion de izquierda o derecha*/
+	/*
 	public void modificarDinamico(Entidad e) {
-		/*en esta parte hay que entender que las entidades que no son plantas
-		 * las posiciones funcionan de forma distinta donde x -> [0,570] y Y->[0,5]
-		 * y representa la fila donde esta y X es su posicion de izquierda o derecha*/
+		
 		int yAbsolute = 31;
 		int x=e.getPosicion().getX(); int y = e.getPosicion().getY(); 
 		System.out.println("Path: "+String.valueOf(e.getImagen()));
@@ -234,6 +239,7 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 		lbl.setVisible(true);
 		System.out.println("Posicion del zombie: "+lbl.getAlignmentX()+","+lbl.getAlignmentY());
 	}
+*/
 	
 	public void restart() {
 		panelJardin.restart();

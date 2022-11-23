@@ -2,11 +2,13 @@ package GUI;
 
 import javax.swing.JPanel;
 
+import Cronometro.Cronometro;
 import Logica.Entidad;
 import Logica.Nivel;
 import Logica.Posicion;
 import Logica.Sol;
 import Plantas.Planta;
+import Zombies.HiloZombies;
 
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -26,6 +28,10 @@ public class PanelJardin extends JPanel{
 	int soles = 0;
 	int precioPlantaA;
 	int precioPlantaB;
+	
+	Thread hc;
+	Cronometro cronometro;
+	
 	public PanelJardin() {
 		soles = 100;
 		this.setBounds(0, 0, 570, 380);
@@ -41,6 +47,9 @@ public class PanelJardin extends JPanel{
 			}
 		}
 		
+		cronometro = new Cronometro();
+		hc = new Thread (cronometro);
+		hc.start();
 		
 	}
 	
@@ -95,8 +104,10 @@ public class PanelJardin extends JPanel{
 		return precioPlantaB;
 	}
 	
+	
 	public void terminarJuego() {
 		gameplay.restart();
+		hc.stop();
 	}
 
 }
