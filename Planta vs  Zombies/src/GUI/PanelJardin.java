@@ -31,8 +31,6 @@ public class PanelJardin extends JPanel{
 	int precioPlantaA;
 	int precioPlantaB;
 	
-	Thread hc;
-	Cronometro cronometro;
 	
 	public PanelJardin() {
 		soles = 100;
@@ -49,9 +47,7 @@ public class PanelJardin extends JPanel{
 			}
 		}
 		
-		cronometro = new Cronometro();
-		hc = new Thread (cronometro);
-		hc.start();
+		
 		
 	}
 	
@@ -109,7 +105,6 @@ public class PanelJardin extends JPanel{
 	
 	public void terminarJuego() {
 		gameplay.restart();
-		hc.stop();
 	}
 	
 	public void sacarZombie(Zombie z) {

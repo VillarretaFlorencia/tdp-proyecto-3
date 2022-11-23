@@ -195,7 +195,7 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 					lblEntidad.setIcon(new ImageIcon(Gameplay.class.getResource(z.getImagen())));
 					lblEntidad.setVisible(true);
 					lblEntidad.setBounds(z.getPosicion().getX(), z.getPosicion().getY(), 46, 14);
-					add(lblEntidad, Integer.valueOf(1));
+					this.add(lblEntidad, Integer.valueOf(1));
 					
 					Pair<Entidad, JLabel> par = new Pair<>(z,lblEntidad);
 					

@@ -5,7 +5,10 @@ import java.io.FileNotFoundException;
 import java.util.LinkedList;
 import java.util.Scanner;
 
+import Estados.*;
 import Fabrica.Factory;
+import Visitores.Visitor;
+import Visitores.VisitorZombie;
 import Zombies.*;
 
 
@@ -113,8 +116,12 @@ public class LevelReader {
 			break;}
 		default: {
 			z.setPosicion(new Posicion (x,(int)(Math.random()*fila)));
+			System.out.println("------------------------" + x + "-----------------" + (int)(Math.random()*fila));
 			break;} 
 		}
+
+		z.setEstado (new EstadoZombieNormal(z));
+		z.setVisitor (new VisitorZombie (z));
 		return z;
 	}
 	

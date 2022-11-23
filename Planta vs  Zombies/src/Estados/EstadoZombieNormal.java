@@ -6,6 +6,7 @@ public class EstadoZombieNormal extends EstadoZombie{
 	protected Zombie z;
 	
 	public EstadoZombieNormal(Zombie z) {
+		this.z = z;
 		z.setImagen(z.getImagenNormal());
 	}
 	

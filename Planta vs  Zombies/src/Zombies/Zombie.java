@@ -28,9 +28,15 @@ public abstract class Zombie extends Entidad{
 	public void setEstado(EstadoZombie e) {
 		estado = e;
 	}
+	
 	public Visitor getVisitor() {
 		return visitor;
 	}
+	
+	public void setVisitor(Visitor v) {
+		visitor = v;
+	}
+	
 	public String getImagenAtacando(){
 		return imagenAtacando;
 	}

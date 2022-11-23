@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Map;
 
+import Cronometro.Cronometro;
 import Estados.EstadoNivel;
 import Estados.EstadoDia;
 import Estados.EstadoNoche;
@@ -32,13 +33,14 @@ public class Nivel {
 	protected LinkedList<Entidad> entidadesDinamicas;
 	private int [] precios;
 	private LevelReader lr;
+	Thread hc;
 	
 	static private Nivel nivel = new Nivel();
 	
 	//protected Singleton singleton;
     
     private Nivel(){
-    	cantSoles = 100;
+    	cantSoles = 1000;
     }
     
     static public Nivel getNivel() {
@@ -75,6 +77,13 @@ public class Nivel {
         
     	System.out.println("dentro del nivel: ");// solo agrege esto flor perdoname //no hay na que perdonar jajaa
     	System.out.println("Estado: "+estado.getClass().getCanonicalName());
+    	
+    	
+    	Cronometro cronometro;
+    	cronometro = new Cronometro();
+    	hc = new Thread (cronometro);
+    	hc.start();
+    	
     }
     
     public int getNivelLVL() {
@@ -198,17 +207,19 @@ public class Nivel {
     	boolean terminar = false;
     	for (int i = 0; i < 6 && !terminar; i ++) {
     		Fila fila = filas.getFila(i);
-    		Iterator <Zombie> it = fila.getZombies().iterator();
-		    while(it.hasNext() && !terminar) { //usar un iterador para cortarlo y no seguir 
-		    	Zombie z = it.next();
-		    	if (z.getPosicion().getX() == 1) {
-		    		terminar = true;
-		    	}
-		    	else {
-		    		z.atacar();
-		    		entidadesDinamicas.add(z);//ver si mandar la entidad o una copia de esta
-		    	}
-		    }
+    		if (!fila.getZombies().isEmpty()) {
+	    		Iterator <Zombie> it = fila.getZombies().iterator();
+			    while(it.hasNext() && !terminar) { //usar un iterador para cortarlo y no seguir 
+			    	Zombie z = it.next();
+			    	if (z.getPosicion().getX() == 1) {
+			    		terminar = true;
+			    	}
+			    	else {
+			    		z.atacar();
+			    		entidadesDinamicas.add(z);//ver si mandar la entidad o una copia de esta
+			    	}
+			    }
+    		}
 	    }
     	return terminar;
     }
@@ -239,7 +250,7 @@ public class Nivel {
     	for (int i = 0; i< 6; i++) {
     		filas.getFila(i).limpiarFila();
     	}
-    	
+    	hc.stop();
     	panelJardin.terminarJuego();
     }
     
