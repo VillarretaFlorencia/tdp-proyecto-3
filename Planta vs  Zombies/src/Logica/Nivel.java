@@ -167,6 +167,18 @@ public class Nivel {
     	return oleadas;
     }
     
+    
+    public LinkedList<Zombie> getZombies(){//solo los que deben aparecer
+    	LinkedList<Zombie> zombiesActivos = new LinkedList<Zombie> ();
+    	for (int i = 0; i < 6; i ++) {
+    		Fila fila = filas.getFila(i);
+		    for(Zombie z: fila.getZombies()) {
+		    	zombiesActivos.add(z);
+		    }
+	    }
+    	return zombiesActivos;
+    }
+    
     public void moverProyectiles() {
     	for (int i = 0; i < 6; i ++) {
     		Fila fila = filas.getFila(i);
