@@ -1,7 +1,5 @@
 package Zombies;
 
-import javax.swing.ImageIcon;
-
 import Estados.*;
 import Logica.Posicion;
 import Visitores.Visitor;
@@ -11,21 +9,20 @@ public class ZombieBalde extends Zombie{
 	
 	protected int vida;
 	protected int velocidad;
-	protected int danio;
 	protected Posicion posicion;
 	protected EstadoZombie estado;
 	protected Visitor visitor;
-	protected boolean movimiento;
-	protected int identificacion;
+	protected String imagenNormal;
+	protected String imagenAtacando;
+	
 	
 	public ZombieBalde() {
 		vida = 5;
 		velocidad = 1;
-		danio = 1;
-		estado = new EstadoZombieNormal(3);
+		estado = new EstadoZombieNormal();
 		visitor = new VisitorZombie(this);
-		movimiento = true;
-		identificacion = 3;
+		imagenNormal = "/recursos/BucketheadZombie.gif";
+		imagenAtacando = "/recursos/BucketheadZombieAttack.gif";
 	}
 	
 	/*public void atacar(){

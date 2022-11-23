@@ -1,7 +1,5 @@
 package Zombies;
 
-import javax.swing.ImageIcon;
-
 import Estados.*;
 import Logica.Posicion;
 import Visitores.Visitor;
@@ -11,21 +9,19 @@ public class ZombiePeriodico extends Zombie{
 	
 	protected int vida;
 	protected int velocidad;
-	protected int danio;
 	protected Posicion posicion;
 	protected EstadoZombie estado;
 	protected Visitor visitor;
-	protected boolean movimiento;
-	protected int identificacion;
+	protected String imageNormal;
+	protected String imageAtacando;
 	
 	public ZombiePeriodico() {
 		vida = 5;
 		velocidad = 2;
-		danio = 1;
-		estado = new EstadoZombieNormal(1);
+		estado = new EstadoZombieNormal();
 		visitor = new VisitorZombie(this);
-		movimiento = true;
-		identificacion = 1;
+		imagenNormal = "/recursos/NewspaperAttack.gif";
+		imagenAtacando = "/recursos/NewspaperAttack.gif";
 	}
 	
 	/*public void atacar(){

@@ -3,7 +3,6 @@ package Zombies;
 import java.util.LinkedList;
 
 import Fila.ArregloFilas;
-import GUI.PanelJardin;
 import Logica.Nivel;
 
 //vienen predeterminados desde un txt solo los manejo de aca

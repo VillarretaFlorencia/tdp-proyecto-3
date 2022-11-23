@@ -2,6 +2,8 @@ package GUI;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.swing.*;
@@ -27,7 +29,9 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 	private JLabel lblGameN;
 	JLabel cantSoles;
 	private int numeroNivel = 0;
-	private List<Pair<Entidad,JLabel>> zombies;
+	private List<Pair<Entidad,JLabel>> zombies = new LinkedList<>();
+	//Iterator<LinkedList<Zombie>> iteradorOleadas;
+	LinkedList<Zombie> oleada;
 	public Gameplay( int i) {
 		numeroNivel = i;
 		System.out.println("-------------- valor i: "+i);
@@ -167,7 +171,33 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 			}
 		}
 		
+		
+			
+		
+		
+		
 	}
+	
+	public void inicializarZombies() {
+		//agregamos los zombies
+				oleada = Nivel.getNivel().getZombies();
+				Iterator<Zombie> it = oleada.iterator();
+				
+				while(it.hasNext()) {
+					Zombie z = it.next();
+					JLabel lblZombie = new JLabel();
+					lblZombie.setIcon(new ImageIcon(Gameplay.class.getResource(z.getImagen())));
+					lblZombie.setVisible(true);
+					//setbounds
+					add(lblZombie, Integer.valueOf(1));
+					
+					Pair<Entidad, JLabel> par = new Pair<>(z,lblZombie);
+					
+					zombies.add(par); //guardamos cada zombie con su label asociado
+				}
+	}
+	
+	
 	
 	public void modificar(Planta p) {
 		int x=p.getPosicion().getX(); int y = p.getPosicion().getY(); 
