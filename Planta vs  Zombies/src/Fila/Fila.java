@@ -53,14 +53,12 @@ public class Fila{
 	public void colisiones() {
 		for (Zombie z: listaZombies) {
 			Iterator<Proyectil> it = listaProyectiles.iterator();
-			boolean colisionProyectil = false;
 			boolean colisionPlanta = false;
 			while (it.hasNext()) {
 				Proyectil p = it.next();
 				if (z.getBounds().intersects(p.getBounds())) {
-					//colisionProyectil = true;
-					//aca tiene que ir el accept!!
-					listaProyectiles.remove();	//desde visitor
+					p.accept(z.getVisitor());
+					//listaProyectiles.remove();	//desde visitor
 				}
 			}
 			for (int i = plantas.length - 1; i >= 0 && !colisionPlanta; i--) {
@@ -68,10 +66,9 @@ public class Fila{
 				if (p != null) {
 					if (z.getBounds().intersects(p.getBounds())) {
 						colisionPlanta = true;
-						z.getVisitor().visit (p);
-						//aca iria el otro accept
-						if (p.getVida() <= 0)
-							plantas[i] = null;//esto llamarlo desde visitor t
+						p.accept(z.getVisitor());
+						//if (p.getVida() <= 0)
+							//plantas[i] = null;//esto llamarlo desde visitor t
 					}
 				}
 			}// ya que todo se conoce con todo que el zombie solo sea el visitor y visite a los demas 

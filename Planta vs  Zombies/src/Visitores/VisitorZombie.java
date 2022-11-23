@@ -28,12 +28,11 @@ public class VisitorZombie extends Visitor{
 
 	
 	public void visit(Planta p) {
-		zombie.setMovimiento(false);//cambia a estadoAtacando
-		/*recibe el daño y delegamos al accionar del estado atacando, el cual tendra el matar a la planta*/
+		zombie.setEstado(new EstadoComiendo());
 		p.recibirDanio (zombie.getDanio());
 		if (p.getVida() <= 0) {
 			n.matarPlanta(p);
-			zombie.setMovimiento(true); //volver al estado normal
+			zombie.setEstado(new EstadoNormal());
 		}
 	}
 

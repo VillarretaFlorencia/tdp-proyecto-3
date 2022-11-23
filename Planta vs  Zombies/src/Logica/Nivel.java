@@ -183,18 +183,23 @@ public class Nivel {
     	for (int i = 0; i < 6; i ++) {
     		Fila fila = filas.getFila(i);
 		    for(Proyectil p: fila.getProyectiles()) {
-		    	p.move();
+		    	p.atacar();
 		    }
 	    }
     }
     
-    public void moverZombies() {
+    public boolean moverZombies() {
+    	boolean terminar = false;
     	for (int i = 0; i < 6; i ++) {
     		Fila fila = filas.getFila(i);
-		    for(Zombie z: fila.getZombies()) {
-		    	z.move();
+		    for(Zombie z: fila.getZombies()) { //usar un iterador para cortarlo y no seguir 
+		    	if (z.getPosicion().getX() == 1) {
+		    		terminar = true;
+		    	}
+		    	else z.atacar();
 		    }
 	    }
+    	return terminar;
     }
     
     public void activarDefensa () {
