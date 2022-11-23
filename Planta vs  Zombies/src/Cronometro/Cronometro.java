@@ -36,7 +36,7 @@ public class Cronometro implements Runnable{
 		}
 	}
 	private void audioOn() {
-		ap = new AudioPlayer("/recursos/MusicaPlantas.mp3");
+		ap = new AudioPlayer("/Planta vs  Zombies/src/recursos/MusicaPlantas.mp3");
 		audio = new Thread(ap);
 		
 	}

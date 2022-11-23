@@ -17,7 +17,7 @@ public class HiloZombies implements Runnable{
 	}
 		
 	public void run () {
-		int dormir = 10000;
+		int dormir = 100;
 		while(!oleadas.isEmpty()) {
 			try {
 				LinkedList <Zombie> oleada = oleadas.getFirst();
@@ -28,7 +28,7 @@ public class HiloZombies implements Runnable{
 				}
 				oleadas.remove(oleadas.getFirst());
 				//ventana.getNuevaOleada();
-				Thread.sleep(20000);
+				Thread.sleep(200);
 			} catch (InterruptedException e) {e.printStackTrace();}
 		}
 	}
