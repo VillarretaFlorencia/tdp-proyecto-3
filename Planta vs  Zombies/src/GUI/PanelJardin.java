@@ -2,6 +2,7 @@ package GUI;
 
 import javax.swing.JPanel;
 
+import Logica.Entidad;
 import Logica.Nivel;
 import Logica.Posicion;
 import Logica.Sol;
@@ -97,6 +98,7 @@ public class PanelJardin extends JPanel{
 	public void terminarJuego() {
 		gameplay.restart();
 	}
+
 }
 
 class EventosDelRaton implements MouseListener{
