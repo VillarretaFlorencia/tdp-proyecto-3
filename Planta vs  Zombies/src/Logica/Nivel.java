@@ -31,6 +31,7 @@ public class Nivel {
 	protected PanelJardin panelJardin;
 	protected LinkedList<Entidad> entidadesDinamicas;
 	private int [] precios;
+	private LevelReader lr;
 	
 	static private Nivel nivel = new Nivel();
 	
@@ -65,11 +66,11 @@ public class Nivel {
     		precios [3] = 75;
     		valorSol = 25;
         }
+        lr = new LevelReader(nivelLvl);
 
     	System.out.println("GENERANDO NIVEL");
     	        
-        LevelReader lr = new LevelReader(nivelLvl);
-    	oleadas = lr.crearOleadas(miFabrica, this);
+        
     	System.out.println("dentro del nivel: ");// solo agrege esto flor perdoname //no hay na que perdonar jajaa
     	System.out.println("Estado: "+estado.getClass().getCanonicalName());
     }
@@ -175,6 +176,7 @@ public class Nivel {
     
     
     public LinkedList<LinkedList<Zombie>> getOleadas () {
+    	oleadas = lr.crearOleadas(miFabrica, this);
     	return oleadas;
     }
     
