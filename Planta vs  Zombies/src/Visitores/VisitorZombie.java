@@ -1,5 +1,6 @@
 package Visitores;
 
+import Estados.*;
 import Logica.Nivel;
 import Plantas.Planta;
 import Proyectil.Proyectil;
@@ -28,11 +29,11 @@ public class VisitorZombie extends Visitor{
 
 	
 	public void visit(Planta p) {
-		zombie.setEstado(new EstadoComiendo());
+		zombie.setEstado(new EstadoZombieAtacando());
 		p.recibirDanio (zombie.getDanio());
 		if (p.getVida() <= 0) {
 			n.matarPlanta(p);
-			zombie.setEstado(new EstadoNormal());
+			zombie.setEstado(new EstadoZombieNormal());
 		}
 	}
 

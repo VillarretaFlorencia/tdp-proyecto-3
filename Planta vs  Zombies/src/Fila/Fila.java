@@ -22,19 +22,20 @@ public class Fila{
 		listaProyectiles = new LinkedList<Proyectil>();
 	}
 	
-	public void setZombie (Zombie z) {listaZombies.add(z);}
+	public void setZombie (Zombie z) {listaZombies.add(z);}	
 	
 	public void setPlanta (Planta p) {
 		plantas [p.getPosicion().getX()] = p;
 	} 
+	
+	public void setProyectil (Proyectil p) {listaProyectiles.add(p);}
 	
 	public boolean hayLugar (int x) {
 		return plantas[x] == null;
 	}
 
 	public Planta plantaEnPos(int x) {return plantas[x];}
-	
-	public void setProyectil (Proyectil p) {listaProyectiles.add(p);}
+		
 	
 	public LinkedList <Zombie> getZombies() {return listaZombies;}
 	
@@ -49,6 +50,18 @@ public class Fila{
 		return plan;}
 	
 	public LinkedList <Proyectil> getProyectiles() {return listaProyectiles;}
+	
+	public void sacarZombie (Zombie z) {
+		listaZombies.remove(listaZombies.indexOf(z));
+	}
+	
+	public void sacarPlanta(Planta p) {
+		plantas[p.getPosicion().getX()] = null;
+	}
+	
+	public void sacarProyectil (Proyectil p) {
+		listaProyectiles.remove(listaProyectiles.indexOf(p));
+	}
 	
 	public void colisiones() {
 		for (Zombie z: listaZombies) {

@@ -145,14 +145,23 @@ public class Nivel {
     }
       
     public void matarZombie (Zombie z) {
+    	Posicion posZ = z.getPosicion();
+    	filas.getFila(posZ.getY()).sacarZombie(z);
+    	panelJardin.sacarEntidad(z);
     	//decir a gui que saque ese zombie, aca es donde es mas facil que zombie herede de labels?, o que el zombie conozca su labels soluciona?
     }
     
     public void matarProyectil (Proyectil p) {
+    	Posicion posP = p.getPosicion();
+    	filas.getFila(posP.getY()).sacarProyectil(p);
+    	panelJardin.sacarEntidad(p);
     	//misma analogia que matar zombie
     }
     
     public void matarPlanta (Planta p) {
+    	Posicion posP = p.getPosicion();
+    	filas.getFila(posP.getY()).sacarPlanta(p);
+    	panelJardin.sacarEntidad(p);
     	//misma analogia que matar zombie
     }
     
