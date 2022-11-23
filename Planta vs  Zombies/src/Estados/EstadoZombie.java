@@ -1,11 +1,10 @@
 package Estados;
 
-import java.awt.Image;
+import Zombies.Zombie;
 
 public abstract class EstadoZombie{
 	
 	protected String imagen;
 	
-	public String getImagen() {return imagen;}
-
+	public abstract void accionar(Zombie z);
 }
