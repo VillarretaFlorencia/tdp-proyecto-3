@@ -12,8 +12,8 @@ public class ZombiePeriodico extends Zombie{
 	protected Posicion posicion;
 	protected EstadoZombie estado;
 	protected Visitor visitor;
-	protected String imageNormal;
-	protected String imageAtacando;
+	protected String imagenNormal;
+	protected String imagenAtacando;
 	
 	public ZombiePeriodico() {
 		vida = 5;
@@ -23,8 +23,4 @@ public class ZombiePeriodico extends Zombie{
 		imagenNormal = "/recursos/NewspaperAttack.gif";
 		imagenAtacando = "/recursos/NewspaperAttack.gif";
 	}
-	
-	/*public void atacar(){
-		estado = new EstadoZombieComiendo(1);	
-	}*/
 }

@@ -11,7 +11,7 @@ public class EstadoZombieNormal extends EstadoZombie{
 	
 	public void accionar(Zombie z) {
 		//mover al zombie
-		//posicion.setX(posicion.getX()-velocidad);
+		z.getPosicion().setX(z.getPosicion().getX()-z.getVelocidad());
 	}
 	
 }

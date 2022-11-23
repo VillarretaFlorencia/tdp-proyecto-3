@@ -25,8 +25,4 @@ public class ZombieVolador extends Zombie{
 		imagenNormal = "/recursos/Zombie.gif";
 		imagenAtacando = "/recursos/ZombieAttack.gif";
 	}
-	
-	/*public void atacar(){
-		estado = new EstadoZombieComiendo(5);	
-	}*/
 }

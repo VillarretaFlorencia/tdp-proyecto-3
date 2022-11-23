@@ -26,8 +26,4 @@ public class ZombiePuerta extends Zombie{
 		imagenAtacando = "/recursos/DoorZombieAttack.gif";
 		
 	}
-	
-	/*public void atacar(){
-		estado = new EstadoZombieComiendo(4);	
-	}*/
 }

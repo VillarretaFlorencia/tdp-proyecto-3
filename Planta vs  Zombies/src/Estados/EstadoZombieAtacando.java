@@ -10,7 +10,5 @@ public class EstadoZombieAtacando extends EstadoZombie{
 	}
 	
 	public void accionar(Zombie z) {
-		//mover al zombie
-		//posicion.setX(posicion.getX()-velocidad);
 	}
 }

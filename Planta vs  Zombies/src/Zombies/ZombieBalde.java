@@ -24,8 +24,4 @@ public class ZombieBalde extends Zombie{
 		imagenNormal = "/recursos/BucketheadZombie.gif";
 		imagenAtacando = "/recursos/BucketheadZombieAttack.gif";
 	}
-	
-	/*public void atacar(){
-		estado = new EstadoZombieComiendo(3);	
-	}*/
 }

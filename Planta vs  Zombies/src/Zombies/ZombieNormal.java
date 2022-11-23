@@ -11,19 +11,15 @@ public class ZombieNormal extends Zombie{
 	protected Posicion posicion;
 	protected EstadoZombie estado;
 	protected Visitor visitor;
-	protected String imageNormal;
-	protected String imageAtacando;
+	protected String imagenNormal;
+	protected String imagenAtacando;
 	
 	public ZombieNormal() {
 		vida = 5;
 		velocidad = 1;
 		estado = new EstadoZombieNormal();
 		visitor = new VisitorZombie(this);
-		imageNormal = "/recursos/ZombieAttack.gif";
-		imageAtacando = "/recursos/ZombieAttack.gif";
+		imagenNormal = "/recursos/Zombie.gif";
+		imagenAtacando = "/recursos/ZombieAttack.gif";
 	}
-	
-	/*public void atacar(){
-		estado = new EstadoZombieComiendo(0);	
-	}*/
 }

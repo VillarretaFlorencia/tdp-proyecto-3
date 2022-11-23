@@ -24,7 +24,4 @@ public class ZombieBandera extends Zombie{
 		imagenNormal = "/recursos/FlagZombie.gif";
 		imagenAtacando = "/recursos/FlagZombieAttack.gif";
 	}
-	/*public void atacar(){
-		estado = new EstadoZombieComiendo(6);	
-	}*/
 }
