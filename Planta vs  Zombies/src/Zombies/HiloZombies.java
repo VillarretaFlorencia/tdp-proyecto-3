@@ -9,12 +9,10 @@ import Logica.Nivel;
 public class HiloZombies implements Runnable{
 	//Atributos de instancia
 	public LinkedList<LinkedList<Zombie>> oleadas;
-	public Thread h1;
 	protected Nivel nivel = Nivel.getNivel();
-	protected ArregloFilas filas;
+	
 	 
 	public HiloZombies () {
-		filas = nivel.getFilas();
 		oleadas = nivel.getOleadas();
 	}
 		
