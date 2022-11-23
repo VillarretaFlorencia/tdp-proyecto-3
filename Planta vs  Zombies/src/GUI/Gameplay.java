@@ -12,6 +12,7 @@ import javax.swing.plaf.basic.BasicButtonListener;
 import Logica.Entidad;
 import Logica.Nivel;
 import Plantas.Planta;
+import Proyectil.Proyectil;
 import Zombies.Zombie;
 
 import java.awt.Color;
@@ -206,6 +207,7 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 		}
 	}
 	
+	
 	public void modificar(Planta p) {
 		int x=p.getPosicion().getX(); int y = p.getPosicion().getY(); 
 		System.out.println("Path: "+String.valueOf(p.getImagen()));
@@ -276,6 +278,29 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 			System.out.println("CREANDO PLANTA 4");
 			panelJardin.setSeleccion(4);
 		}
+	}
+
+	public void sacarZombie(Zombie z) {
+		for(Pair<Entidad, JLabel> par : entidades) {
+			if(par.getKey().equals(z)) {
+				par.getValue().setVisible(false);
+				entidades.remove(par.getKey());
+			}
+		}
+	}
+	
+	public void sacarProyectil(Proyectil p) {
+		for(Pair<Entidad, JLabel> par : entidades) {
+			if(par.getKey().equals(p)) {
+				par.getValue().setVisible(false);
+				entidades.remove(par.getKey());
+			}
+		}
+	}
+
+	public void sacarPlanta(Planta p) {
+		
+		label[p.getPosicion().getX()][p.getPosicion().getY()].setVisible(false);
 	}
 }
 
