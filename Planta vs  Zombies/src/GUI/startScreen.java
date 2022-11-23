@@ -7,14 +7,18 @@ import java.awt.*;
 
 public class startScreen extends JPanel implements ActionListener{
 	private JButton btnStart;// no me mires feo flor esto tiene una razon
+	private int ancho = 570;
+	private int alto = 450;
+	
+	
 	public startScreen() {
-		this.setBounds(0,0,570,450);
+		this.setBounds(0,0,ancho,alto);
 		JLabel lblstart = new JLabel("");
 		ImageIcon imagenInicio = new ImageIcon(this.getClass().getResource("/recursos/start.png"));
 		Image start = imagenInicio.getImage();
-		start = start.getScaledInstance(570, 450,  java.awt.Image.SCALE_SMOOTH);
+		start = start.getScaledInstance(ancho, alto,  java.awt.Image.SCALE_SMOOTH);
 		imagenInicio = new ImageIcon(start);
-		lblstart.setBounds(0,0,570,450);
+		lblstart.setBounds(0,0,ancho,alto);
 		lblstart.setIcon(imagenInicio);
 		lblstart.setVisible(true);
 		setVisible(true);
