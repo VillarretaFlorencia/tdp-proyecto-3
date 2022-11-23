@@ -8,7 +8,9 @@ import Logica.Nivel;
 import Logica.Posicion;
 import Logica.Sol;
 import Plantas.Planta;
+import Proyectil.Proyectil;
 import Zombies.HiloZombies;
+import Zombies.Zombie;
 
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -108,6 +110,18 @@ public class PanelJardin extends JPanel{
 	public void terminarJuego() {
 		gameplay.restart();
 		hc.stop();
+	}
+	
+	public void sacarZombie(Zombie z) {
+		gameplay.sacarZombie(z);
+	}
+	
+	public void sacarProyectil(Proyectil p) {
+		gameplay.sacarProyectil(p);
+	}
+
+	public void sacarPlanta(Planta p) {
+		gameplay.sacarPlanta(p);
 	}
 
 }
