@@ -12,7 +12,7 @@ public class Cronometro implements Runnable{
 	private boolean terminar;
 	private AudioPlayer ap;
 	private Thread audio;
-	
+	private long milisegundos;
 	
 	public Cronometro () {
 		audioOn();
@@ -20,20 +20,24 @@ public class Cronometro implements Runnable{
 		hz = new Thread (hiloZombies);
 		hz.start();
 		terminar = false;
+		milisegundos=0;
 	}
 	
 	public void run () {
 		while(!terminar) {			
 			terminar = nivel.moverEntidades();
+			if(milisegundos % 88000==0)
+				audio.start();
 			if (!terminar) {
 				nivel.activarDefensa();		
 				nivel.checkColisiones();
 			}
+			milisegundos++;
 		}
 	}
 	private void audioOn() {
 		ap = new AudioPlayer("/recursos/MusicaPlantas.mp3");
 		audio = new Thread(ap);
-		audio.start();
+		
 	}
 }
