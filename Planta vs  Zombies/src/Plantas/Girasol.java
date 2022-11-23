@@ -11,8 +11,8 @@ import Logica.Posicion;
 
 public class Girasol extends Planta{
 
-		String imagenNormal = "/recursos/sunflowerB.png";
-		String imagenBrillante = "/recursos/sunflowerB.png";
+		String imagenNormal = "/recursos/sunflowerB.gif";
+		String imagenBrillante = "/recursos/sunflowerB.gif";
 		int tiempoEnAccion = 1000;
 		
     public Girasol(){
