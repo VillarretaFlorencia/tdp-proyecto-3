@@ -17,9 +17,10 @@ public class ZombieNormal extends Zombie{
 	public ZombieNormal() {
 		vida = 5;
 		velocidad = 1;
-		estado = new EstadoZombieNormal();
+		estado = new EstadoZombieNormal(this);
 		visitor = new VisitorZombie(this);
 		imagenNormal = "/recursos/Zombie.gif";
 		imagenAtacando = "/recursos/ZombieAttack.gif";
+		imagen = imagenNormal;
 	}
 }

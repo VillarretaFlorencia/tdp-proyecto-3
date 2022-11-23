@@ -42,7 +42,7 @@ public class MainFrame extends JFrame{
 			public void actionPerformed(ActionEvent e) {//al momento de presionar el boton
 				CardLayout c1 = (CardLayout)(getContentPane().getLayout());//se cambia toma el panel
 				panelGameplay  = new Gameplay(1);
-				panelGameplay.getJardin().setNivel(1);
+				//panelGameplay.getJardin().setNivel(1);
 				getContentPane().add(panelGameplay,GAMEPLAY);
 				c1.show(getContentPane(),GAMEPLAY); // y lo cambiamos en el contentPane
 				//panelGameplay.restart();
@@ -54,7 +54,7 @@ public class MainFrame extends JFrame{
 			public void actionPerformed(ActionEvent e) {//al momento de presionar el boton
 				CardLayout c1 = (CardLayout)(getContentPane().getLayout());//se cambia toma el panel
 				panelGameplay  = new Gameplay(2);
-				panelGameplay.getJardin().setNivel(2);
+				//panelGameplay.getJardin().setNivel(2);
 				getContentPane().add(panelGameplay,GAMEPLAY);
 				c1.show(getContentPane(),GAMEPLAY); // y lo cambiamos en el contentPane
 				//panelGameplay.restart();
@@ -66,7 +66,7 @@ public class MainFrame extends JFrame{
 			public void actionPerformed(ActionEvent e) {//al momento de presionar el boton
 				CardLayout c1 = (CardLayout)(getContentPane().getLayout());//se cambia toma el panel
 				panelGameplay  = new Gameplay(3);
-				panelGameplay.getJardin().setNivel(3);
+				//panelGameplay.getJardin().setNivel(3);
 				getContentPane().add(panelGameplay,GAMEPLAY);
 				c1.show(getContentPane(),GAMEPLAY); // y lo cambiamos en el contentPane
 				//panelGameplay.restart();
@@ -78,7 +78,7 @@ public class MainFrame extends JFrame{
 			public void actionPerformed(ActionEvent e) {//al momento de presionar el boton
 				CardLayout c1 = (CardLayout)(getContentPane().getLayout());//se cambia toma el panel
 				panelGameplay  = new Gameplay(4);
-				panelGameplay.getJardin().setNivel(4);
+				//panelGameplay.getJardin().setNivel(4);
 				getContentPane().add(panelGameplay,GAMEPLAY);
 				c1.show(getContentPane(),GAMEPLAY); // y lo cambiamos en el contentPane
 				//panelGameplay.restart();

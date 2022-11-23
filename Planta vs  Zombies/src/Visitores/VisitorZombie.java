@@ -29,11 +29,11 @@ public class VisitorZombie extends Visitor{
 
 	
 	public void visit(Planta p) {
-		zombie.setEstado(new EstadoZombieAtacando());
+		zombie.setEstado(new EstadoZombieAtacando(zombie));
 		p.recibirDanio (zombie.getDanio());
 		if (p.getVida() <= 0) {
 			n.matarPlanta(p);
-			zombie.setEstado(new EstadoZombieNormal());
+			zombie.setEstado(new EstadoZombieNormal(zombie));
 		}
 	}
 

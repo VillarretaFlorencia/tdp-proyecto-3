@@ -21,9 +21,10 @@ public class ZombieCono extends Zombie{
 	public ZombieCono() {
 		vida = 5;
 		velocidad = 1;
-		estado = new EstadoZombieNormal();
+		estado = new EstadoZombieNormal(this);
 		visitor = new VisitorZombie(this);
 		imagenNormal = "/recursos/ConeheadZombie.gif";
 		imagenAtacando = "/recursos/ConeheadZombieAttack.gif";
+		imagen = imagenNormal;
 	}
 }

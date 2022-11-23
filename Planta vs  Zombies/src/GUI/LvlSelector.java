@@ -1,6 +1,9 @@
 package GUI;
 
 import javax.swing.JPanel;
+
+import Logica.Nivel;
+
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 
@@ -13,6 +16,7 @@ import javax.swing.JButton;
 
 public class LvlSelector extends JLayeredPane implements ActionListener{
 	private JButton selection1, selection2, selection3, selection4;
+	Nivel nivel = Nivel.getNivel();
 	public LvlSelector() {
 		setBounds(0,0,570,450);
 		setLayout(null);

@@ -20,10 +20,10 @@ public class ZombiePuerta extends Zombie{
 	public ZombiePuerta() {
 		vida = 5;
 		velocidad = 1;
-		estado = new EstadoZombieNormal();
+		estado = new EstadoZombieNormal(this);
 		visitor = new VisitorZombie(this);
 		imagenNormal = "/recursos/DoorZombie.gif";
 		imagenAtacando = "/recursos/DoorZombieAttack.gif";
-		
+		imagen = imagenNormal;
 	}
 }

@@ -5,11 +5,11 @@ import Zombies.Zombie;
 public class EstadoZombieNormal extends EstadoZombie{
 	protected Zombie z;
 	
-	public EstadoZombieNormal() {
+	public EstadoZombieNormal(Zombie z) {
 		z.setImagen(z.getImagenNormal());
 	}
 	
-	public void accionar(Zombie z) {
+	public void accionar() {
 		//mover al zombie
 		z.getPosicion().setX(z.getPosicion().getX()-z.getVelocidad());
 	}

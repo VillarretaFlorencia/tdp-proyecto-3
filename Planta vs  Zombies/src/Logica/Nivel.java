@@ -66,8 +66,10 @@ public class Nivel {
     		precios [3] = 75;
     		valorSol = 25;
         }
+        
         lr = new LevelReader(nivelLvl);
-
+        oleadas = lr.crearOleadas(miFabrica, this);
+        
     	System.out.println("GENERANDO NIVEL");
     	        
         
@@ -177,7 +179,7 @@ public class Nivel {
     
     
     public LinkedList<LinkedList<Zombie>> getOleadas () {
-    	oleadas = lr.crearOleadas(miFabrica, this);
+    	
     	return oleadas;
     }
     
@@ -213,7 +215,7 @@ public class Nivel {
     
     
     public boolean moverEntidades() {
-    	entidadesDinamicas.clear();
+    	entidadesDinamicas = new LinkedList<Entidad>();
     	boolean terminar = moverZombies();
     	if (terminar) {
     		terminarJuego();

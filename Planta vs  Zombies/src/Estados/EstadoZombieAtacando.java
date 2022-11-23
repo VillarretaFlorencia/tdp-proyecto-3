@@ -3,12 +3,14 @@ package Estados;
 import Zombies.Zombie;
 
 public class EstadoZombieAtacando extends EstadoZombie{
-	protected Zombie z;
 	
-	public EstadoZombieAtacando() {
+	
+	public EstadoZombieAtacando(Zombie z) {
+		this.z = z;
 		z.setImagen(z.getImagenAtacando());
 	}
 	
-	public void accionar(Zombie z) {
+	public void accionar() {
 	}
+
 }

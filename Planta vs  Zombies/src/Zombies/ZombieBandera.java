@@ -19,9 +19,10 @@ public class ZombieBandera extends Zombie{
 	public ZombieBandera() {
 		vida = 5;
 		velocidad = 3;
-		estado = new EstadoZombieNormal();
+		estado = new EstadoZombieNormal(this);
 		visitor = new VisitorZombie(this);
 		imagenNormal = "/recursos/FlagZombie.gif";
 		imagenAtacando = "/recursos/FlagZombieAttack.gif";
+		imagen = imagenNormal;
 	}
 }

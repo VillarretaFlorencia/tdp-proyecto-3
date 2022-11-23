@@ -19,9 +19,10 @@ public class ZombieBalde extends Zombie{
 	public ZombieBalde() {
 		vida = 5;
 		velocidad = 1;
-		estado = new EstadoZombieNormal();
+		estado = new EstadoZombieNormal(this);
 		visitor = new VisitorZombie(this);
 		imagenNormal = "/recursos/BucketheadZombie.gif";
 		imagenAtacando = "/recursos/BucketheadZombieAttack.gif";
+		imagen = imagenNormal;
 	}
 }

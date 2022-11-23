@@ -84,7 +84,11 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 		panelJardin.setBounds(-1, 1, 570, 380);
 		panelJardin.setOpaque(false);
 		add(panelJardin,Integer.valueOf(1));
+		
+		panelJardin.setNivel(i);
+		
 		Nivel.getNivel().setPanelJardin(panelJardin);
+		
 		
 		btnPlanta1 = new JButton("Planta1");
 		ImageIcon iconLanzaG;

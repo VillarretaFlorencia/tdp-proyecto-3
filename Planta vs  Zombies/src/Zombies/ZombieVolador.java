@@ -20,9 +20,10 @@ public class ZombieVolador extends Zombie{
 	public ZombieVolador() {
 		vida = 5;
 		velocidad = 1;
-		estado = new EstadoZombieNormal();
+		estado = new EstadoZombieNormal(this);
 		visitor = new VisitorZombie(this);
 		imagenNormal = "/recursos/Zombie.gif";
 		imagenAtacando = "/recursos/ZombieAttack.gif";
+		imagen = imagenNormal;
 	}
 }
