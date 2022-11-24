@@ -1,5 +1,6 @@
 package Plantas;
 
+import Logica.EntidadGrafica;
 
 public class Nuez extends Planta{
    
@@ -8,6 +9,7 @@ public class Nuez extends Planta{
     	imagen = "/recursos/walnut_full_life.gif";
         vida = vidaInicial = 20000;
         tiempoDeAtaque = 0;
+        entidad = new EntidadGrafica();
     }
 
     

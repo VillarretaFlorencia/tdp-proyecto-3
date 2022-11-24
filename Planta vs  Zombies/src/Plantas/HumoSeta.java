@@ -4,6 +4,7 @@ import java.awt.Image;
 
 import javax.swing.ImageIcon;
 
+import Logica.EntidadGrafica;
 import Logica.Nivel;
 import Logica.Posicion;
 import Proyectil.Proyectil;
@@ -17,6 +18,8 @@ public class HumoSeta extends Planta{
     	imagenProyectil = "/recursos/PuffShroom_puff1.png";
         danio = 250;
         tiempoDeAtaque = 1000;
+
+        entidad = new EntidadGrafica();
     }
     
     

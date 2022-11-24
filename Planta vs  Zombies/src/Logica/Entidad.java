@@ -10,11 +10,13 @@ public abstract class Entidad {
 
 	protected Posicion posicion;
 	protected int danio;
-	protected EntidadGrafica imagen;
+	protected EntidadGrafica entidad;
+	protected String imagen;
 	
 	
 	public abstract Rectangle getBounds();
-	public  EntidadGrafica getImagen() {return imagen;}
+	public  EntidadGrafica getEntidad() {return entidad;}
+	public  String getImagen() {return imagen;}
 	public void setPosicion (Posicion p) {posicion = p;}
 	public Posicion getPosicion() {return posicion;}
 	public abstract void atacar();

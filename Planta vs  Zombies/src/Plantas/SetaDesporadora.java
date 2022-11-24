@@ -4,6 +4,7 @@ import java.awt.Image;
 
 import javax.swing.ImageIcon;
 
+import Logica.EntidadGrafica;
 import Logica.Nivel;
 import Logica.Posicion;
 import Proyectil.Proyectil;
@@ -17,6 +18,7 @@ public class SetaDesporadora extends Planta{
     	imagenProyectil = "/recursos/PuffShroom_puff2.png";
         danio = 500;
         tiempoDeAtaque = 1500;
+        entidad = new EntidadGrafica();
     }
     
 }

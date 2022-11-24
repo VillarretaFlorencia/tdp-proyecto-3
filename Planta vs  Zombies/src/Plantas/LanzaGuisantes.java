@@ -5,6 +5,7 @@ import java.util.Iterator;
 
 import javax.swing.ImageIcon;
 
+import Logica.EntidadGrafica;
 import Logica.Nivel;
 import Logica.Posicion;
 import Proyectil.Proyectil;
@@ -19,6 +20,7 @@ public class LanzaGuisantes extends Planta{
     	imagenProyectil = "/recursos/pea.png";
         danio = 1000;
         tiempoDeAtaque = 3000;
+        entidad = new EntidadGrafica();
     }
     
   
