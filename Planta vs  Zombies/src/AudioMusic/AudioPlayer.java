@@ -10,8 +10,8 @@ public class AudioPlayer implements Runnable {
 	protected String file;
 	protected long milisegundos;
 	
-	public AudioPlayer( String file ) {
-		this.file = file;
+	public AudioPlayer() {
+		file = "./recursos/MusicaPlantas.mp3";
 	}
 
 	@Override
