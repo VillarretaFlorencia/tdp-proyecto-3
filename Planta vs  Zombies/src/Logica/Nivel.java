@@ -108,10 +108,12 @@ public class Nivel {
     
     public void setZombie (Zombie z){
     	filas.setZombie(z);
+    	panelJardin.getGameplay().agregarEntidad(z);
     }
     
     public void setProyectil (Proyectil p){
     	filas.setProyectil(p);
+    	panelJardin.getGameplay().agregarEntidad(p);
     }
     
         
@@ -147,6 +149,7 @@ public class Nivel {
 			filas.setPlanta(planta);
 			cantSoles -= precio;
 	    	panelJardin.colocarPlanta (planta); //actualiza el label soles 
+	    	panelJardin.getGameplay().agregarEntidad(p);
 	    	panelJardin.getGameplay().actualizarSoles (cantSoles);
 	    	//System.out.println("crea planta");
 		}else {
@@ -197,6 +200,10 @@ public class Nivel {
     
     public PanelJardin getPanelJardin () {return panelJardin;}
     
+    public void setGameplay (Gameplay g) {
+    	gameplay = g;
+    }
+    
     
     public LinkedList<LinkedList<Zombie>> getOleadas () {
     	return oleadas;
@@ -219,7 +226,7 @@ public class Nivel {
 		    for(Proyectil p: copiaProyectil) {
 		    	p.atacar();
 		    	// entidadesDinamicas.add(p);
-		    	//panelJardin.actualizar();
+		    	panelJardin.getGameplay().actualizar(p);
 		    }
 	    }
     }
@@ -239,6 +246,7 @@ public class Nivel {
 			    	}
 			    	else {
 			    		z.atacar();
+			    		panelJardin.getGameplay().actualizar(z);
 			    		//entidadesDinamicas.add(z);//ver si mandar la entidad o una copia de esta
 			    		//panelJardin.actualizar();
 			    	}
