@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Map;
 
+import AudioMusic.AudioPlayer;
 import Cronometro.Cronometro;
 import Estados.EstadoNivel;
 import Estados.EstadoDia;
@@ -37,8 +38,9 @@ public class Nivel {
 	private int [] precios;
 	private boolean terminar = false;
 	private LevelReader lr;
-	Thread hc;
-	Thread hz;
+	Thread hiloGeneral;
+	Thread hiloGerneradorOleadas;
+	Thread hiloMusica;
 	
 	static private Nivel nivel = new Nivel();
 	
@@ -87,13 +89,17 @@ public class Nivel {
 	    	
 	    	
 	    	HiloZombies hiloZombies = new HiloZombies();
-			hz = new Thread (hiloZombies);
-			hz.start();
+			hiloGerneradorOleadas = new Thread (hiloZombies);
+			hiloGerneradorOleadas.start();
 			
 			Cronometro cronometro;
 	    	cronometro = new Cronometro();
-	    	hc = new Thread (cronometro);
-	    	hc.start();
+	    	hiloGeneral = new Thread (cronometro);
+	    	hiloGeneral.start();
+	    	
+	    	AudioPlayer musica = new AudioPlayer();
+	    	hiloMusica = new Thread (musica);
+	    	hiloGeneral.start();
     	}
     	
     }
@@ -149,7 +155,7 @@ public class Nivel {
 			filas.setPlanta(planta);
 			cantSoles -= precio;
 	    	panelJardin.colocarPlanta (planta); //actualiza el label soles 
-	    	panelJardin.getGameplay().agregarEntidad(p);
+	    	panelJardin.getGameplay().agregarEntidad(planta);
 	    	panelJardin.getGameplay().actualizarSoles (cantSoles);
 	    	//System.out.println("crea planta");
 		}else {

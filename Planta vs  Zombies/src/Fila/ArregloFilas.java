@@ -8,6 +8,7 @@ import Zombies.Zombie;
 
 public class ArregloFilas{
 	protected Fila[] arreglo;
+	Conversor conversor = Conversor.getConversor();
 	
 	public ArregloFilas() {
 		arreglo = new Fila[6];
@@ -22,17 +23,17 @@ public class ArregloFilas{
 	
 	public void setZombie(Zombie z) {
 		int f = z.getPosicion().getY();
-		arreglo[f].setZombie(z);
+		arreglo[conversor.convertirFila(f)].setZombie(z);
 	}
 	
 	public void setPlanta(Planta p) {
 		int f = p.getPosicion().getY();
-		arreglo[f].setPlanta(p);
+		arreglo[conversor.convertirFila(f)].setPlanta(p);
 	}
 	
 	public void setProyectil(Proyectil p) {
 		int f = p.getPosicion().getY();
-		arreglo[f].setProyectil(p);
+		arreglo[conversor.convertirFila(f)].setProyectil(p);
 	}
 	
 	public LinkedList <Planta> getTodasLasPlantas() {
