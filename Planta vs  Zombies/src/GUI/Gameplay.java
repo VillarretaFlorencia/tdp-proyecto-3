@@ -30,7 +30,6 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 	private JLabel lblGameN;
 	JLabel cantSoles;
 	private int numeroNivel = 0;
-	private List<Pair<Entidad,JLabel>> entidades = new LinkedList<>();
 
 	
 	public Gameplay( int i) {
@@ -181,50 +180,32 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 		
 		
 	}
-	
-	public void modificarDinamico(LinkedList<Entidad> lista) {
-		//agregamos los zombies
-			//	oleada = Nivel.getNivel().getZombies();
-		//System.out.println ("TAMAÑO ENTIDADES EN MODIFICAR DINAMICO" + entidades.size());
-		for(Pair<Entidad, JLabel> par : entidades) {
-			this.remove(par.getValue());
-		}
-		
-		entidades.clear();
-		//System.out.println ("entre a MODIFICARDINAMICO");
-		Iterator<Entidad> it = lista.iterator();
-		
-		while(it.hasNext()) {
-			Entidad z = it.next();
-			JLabel lblEntidad = new JLabel();
-			lblEntidad.setIcon(new ImageIcon(Gameplay.class.getResource(z.getImagen())));
-			lblEntidad.setVisible(true);
-			lblEntidad.setBounds(z.getPosicion().getX(), z.getPosicion().getY()*63, 96, 84);
-			//System.out.println ("POSICION ZOMBIE" + lblEntidad.getBounds());
-			this.add(lblEntidad, Integer.valueOf(1));
-			
-			Pair<Entidad, JLabel> par = new Pair<>(z,lblEntidad);
-			
-			entidades.add(par); //guardamos cada zombie con su label asociado
-		}
-								
-	}
-	
-	public void actualizarZombies() {
-		//asumimos qe la lista esta inicializada
-		for(Pair<Entidad, JLabel> par : entidades) {
-			par.getValue().setBounds(par.getKey().getPosicion().getX(), par.getKey().getPosicion().getY(), 46, 14);
-		}
-	}
+
 	
 	
 	public void modificar(Planta p) {
 		int x=p.getPosicion().getX(); int y = p.getPosicion().getY(); 
 		//System.out.println("Path: "+String.valueOf(p.getImagen()));
+		label[x][y] = p.getEntidadGrafica().getLabel();
+		//label[x][y].setIcon(new ImageIcon(Gameplay.class.getResource(String.valueOf(p.getImagen())))); <<<<<<<<<<<<<<<<<<CHECKEAR
+		//label[x][y].setVisible(true);
 		
-		label[x][y].setIcon(new ImageIcon(Gameplay.class.getResource(String.valueOf(p.getImagen()))));
-		label[x][y].setVisible(true);
-		
+	}
+	
+	public void actualizarEntidad(Entidad e) {//toma la entidad y actualiza su label
+		e.getEntidadGrafica().getLabel().setLocation(e.getPosicion().getX(),e.getPosicion().getY());;
+	}
+	
+	public void agregarEntidad(Entidad e) {//agrega la entidad al panel
+		JLabel labelAgregado = e.getEntidadGrafica().getLabel();
+		this.add(labelAgregado);
+		labelAgregado.setVisible(true);
+	}
+	
+	public void sacarEntidad(Entidad e) {//saca la entidad de dentro del panel
+		JLabel labelSacar = e.getEntidadGrafica().getLabel();
+		labelSacar.setVisible(false);
+		this.remove(labelSacar);
 	}
 	
 	public void actualizarSoles(int cantidad) {
@@ -232,26 +213,6 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 		cantSoles.setText(String.valueOf(cantidad));
 	}
 	
-
-	/*en esta parte hay que entender que las entidades que no son plantas
-	 * las posiciones funcionan de forma distinta donde x -> [0,570] y Y->[0,5]
-	 * y representa la fila donde esta y X es su posicion de izquierda o derecha*/
-	/*
-	public void modificarDinamico(Entidad e) {
-		
-		int yAbsolute = 31;
-		int x=e.getPosicion().getX(); int y = e.getPosicion().getY(); 
-		//System.out.println("Path: "+String.valueOf(e.getImagen()));
-		JLabel lbl = new JLabel();
-		lbl.setIcon(new ImageIcon(Gameplay.class.getResource(String.valueOf(e.getImagen()))));
-		this.add(lbl);
-		yAbsolute = y+(e.getPosicion().getY()*63);
-		lbl.setLocation(e.getPosicion().getX(),yAbsolute);
-		zombies.add(new Pair<Entidad, JLabel>(e,lbl));
-		lbl.setVisible(true);
-		//System.out.println("Posicion del zombie: "+lbl.getAlignmentX()+","+lbl.getAlignmentY());
-	}
-*/
 	
 	public void restart() {
 		panelJardin.restart();
@@ -290,29 +251,18 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 		}
 	}
 
-	public void sacarZombie(Zombie z) {
-		for(Pair<Entidad, JLabel> par : entidades) {
-			if(par.getKey().equals(z)) {
-				par.getValue().setVisible(false);
-				entidades.remove(par.getKey());
-				this.remove(par.getValue());
-			}
-		}
-	}
 	
-	public void sacarProyectil(Proyectil p) {
-		for(Pair<Entidad, JLabel> par : entidades) {
-			if(par.getKey().equals(p)) {
-				par.getValue().setVisible(false);
-				entidades.remove(par.getKey());
-				this.remove(par.getValue());
-			}
-		}
-	}
+	
 
 	public void sacarPlanta(Planta p) {
 		
 		label[p.getPosicion().getX()][p.getPosicion().getY()].setVisible(false);
+	}
+
+	public void actualizar(Entidad e) {
+		//añadir los zombies si no estan
+		//actualizar todo
+		
 	}
 }
 
