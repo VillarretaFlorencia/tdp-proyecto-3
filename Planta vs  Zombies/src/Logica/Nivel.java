@@ -17,6 +17,7 @@ import Fila.Fila;
 import GUI.PanelJardin;
 import Plantas.Planta;
 import Proyectil.Proyectil;
+import Zombies.HiloZombies;
 import Zombies.Zombie;
 import Zombies.ZombieNormal;
 
@@ -34,6 +35,7 @@ public class Nivel {
 	private int [] precios;
 	private LevelReader lr;
 	Thread hc;
+	Thread hz;
 	
 	static private Nivel nivel = new Nivel();
 	
@@ -83,6 +85,10 @@ public class Nivel {
     	cronometro = new Cronometro();
     	hc = new Thread (cronometro);
     	hc.start();
+    	
+    	HiloZombies hiloZombies = new HiloZombies();
+		hz = new Thread (hiloZombies);
+		hz.start();
     	
     }
     
@@ -207,7 +213,8 @@ public class Nivel {
     	boolean terminar = false;
     	for (int i = 0; i < 6 && !terminar; i ++) {
     		Fila fila = filas.getFila(i);
-    		if (!fila.getZombies().isEmpty()) {
+    		LinkedList <Zombie> copiaZombies = (LinkedList<Zombie>) fila.getZombies().clone();
+    		if (!copiaZombies.isEmpty()) {
 	    		Iterator <Zombie> it = fila.getZombies().iterator();
 	    		System.out.println(Math.random() + " " + fila.getZombies().size());
 			    while(it.hasNext() && !terminar) { //usar un iterador para cortarlo y no seguir 
@@ -252,6 +259,7 @@ public class Nivel {
     		filas.getFila(i).limpiarFila();
     	}
     	hc.stop();
+    	hz.stop();
     	panelJardin.terminarJuego();
     }
     

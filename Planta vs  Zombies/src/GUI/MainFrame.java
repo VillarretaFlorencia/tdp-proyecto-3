@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
+import Logica.Nivel;
+
 //usaremos CardLayout
 public class MainFrame extends JFrame{
 	//identificadores
@@ -16,6 +18,8 @@ public class MainFrame extends JFrame{
 	startScreen panelInicio = new startScreen();
 	Gameplay panelGameplay = new Gameplay(1);//provisorio
 	LvlSelector panelSelector = new LvlSelector();
+	
+	Nivel nivel = Nivel.getNivel();
 	
 	public MainFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -46,6 +50,7 @@ public class MainFrame extends JFrame{
 				getContentPane().add(panelGameplay,GAMEPLAY);
 				c1.show(getContentPane(),GAMEPLAY); // y lo cambiamos en el contentPane
 				//panelGameplay.restart();
+				nivel.iniciarJuego(1);
 			}
 			
 		});
@@ -58,6 +63,7 @@ public class MainFrame extends JFrame{
 				getContentPane().add(panelGameplay,GAMEPLAY);
 				c1.show(getContentPane(),GAMEPLAY); // y lo cambiamos en el contentPane
 				//panelGameplay.restart();
+				nivel.iniciarJuego(2);
 			}
 			
 		});
@@ -70,6 +76,7 @@ public class MainFrame extends JFrame{
 				getContentPane().add(panelGameplay,GAMEPLAY);
 				c1.show(getContentPane(),GAMEPLAY); // y lo cambiamos en el contentPane
 				//panelGameplay.restart();
+				nivel.iniciarJuego(3);
 			}
 			
 		});
@@ -82,6 +89,7 @@ public class MainFrame extends JFrame{
 				getContentPane().add(panelGameplay,GAMEPLAY);
 				c1.show(getContentPane(),GAMEPLAY); // y lo cambiamos en el contentPane
 				//panelGameplay.restart();
+				nivel.iniciarJuego(4);
 			}
 			
 		});

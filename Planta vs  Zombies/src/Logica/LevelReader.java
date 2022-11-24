@@ -116,12 +116,13 @@ public class LevelReader {
 			break;}
 		default: {
 			z.setPosicion(new Posicion (x,(int)(Math.random()*fila)));
-			System.out.println("------------------------" + x + "-----------------" + (int)(Math.random()*fila));
+			
 			break;} 
 		}
 
 		z.setEstado (new EstadoZombieNormal(z));
 		z.setVisitor (new VisitorZombie (z));
+		System.out.println("------------------------" + z.getPosicion().getX() + "-----------------" + z.getPosicion().getY());
 		return z;
 	}
 	

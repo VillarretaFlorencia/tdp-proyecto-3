@@ -85,7 +85,7 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 		panelJardin.setOpaque(false);
 		add(panelJardin,Integer.valueOf(1));
 		
-		panelJardin.setNivel(i);
+		
 		
 		Nivel.getNivel().setPanelJardin(panelJardin);
 		

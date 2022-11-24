@@ -7,7 +7,6 @@ import Zombies.HiloZombies;
 public class Cronometro implements Runnable{
 	//Atributos de instancia
 	public Thread hz;
-	private HiloZombies hiloZombies;
 	private Nivel nivel = Nivel.getNivel();
 	private boolean terminar;
 	private AudioPlayer ap;
@@ -16,16 +15,13 @@ public class Cronometro implements Runnable{
 	
 	public Cronometro () {
 		audioOn();
-		hiloZombies = new HiloZombies();
-		hz = new Thread (hiloZombies);
-		hz.start();
 		terminar = false;
 		milisegundos=0;
 	}
 	
 	public void run () {
 		while(!terminar) {			
-			//terminar = nivel.moverEntidades();
+			terminar = nivel.moverEntidades();
 			if(milisegundos % 88000==0)
 				//audio.start();
 			if (!terminar) {
