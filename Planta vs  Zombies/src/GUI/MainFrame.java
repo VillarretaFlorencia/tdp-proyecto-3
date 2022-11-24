@@ -50,7 +50,7 @@ public class MainFrame extends JFrame{
 				getContentPane().add(panelGameplay,GAMEPLAY);
 				c1.show(getContentPane(),GAMEPLAY); // y lo cambiamos en el contentPane
 				//panelGameplay.restart();
-				nivel.iniciarJuego(1);
+				jugar(1);
 			}
 			
 		});
@@ -63,7 +63,7 @@ public class MainFrame extends JFrame{
 				getContentPane().add(panelGameplay,GAMEPLAY);
 				c1.show(getContentPane(),GAMEPLAY); // y lo cambiamos en el contentPane
 				//panelGameplay.restart();
-				nivel.iniciarJuego(2);
+				jugar(2);
 			}
 			
 		});
@@ -76,7 +76,7 @@ public class MainFrame extends JFrame{
 				getContentPane().add(panelGameplay,GAMEPLAY);
 				c1.show(getContentPane(),GAMEPLAY); // y lo cambiamos en el contentPane
 				//panelGameplay.restart();
-				nivel.iniciarJuego(3);
+				jugar(3);
 			}
 			
 		});
@@ -89,7 +89,7 @@ public class MainFrame extends JFrame{
 				getContentPane().add(panelGameplay,GAMEPLAY);
 				c1.show(getContentPane(),GAMEPLAY); // y lo cambiamos en el contentPane
 				//panelGameplay.restart();
-				nivel.iniciarJuego(4);
+				jugar(4);
 			}
 			
 		});
@@ -107,6 +107,12 @@ public class MainFrame extends JFrame{
 				}
 			}
 		});
+	}
+	
+	public void jugar(int nroNivel) {
+		nivel.setPanelJardin(panelGameplay.getJardin());
+		nivel.setGameplay(panelGameplay);
+		nivel.iniciarJuego(nroNivel);
 	}
 	
 	

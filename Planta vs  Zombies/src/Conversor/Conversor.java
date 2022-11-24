@@ -1,16 +1,16 @@
 package Conversor;
 
 public class Conversor {
-protected  int numerocuadrado;
+	//las dimensiones de cada cuadrado del jardin es 63 x 63
+	protected static final int numerocuadrado=63;
+	static private Conversor conversor= new Conversor();
 
-public Conversor (int numeroCuadrado ) {
-	numerocuadrado= numeroCuadrado;
-}
+
 public int  convertirFila (int num) {
-	return (int) (Math.floor(num/63));
+	return (int) (Math.floor(num/numerocuadrado));
 }
 public int convertirPantalla ( int numero ) {
-	return numero*63;
+	return numero*numerocuadrado;
 }
 }
 
