@@ -87,11 +87,11 @@ public class PanelJardin extends JPanel{
 		nivel.iniciarJuego(1);	//limpiar labels
 	}
 	
-
+	
 		
 	public void colocarPlanta (Planta p) {
 		gameplay.modificar(p);
-		gameplay.actualizarSoles ();
+		
 	}
 	
 	public int getPrecioPlantaA() {

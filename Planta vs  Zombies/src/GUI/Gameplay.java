@@ -227,9 +227,9 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 		
 	}
 	
-	public void actualizarSoles() {
+	public void actualizarSoles(int cantidad) {
 		//System.out.println("nuevos soles: "+nivel.getSoles());
-		cantSoles.setText(String.valueOf(nivel.getSoles()));
+		cantSoles.setText(String.valueOf(cantidad));
 	}
 	
 

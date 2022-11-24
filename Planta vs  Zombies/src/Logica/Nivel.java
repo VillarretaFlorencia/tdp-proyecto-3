@@ -14,6 +14,7 @@ import Fabrica.FactoryDia;
 import Fabrica.FactoryNoche;
 import Fila.ArregloFilas;
 import Fila.Fila;
+import GUI.Gameplay;
 import GUI.PanelJardin;
 import Plantas.Planta;
 import Proyectil.Proyectil;
@@ -31,6 +32,7 @@ public class Nivel {
 	protected ArregloFilas filas;
 	protected LinkedList<LinkedList<Zombie>> oleadas;
 	protected PanelJardin panelJardin;
+	protected Gameplay gameplay;
 	protected LinkedList<Entidad> entidadesDinamicas;
 	private int [] precios;
 	private boolean terminar = false;
@@ -144,6 +146,7 @@ public class Nivel {
 			filas.setPlanta(p);
 			cantSoles -= precio;
 	    	panelJardin.colocarPlanta (p); //actualiza el label soles 
+	    	panelJardin.getGameplay().actualizarSoles (cantSoles);
 	    	//System.out.println("crea planta");
 		}else {
 			//System.out.println("ya hay planta o crea el saldo");
@@ -160,6 +163,7 @@ public class Nivel {
     
     public void aumentarSoles () {
     	cantSoles += valorSol;
+    	panelJardin.getGameplay().actualizarSoles (cantSoles);
     }
     
     public int getSoles () {return cantSoles;}
@@ -211,18 +215,19 @@ public class Nivel {
     	return filas.getTodosLosZombies().isEmpty();
     }
         
-    private void moverProyectiles() {
+    public void moverProyectiles() {
     	for (int i = 0; i < 6; i ++) {
     		Fila fila = filas.getFila(i);
     		LinkedList <Proyectil> copiaProyectil = (LinkedList<Proyectil>) fila.getProyectiles().clone();
 		    for(Proyectil p: copiaProyectil) {
 		    	p.atacar();
-		    	entidadesDinamicas.add(p);
+		    	// entidadesDinamicas.add(p);
+		    	//panelJardin.actualizar();
 		    }
 	    }
     }
     
-    private boolean moverZombies() {
+    public boolean moverZombies() {
     	for (int i = 0; i < 6 && !terminar; i ++) {
     		Fila fila = filas.getFila(i);
     		LinkedList <Zombie> copiaZombies = (LinkedList<Zombie>) fila.getZombies().clone();
@@ -237,15 +242,23 @@ public class Nivel {
 			    	}
 			    	else {
 			    		z.atacar();
-			    		entidadesDinamicas.add(z);//ver si mandar la entidad o una copia de esta
+			    		//entidadesDinamicas.add(z);//ver si mandar la entidad o una copia de esta
+			    		//panelJardin.actualizar();
 			    	}
 			    }
     		}
 	    }
+    	if (terminar) {
+    		terminarJuego();
+    	}
+    	else { 
+    		moverProyectiles();
+    		//panelJardin.getGameplay().modificarDinamico(entidadesDinamicas);
+    	}
     	return terminar;
     }
     
-    
+    /*
     public boolean moverEntidades() {
     	entidadesDinamicas = new LinkedList<Entidad>();
     	boolean terminar = moverZombies();
@@ -257,7 +270,7 @@ public class Nivel {
     		panelJardin.getGameplay().modificarDinamico(entidadesDinamicas);
     	}
     	return terminar;
-    }
+    }*/
     
     
     public void activarDefensa () {
