@@ -1,9 +1,6 @@
 package Zombies;
 
-import Estados.*;
-import Logica.Posicion;
-import Visitores.Visitor;
-import Visitores.VisitorZombie;
+import Logica.EntidadGrafica;
 
 public class ZombieBandera extends Zombie{
 	
@@ -12,5 +9,6 @@ public class ZombieBandera extends Zombie{
 		velocidad = 3;
 		imagenNormal = "/recursos/FlagZombie.gif";
 		imagenAtacando = "/recursos/FlagZombieAttack.gif";
+		entidadGrafica = new EntidadGrafica();
 	}
 }

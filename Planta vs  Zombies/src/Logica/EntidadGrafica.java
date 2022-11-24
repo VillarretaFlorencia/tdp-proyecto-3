@@ -6,8 +6,8 @@ import javax.swing.JLabel;
 public class EntidadGrafica{
 	protected JLabel label;
 	
-	public EntidadGrafica(String imagen) {
-		label = new JLabel(new ImageIcon(this.getClass().getResource(imagen)));
+	public EntidadGrafica() {
+		label = new JLabel();
 	}
 	
 	public void cambiarImagen(String imagen) {

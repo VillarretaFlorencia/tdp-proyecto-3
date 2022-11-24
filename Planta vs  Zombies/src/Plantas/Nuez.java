@@ -9,7 +9,7 @@ public class Nuez extends Planta{
     	imagen = "/recursos/walnut_full_life.gif";
         vida = vidaInicial = 20000;
         tiempoDeAtaque = 0;
-        entidadGrafica = new EntidadGrafica(imagen);
+        entidadGrafica = new EntidadGrafica();
     }
 
     
