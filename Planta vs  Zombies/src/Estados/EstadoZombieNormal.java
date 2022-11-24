@@ -1,18 +1,24 @@
 package Estados;
 
+import Logica.Posicion;
 import Zombies.Zombie;
 
 public class EstadoZombieNormal extends EstadoZombie{
-	protected Zombie z;
+	
 	
 	public EstadoZombieNormal(Zombie z) {
-		this.z = z;
-		z.setImagen(z.getImagenNormal());
+		zombie = z;
+		String imagen = zombie.getImagenNormal();
+		zombie.setImagen(imagen);
+		zombie.getEntidadGrafica().cambiarImagen(imagen);
+		
 	}
 	
 	public void accionar() {
 		//mover al zombie
-		z.getPosicion().setX(z.getPosicion().getX()-z.getVelocidad());
+		Posicion posicion = zombie.getPosicion();
+		posicion.setX(posicion.getX() - zombie.getVelocidad()); 
+		zombie.getEntidadGrafica().getLabel().move(posicion.getX(),posicion.getY());
 	}
 	
 }

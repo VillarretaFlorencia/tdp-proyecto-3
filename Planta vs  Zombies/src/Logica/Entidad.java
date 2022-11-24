@@ -15,12 +15,17 @@ public abstract class Entidad {
 	
 	
 	public abstract Rectangle getBounds();
-	public  EntidadGrafica getEntidad() {return entidadGrafica;}
+	public  EntidadGrafica getEntidadGrafica() {return entidadGrafica;}
 	public  String getImagen() {return imagen;}
 	public void setPosicion (Posicion p) {posicion = p;}
 	public Posicion getPosicion() {return posicion;}
 	public abstract void atacar();
 	public int getDanio() {return danio;}
 	public abstract void recibirDanio (int d);
+	
+	public void actualizarEntidadGrafica (String imagen, Posicion posicion) {
+		entidadGrafica.setImagen(imagen);
+		entidadGrafica.setPosicion(posicion.getX(), posicion.getY());
+	}
 
 }
