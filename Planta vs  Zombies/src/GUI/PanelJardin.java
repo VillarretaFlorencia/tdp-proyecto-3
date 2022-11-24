@@ -126,6 +126,7 @@ class EventosDelRaton implements MouseListener{
 	private PanelJardin panel;
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		System.out.println("hizo click");
 		// TODO Auto-generated method stub
 		int posX = (int) (Math.floor(e.getX()/63));
 		int posY= (int) (Math.floor((e.getY()/63)));

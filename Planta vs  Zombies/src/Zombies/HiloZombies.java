@@ -17,11 +17,13 @@ public class HiloZombies implements Runnable{
 	}
 		
 	public void run () {
-		int dormir = 100;
+		int dormir = 2000;
 		while(!oleadas.isEmpty()) {
 			try {
 				LinkedList <Zombie> oleada = oleadas.getFirst();
 				while (!oleada.isEmpty()) {
+					System.out.println("oleada no vacia");
+					System.out.println(oleada.size());
 					Zombie zombie = oleada.remove(); // primer zombie de la lista
 					nivel.setZombie (zombie);
 					Thread.sleep(dormir);

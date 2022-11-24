@@ -209,6 +209,7 @@ public class Nivel {
     		Fila fila = filas.getFila(i);
     		if (!fila.getZombies().isEmpty()) {
 	    		Iterator <Zombie> it = fila.getZombies().iterator();
+	    		System.out.println(Math.random() + " " + fila.getZombies().size());
 			    while(it.hasNext() && !terminar) { //usar un iterador para cortarlo y no seguir 
 			    	Zombie z = it.next();
 			    	if (z.getPosicion().getX() == 1) {

@@ -25,9 +25,9 @@ public class Cronometro implements Runnable{
 	
 	public void run () {
 		while(!terminar) {			
-			terminar = nivel.moverEntidades();
+			//terminar = nivel.moverEntidades();
 			if(milisegundos % 88000==0)
-				audio.start();
+				//audio.start();
 			if (!terminar) {
 				nivel.activarDefensa();		
 				nivel.checkColisiones();
