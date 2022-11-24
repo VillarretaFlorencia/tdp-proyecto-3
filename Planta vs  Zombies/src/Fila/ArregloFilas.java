@@ -2,6 +2,7 @@ package Fila;
 
 import java.util.LinkedList;
 
+import Conversor.Conversor;
 import Plantas.Planta;
 import Proyectil.Proyectil;
 import Zombies.Zombie;
