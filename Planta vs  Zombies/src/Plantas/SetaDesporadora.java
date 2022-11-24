@@ -18,7 +18,7 @@ public class SetaDesporadora extends Planta{
     	imagenProyectil = "/recursos/PuffShroom_puff2.png";
         danio = 500;
         tiempoDeAtaque = 1500;
-        entidad = new EntidadGrafica();
+        entidadGrafica = new EntidadGrafica(imagen);
     }
     
 }
