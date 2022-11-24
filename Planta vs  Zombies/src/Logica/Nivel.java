@@ -1,27 +1,18 @@
 package Logica;
 
-import java.util.Deque;
 import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.Map;
 
-import AudioMusic.AudioPlayer;
+
+import AudioMusic.*;
 import Cronometro.Cronometro;
-import Estados.EstadoNivel;
-import Estados.EstadoDia;
-import Estados.EstadoNoche;
-import Fabrica.Factory;
-import Fabrica.FactoryDia;
-import Fabrica.FactoryNoche;
-import Fila.ArregloFilas;
-import Fila.Fila;
-import GUI.Gameplay;
-import GUI.PanelJardin;
-import Plantas.Planta;
+import Estados.*;
+import Fabrica.*;
+import Fila.*;
+import Plantas.*;
 import Proyectil.Proyectil;
-import Zombies.HiloZombies;
-import Zombies.Zombie;
-import Zombies.ZombieNormal;
+import Zombies.*;
+import GUI.*;
 
 
 public class Nivel {
@@ -97,9 +88,9 @@ public class Nivel {
 	    	hiloGeneral = new Thread (cronometro);
 	    	hiloGeneral.start();
 	    	
-	    	AudioPlayer musica = new AudioPlayer();
+	    	/*AudioPlayer musica = new AudioPlayer();
 	    	hiloMusica = new Thread (musica);
-	    	hiloGeneral.start();
+	    	hiloGeneral.start();*/
     	}
     	
     }
@@ -114,12 +105,12 @@ public class Nivel {
     
     public void setZombie (Zombie z){
     	filas.setZombie(z);
-    	panelJardin.getGameplay().agregarEntidad(z);
+    	gameplay.agregarEntidad(z);
     }
     
     public void setProyectil (Proyectil p){
     	filas.setProyectil(p);
-    	panelJardin.getGameplay().agregarEntidad(p);
+    	gameplay.agregarEntidad(p);
     }
     
         
@@ -154,9 +145,8 @@ public class Nivel {
 			planta.inicializarEntidadGrafica (planta.getImagen(), planta.getPosicion());
 			filas.setPlanta(planta);
 			cantSoles -= precio;
-	    	panelJardin.colocarPlanta (planta); //actualiza el label soles 
-	    	panelJardin.getGameplay().agregarEntidad(planta);
-	    	panelJardin.getGameplay().actualizarSoles (cantSoles);
+	    	gameplay.modificar(planta); //actualiza el label soles 
+	    	gameplay.actualizarSoles (cantSoles);
 	    	//System.out.println("crea planta");
 		}else {
 			//System.out.println("ya hay planta o crea el saldo");
@@ -173,7 +163,7 @@ public class Nivel {
     
     public void aumentarSoles () {
     	cantSoles += valorSol;
-    	panelJardin.getGameplay().actualizarSoles (cantSoles);
+    	gameplay.actualizarSoles (cantSoles);
     }
     
     public int getSoles () {return cantSoles;}
@@ -182,21 +172,21 @@ public class Nivel {
     public void matarZombie (Zombie z) {
     	Posicion posZ = z.getPosicion();
     	filas.getFila(posZ.getY()).sacarZombie(z);
-    	panelJardin.sacarZombie(z);
+    	gameplay.sacarEntidad(z);
     	//decir a gui que saque ese zombie, aca es donde es mas facil que zombie herede de labels?, o que el zombie conozca su labels soluciona?
     }
     
     public void matarProyectil (Proyectil p) {
     	Posicion posP = p.getPosicion();
     	filas.getFila(posP.getY()).sacarProyectil(p);
-    	panelJardin.sacarProyectil(p);
+    	gameplay.sacarEntidad(p);
     	//misma analogia que matar zombie
     }
     
     public void matarPlanta (Planta p) {
     	Posicion posP = p.getPosicion();
     	filas.getFila(posP.getY()).sacarPlanta(p);
-    	panelJardin.sacarPlanta(p);
+    	gameplay.sacarPlanta(p);
     	//misma analogia que matar zombie
     }
     
@@ -214,7 +204,7 @@ public class Nivel {
     public LinkedList<LinkedList<Zombie>> getOleadas () {
     	return oleadas;
     }
-    
+    /*
     public LinkedList<Zombie> getOleada(){
     	LinkedList<Zombie> primera = oleadas.getFirst() ;
 		oleadas.remove(primera);
@@ -223,7 +213,7 @@ public class Nivel {
     
     public boolean terminoOleada() {
     	return filas.getTodosLosZombies().isEmpty();
-    }
+    }*/
         
     public void moverProyectiles() {
     	for (int i = 0; i < 6; i ++) {
@@ -232,7 +222,7 @@ public class Nivel {
 		    for(Proyectil p: copiaProyectil) {
 		    	p.atacar();
 		    	// entidadesDinamicas.add(p);
-		    	panelJardin.getGameplay().actualizar(p);
+		    	gameplay.actualizar(p);
 		    }
 	    }
     }
@@ -252,7 +242,7 @@ public class Nivel {
 			    	}
 			    	else {
 			    		z.atacar();
-			    		panelJardin.getGameplay().actualizar(z);
+			    		gameplay.actualizar(z);
 			    		//entidadesDinamicas.add(z);//ver si mandar la entidad o una copia de esta
 			    		//panelJardin.actualizar();
 			    	}
@@ -295,7 +285,9 @@ public class Nivel {
     	for (int i = 0; i< 6; i++) {
     		filas.getFila(i).limpiarFila();
     	}
-        
+        hiloGeneral.stop();
+        hiloGerneradorOleadas.stop();
+        //hiloMusica.stop();
     	panelJardin.terminarJuego();
     }
 
