@@ -13,41 +13,28 @@ import Zombies.Zombie;
 
 public class Fila{
 	protected LinkedList <Zombie> listaZombies;
+	protected LinkedList <Planta> listaPlantas;
 	protected Planta [] plantas;
 	protected LinkedList <Proyectil> listaProyectiles;
 	
 	public Fila () {
 		listaZombies = new LinkedList<Zombie>();
-		plantas = new Planta[9];// asumo que se crea con nulos
+		listaPlantas = new LinkedList<Planta>();
 		listaProyectiles = new LinkedList<Proyectil>();
 	}
 	
 	public void setZombie (Zombie z) {listaZombies.add(z);}	
 	
 	public void setPlanta (Planta p) {
-		plantas [p.getPosicion().getX()] = p;
+		listaPlantas.add (p);
 	} 
 	
 	public void setProyectil (Proyectil p) {listaProyectiles.add(p);}
 	
-	public boolean hayLugar (int x) {
-		return plantas[x] == null;
-	}
-
-	public Planta plantaEnPos(int x) {return plantas[x];}
-		
 	
 	public LinkedList <Zombie> getZombies() {return listaZombies;}
 	
-	public LinkedList <Planta> getPlantas() {
-		LinkedList <Planta> plan = new LinkedList <Planta>();
-		for (int i = 0; i < plantas.length; i++) {
-			Planta p = plantas[i];
-			if (p != null) {
-				plan.add(p);
-			}
-		}
-		return plan;}
+	public LinkedList <Planta> getPlantas() {return listaPlantas;}
 	
 	public LinkedList <Proyectil> getProyectiles() {return listaProyectiles;}
 	
@@ -56,7 +43,7 @@ public class Fila{
 	}
 	
 	public void sacarPlanta(Planta p) {
-		plantas[p.getPosicion().getX()] = null;
+		listaPlantas.remove(listaPlantas.indexOf(p));
 	}
 	
 	public void sacarProyectil (Proyectil p) {
@@ -65,34 +52,32 @@ public class Fila{
 	
 	public void limpiarFila() {
 		listaZombies.clear();
-		for (int i = 0; i < plantas.length; i++) {
-			plantas[i] = null;
-		}
+		listaPlantas.clear();
 		listaProyectiles.clear();
 	}
 	
 	public void colisiones() {
 		for (Zombie z: listaZombies) {
-			Iterator<Proyectil> it = listaProyectiles.iterator();
 			boolean colisionPlanta = false;
-			while (it.hasNext()) {
-				Proyectil p = it.next();
+			for (Proyectil p: listaProyectiles) {
 				if (z.getBounds().intersects(p.getBounds())) {
 					p.accept(z.getVisitor());
 					//listaProyectiles.remove();	//desde visitor
 				}
 			}
-			for (int i = plantas.length - 1; i >= 0 && !colisionPlanta; i--) {
-				Planta p = plantas[i];
-				if (p != null) {
-					if (z.getBounds().intersects(p.getBounds())) {
-						colisionPlanta = true;
-						p.accept(z.getVisitor());
-						//if (p.getVida() <= 0)
-							//plantas[i] = null;//esto llamarlo desde visitor t
-					}
+			
+			Iterator<Planta> it = listaPlantas.iterator();
+			while (it.hasNext() && !colisionPlanta) {
+				Planta p = it.next();
+				if (z.getBounds().intersects(p.getBounds())) {
+					colisionPlanta = true;
+					p.accept(z.getVisitor());
+					//if (p.getVida() <= 0)
+						//plantas[i] = null;//esto llamarlo desde visitor t
 				}
-			}// ya que todo se conoce con todo que el zombie solo sea el visitor y visite a los demas 
+				
+			}
+			// ya que todo se conoce con todo que el zombie solo sea el visitor y visite a los demas 
 		}
 	}//chequear choque de zombie planta
 	//hilo planta (si en su rango aparece un zombie: crear un metodo en la clase planta que sea ataque y cree el proyectil y que vaya 

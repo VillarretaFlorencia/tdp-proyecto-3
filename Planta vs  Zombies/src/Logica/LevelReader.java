@@ -122,7 +122,7 @@ public class LevelReader {
 
 		z.setEstado (new EstadoZombieNormal(z));
 		z.setVisitor (new VisitorZombie (z));
-		z.actualizarEntidadGrafica(z.getImagen(),z.getPosicion());
+		z.inicializarEntidadGrafica(z.getImagen(),z.getPosicion());
 		//System.out.println("------------------------" + z.getPosicion().getX() + "-----------------" + z.getPosicion().getY());
 		return z;
 	}

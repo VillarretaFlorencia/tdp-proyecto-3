@@ -10,7 +10,7 @@ public class EstadoZombieNormal extends EstadoZombie{
 		zombie = z;
 		String imagen = zombie.getImagenNormal();
 		zombie.setImagen(imagen);
-		zombie.getEntidadGrafica().cambiarImagen(imagen);
+		zombie.getEntidadGrafica().setImagen(imagen);
 		
 	}
 	
@@ -18,7 +18,7 @@ public class EstadoZombieNormal extends EstadoZombie{
 		//mover al zombie
 		Posicion posicion = zombie.getPosicion();
 		posicion.setX(posicion.getX() - zombie.getVelocidad()); 
-		zombie.getEntidadGrafica().getLabel().move(posicion.getX(),posicion.getY());
+		zombie.getEntidadGrafica().mover(posicion.getX(),posicion.getY());
 	}
 	
 }

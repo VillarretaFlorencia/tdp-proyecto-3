@@ -19,4 +19,8 @@ public class EntidadGrafica{
 	public void setPosicion(int x, int y) {
 		label.setLocation(x, y);
 	}
+	
+	public void mover (int x, int y) {
+		label.move(x,y);
+	}
 }

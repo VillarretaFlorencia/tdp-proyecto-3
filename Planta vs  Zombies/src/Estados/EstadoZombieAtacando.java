@@ -9,7 +9,7 @@ public class EstadoZombieAtacando extends EstadoZombie{
 		zombie = z;
 		String imagen = zombie.getImagenAtacando();
 		zombie.setImagen(imagen);
-		zombie.getEntidadGrafica().cambiarImagen(imagen);
+		zombie.getEntidadGrafica().setImagen(imagen);
 		
 	}
 	

@@ -29,7 +29,7 @@ public abstract class Planta extends Entidad {
     	if (hayZombiesEnRango()) {
     		if (tiempo % tiempoDeAtaque == 0) {
     			Proyectil proyectil = new Proyectil(this.posicion, imagenProyectil, danio);
-    			proyectil.actualizarEntidadGrafica(imagenProyectil, this.posicion);
+    			proyectil.inicializarEntidadGrafica(imagenProyectil, this.posicion);
     			n.setProyectil(proyectil);     
     		}
     	}

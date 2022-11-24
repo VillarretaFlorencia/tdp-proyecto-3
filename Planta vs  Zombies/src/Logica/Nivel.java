@@ -52,22 +52,22 @@ public class Nivel {
         return nivel;
     }
     
-    public void iniciarJuego(int i) {
+    public void iniciarJuego(int numNivel) {
     	if (!terminar) {
-	    	nivelLvl = i;
+	    	nivelLvl = numNivel;
 	    	filas = new ArregloFilas();
 	    	
 	    	precios = new int[4];
 	    	precios [2] = precios [1] = 50; 
 	    	
-	        if (i == 1 || i == 2) {
+	        if (numNivel == 1 || numNivel == 2) {
 	        	estado = new EstadoDia();
 	    		miFabrica = new FactoryDia();
 	    		precios [0] = 100;
 	    		precios [3] = 200;   
 	    		valorSol = 50;
 	        }
-	        if (i == 3 || i == 4) {
+	        if (numNivel == 3 || numNivel == 4) {
 	        	estado = new EstadoNoche();
 	    		miFabrica = new FactoryNoche();
 	    		precios [0] = 25;
@@ -115,37 +115,38 @@ public class Nivel {
     }
     
         
-    public void setPlanta(Posicion pos, int i) {
-    	Planta p = null;
-    	int precio = precios[i-1];
+    public void setPlanta(Posicion posicion, int tipoPlanta) {
+    	Planta planta = null;
+    	int precio = precios[tipoPlanta-1];
     	//System.out.println("Entro en set planta");
-    	if (cantSoles >= precio  && filas.getFila(pos.getY()).hayLugar(pos.getX())) {
+    	if (cantSoles >= precio) {
     		//System.out.println("Entro en set planta");
-			switch(i) {
+			switch(tipoPlanta) {
 			  case 1:{
-				p = miFabrica.createPlantaA();
+				planta = miFabrica.createPlantaA();
 			    break;
 			  }
 			  case 2:{
-				p =  miFabrica.createPlantaGirasol();
+				planta =  miFabrica.createPlantaGirasol();
 				break;
 			  }
 			  case 3:{
-				p =  miFabrica.createPlantaNuez();
+				planta =  miFabrica.createPlantaNuez();
 				break;
 			  }
 			  case 4:{
-				p = miFabrica.createPlantaB();
+				planta = miFabrica.createPlantaB();
 				break;
 			  }
 		    }
     	}
     	
-    	if (p != null) {
-			p.setPosicion(pos);
-			filas.setPlanta(p);
+    	if (planta != null) {
+			planta.setPosicion(posicion);
+			planta.inicializarEntidadGrafica (planta.getImagen(), planta.getPosicion());
+			filas.setPlanta(planta);
 			cantSoles -= precio;
-	    	panelJardin.colocarPlanta (p); //actualiza el label soles 
+	    	panelJardin.colocarPlanta (planta); //actualiza el label soles 
 	    	panelJardin.getGameplay().actualizarSoles (cantSoles);
 	    	//System.out.println("crea planta");
 		}else {
@@ -167,11 +168,7 @@ public class Nivel {
     }
     
     public int getSoles () {return cantSoles;}
-    
-    public Entidad getEntidad (int x, int y) {
-    	return filas.getFila(y).plantaEnPos(x);    	
-    }
-      
+        
     
     public void matarZombie (Zombie z) {
     	Posicion posZ = z.getPosicion();

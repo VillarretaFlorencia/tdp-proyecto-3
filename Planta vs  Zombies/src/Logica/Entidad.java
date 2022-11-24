@@ -23,7 +23,7 @@ public abstract class Entidad {
 	public int getDanio() {return danio;}
 	public abstract void recibirDanio (int d);
 	
-	public void actualizarEntidadGrafica (String imagen, Posicion posicion) {
+	public void inicializarEntidadGrafica (String imagen, Posicion posicion) {
 		entidadGrafica.setImagen(imagen);
 		entidadGrafica.setPosicion(posicion.getX(), posicion.getY());
 	}
