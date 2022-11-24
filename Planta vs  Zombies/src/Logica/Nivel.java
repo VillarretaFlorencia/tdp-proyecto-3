@@ -149,7 +149,7 @@ public class Nivel {
 			filas.setPlanta(planta);
 			cantSoles -= precio;
 	    	panelJardin.colocarPlanta (planta); //actualiza el label soles 
-	    	panelJardin.getGameplay().agregarEntidad(p);
+	    	panelJardin.getGameplay().agregarEntidad(planta);
 	    	panelJardin.getGameplay().actualizarSoles (cantSoles);
 	    	//System.out.println("crea planta");
 		}else {
@@ -292,6 +292,7 @@ public class Nivel {
         
     	panelJardin.terminarJuego();
     }
+
     
     
 }
