@@ -290,6 +290,9 @@ public class Nivel {
         //hiloMusica.stop();
     	panelJardin.terminarJuego();
     }
+    public Factory getFabrica() {
+    	return miFabrica;
+    }
 
     
     
