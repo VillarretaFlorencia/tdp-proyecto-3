@@ -55,6 +55,6 @@ public class ArregloFilas{
 		return zombies;
 	}
 
-	
-	
+//Algoritmo 	
 }
+//Conversion modulo 6
