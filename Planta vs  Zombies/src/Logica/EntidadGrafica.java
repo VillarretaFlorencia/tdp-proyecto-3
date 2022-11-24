@@ -10,10 +10,13 @@ public class EntidadGrafica{
 		label = new JLabel();
 	}
 	
-	public void cambiarImagen(String imagen) {
+	public void setImagen(String imagen) {
 		label.setIcon(new ImageIcon(this.getClass().getResource(imagen)));
 	}
 	public JLabel getLabel() {
 		return label;
+	}
+	public void setPosicion(int x, int y) {
+		label.setLocation(x, y);
 	}
 }
