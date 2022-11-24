@@ -8,13 +8,13 @@ import Visitores.Visitor;
 
 public abstract class Entidad {
 
-	protected String imagen;
 	protected Posicion posicion;
 	protected int danio;
+	protected EntidadGrafica imagen;
 	
 	
 	public abstract Rectangle getBounds();
-	public  String getImagen() {return imagen;}
+	public  EntidadGrafica getImagen() {return imagen;}
 	public void setPosicion (Posicion p) {posicion = p;}
 	public Posicion getPosicion() {return posicion;}
 	public abstract void atacar();

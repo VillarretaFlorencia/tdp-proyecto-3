@@ -4,6 +4,7 @@ import Visitores.*;
 import java.awt.Image;
 
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 import Estados.*;
 import Logica.Nivel;
@@ -11,7 +12,7 @@ import Logica.Posicion;
 
 public class Girasol extends Planta{
 
-		String imagenNormal = "/recursos/sunflowerB.gif";
+		protected JLabel imagen; String imagenNormal = "/recursos/sunflowerB.gif";
 		String imagenBrillante = "/recursos/sunflowerB.gif";
 		int tiempoEnAccion = 1000;
 		
