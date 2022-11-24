@@ -33,6 +33,7 @@ public class Nivel {
 	protected PanelJardin panelJardin;
 	protected LinkedList<Entidad> entidadesDinamicas;
 	private int [] precios;
+	private boolean terminar = false;
 	private LevelReader lr;
 	Thread hc;
 	Thread hz;
@@ -50,45 +51,48 @@ public class Nivel {
     }
     
     public void iniciarJuego(int i) {
-    	nivelLvl = i;
-    	filas = new ArregloFilas();
-    	
-    	precios = new int[4];
-    	precios [2] = precios [1] = 50; 
-    	
-        if (i == 1 || i == 2) {
-        	estado = new EstadoDia();
-    		miFabrica = new FactoryDia();
-    		precios [0] = 100;
-    		precios [3] = 200;   
-    		valorSol = 50;
-        }
-        if (i == 3 || i == 4) {
-        	estado = new EstadoNoche();
-    		miFabrica = new FactoryNoche();
-    		precios [0] = 25;
-    		precios [3] = 75;
-    		valorSol = 25;
-        }
-        
-        lr = new LevelReader(nivelLvl);
-        oleadas = lr.crearOleadas(miFabrica, this);
-        
-    	System.out.println("GENERANDO NIVEL");
-    	        
-        
-    	System.out.println("dentro del nivel: ");// solo agrege esto flor perdoname //no hay na que perdonar jajaa
-    	System.out.println("Estado: "+estado.getClass().getCanonicalName());
-    	
-    	
-    	Cronometro cronometro;
-    	cronometro = new Cronometro();
-    	hc = new Thread (cronometro);
-    	hc.start();
-    	
-    	HiloZombies hiloZombies = new HiloZombies();
-		hz = new Thread (hiloZombies);
-		hz.start();
+    	if (!terminar) {
+	    	nivelLvl = i;
+	    	filas = new ArregloFilas();
+	    	
+	    	precios = new int[4];
+	    	precios [2] = precios [1] = 50; 
+	    	
+	        if (i == 1 || i == 2) {
+	        	estado = new EstadoDia();
+	    		miFabrica = new FactoryDia();
+	    		precios [0] = 100;
+	    		precios [3] = 200;   
+	    		valorSol = 50;
+	        }
+	        if (i == 3 || i == 4) {
+	        	estado = new EstadoNoche();
+	    		miFabrica = new FactoryNoche();
+	    		precios [0] = 25;
+	    		precios [3] = 75;
+	    		valorSol = 25;
+	        }
+	        
+	        lr = new LevelReader(nivelLvl);
+	        oleadas = lr.crearOleadas(miFabrica, this);
+	        
+	    	//System.out.println("GENERANDO NIVEL");
+	    	        
+	        
+	    	//System.out.println("dentro del nivel: ");// solo agrege esto flor perdoname //no hay na que perdonar jajaa
+	    	//System.out.println("Estado: "+estado.getClass().getCanonicalName());
+	    	
+	    	
+	    	
+	    	HiloZombies hiloZombies = new HiloZombies();
+			hz = new Thread (hiloZombies);
+			hz.start();
+			
+			Cronometro cronometro;
+	    	cronometro = new Cronometro();
+	    	hc = new Thread (cronometro);
+	    	hc.start();
+    	}
     	
     }
     
@@ -112,9 +116,9 @@ public class Nivel {
     public void setPlanta(Posicion pos, int i) {
     	Planta p = null;
     	int precio = precios[i-1];
-    	System.out.println("Entro en set planta");
+    	//System.out.println("Entro en set planta");
     	if (cantSoles >= precio  && filas.getFila(pos.getY()).hayLugar(pos.getX())) {
-    		System.out.println("Entro en set planta");
+    		//System.out.println("Entro en set planta");
 			switch(i) {
 			  case 1:{
 				p = miFabrica.createPlantaA();
@@ -140,9 +144,9 @@ public class Nivel {
 			filas.setPlanta(p);
 			cantSoles -= precio;
 	    	panelJardin.colocarPlanta (p); //actualiza el label soles 
-	    	System.out.println("crea planta");
+	    	//System.out.println("crea planta");
 		}else {
-			System.out.println("ya hay planta o crea el saldo");
+			//System.out.println("ya hay planta o crea el saldo");
 		}
 		//ENVIAR A LA GUI, LA ENTIDAD QUE AGREGAMOS Y LA POSICION (ACTUALIZAR)
 		//fila.insertPlanta(p.getY(),nivel[p.getX()][p.getY()]);
@@ -194,15 +198,24 @@ public class Nivel {
     
     
     public LinkedList<LinkedList<Zombie>> getOleadas () {
-    	
     	return oleadas;
     }
     
+    public LinkedList<Zombie> getOleada(){
+    	LinkedList<Zombie> primera = oleadas.getFirst() ;
+		oleadas.remove(primera);
+		return primera;
+    }
+    
+    public boolean terminoOleada() {
+    	return filas.getTodosLosZombies().isEmpty();
+    }
         
     private void moverProyectiles() {
     	for (int i = 0; i < 6; i ++) {
     		Fila fila = filas.getFila(i);
-		    for(Proyectil p: fila.getProyectiles()) {
+    		LinkedList <Proyectil> copiaProyectil = (LinkedList<Proyectil>) fila.getProyectiles().clone();
+		    for(Proyectil p: copiaProyectil) {
 		    	p.atacar();
 		    	entidadesDinamicas.add(p);
 		    }
@@ -210,17 +223,17 @@ public class Nivel {
     }
     
     private boolean moverZombies() {
-    	boolean terminar = false;
     	for (int i = 0; i < 6 && !terminar; i ++) {
     		Fila fila = filas.getFila(i);
     		LinkedList <Zombie> copiaZombies = (LinkedList<Zombie>) fila.getZombies().clone();
     		if (!copiaZombies.isEmpty()) {
 	    		Iterator <Zombie> it = fila.getZombies().iterator();
-	    		System.out.println(Math.random() + " " + fila.getZombies().size());
+	    		//System.out.println(Math.random() + " " + fila.getZombies().size());
 			    while(it.hasNext() && !terminar) { //usar un iterador para cortarlo y no seguir 
 			    	Zombie z = it.next();
 			    	if (z.getPosicion().getX() == 1) {
 			    		terminar = true;
+			    		//System.out.println("CHOCO PARED");
 			    	}
 			    	else {
 			    		z.atacar();
@@ -258,8 +271,7 @@ public class Nivel {
     	for (int i = 0; i< 6; i++) {
     		filas.getFila(i).limpiarFila();
     	}
-    	hc.stop();
-    	hz.stop();
+        
     	panelJardin.terminarJuego();
     }
     

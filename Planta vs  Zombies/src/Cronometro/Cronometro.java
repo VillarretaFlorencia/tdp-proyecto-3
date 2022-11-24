@@ -21,6 +21,7 @@ public class Cronometro implements Runnable{
 	
 	public void run () {
 		while(!terminar) {			
+			
 			terminar = nivel.moverEntidades();
 			if(milisegundos % 88000==0)
 				//audio.start();
@@ -29,6 +30,12 @@ public class Cronometro implements Runnable{
 				nivel.checkColisiones();
 			}
 			milisegundos++;
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 	private void audioOn() {

@@ -35,7 +35,7 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 	
 	public Gameplay( int i) {
 		numeroNivel = i;
-		System.out.println("-------------- valor i: "+i);
+		//System.out.println("-------------- valor i: "+i);
 		setBackground(new Color(0, 204, 0));
 		JLabel lblGame = new JLabel("");
 		lblGame.setBounds(-3, -8, 575, 394);
@@ -58,11 +58,11 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 		setVisible(true);
 		setLayout(null);
 		if(i <= 2) {
-			System.out.println("Entro en if--------------");
+			//System.out.println("Entro en if--------------");
 			add(lblGame,Integer.valueOf(0));
 			lblGame.setVisible(true);
 		}else {
-			System.out.println("Entro en else--------------");
+			//System.out.println("Entro en else--------------");
 			lblGameN.setVisible(true);
 			add(lblGameN,Integer.valueOf(0));
 		}
@@ -185,22 +185,28 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 	public void modificarDinamico(LinkedList<Entidad> lista) {
 		//agregamos los zombies
 			//	oleada = Nivel.getNivel().getZombies();
-				entidades.clear();
-				
-				Iterator<Entidad> it = lista.iterator();
-				
-				while(it.hasNext()) {
-					Entidad z = it.next();
-					JLabel lblEntidad = new JLabel();
-					lblEntidad.setIcon(new ImageIcon(Gameplay.class.getResource(z.getImagen())));
-					lblEntidad.setVisible(true);
-					lblEntidad.setBounds(z.getPosicion().getX(), z.getPosicion().getY(), 46, 14);
-					this.add(lblEntidad, Integer.valueOf(1));
-					
-					Pair<Entidad, JLabel> par = new Pair<>(z,lblEntidad);
-					
-					entidades.add(par); //guardamos cada zombie con su label asociado
-				}
+		//System.out.println ("TAMAÑO ENTIDADES EN MODIFICAR DINAMICO" + entidades.size());
+		for(Pair<Entidad, JLabel> par : entidades) {
+			this.remove(par.getValue());
+		}
+		
+		entidades.clear();
+		//System.out.println ("entre a MODIFICARDINAMICO");
+		Iterator<Entidad> it = lista.iterator();
+		
+		while(it.hasNext()) {
+			Entidad z = it.next();
+			JLabel lblEntidad = new JLabel();
+			lblEntidad.setIcon(new ImageIcon(Gameplay.class.getResource(z.getImagen())));
+			lblEntidad.setVisible(true);
+			lblEntidad.setBounds(z.getPosicion().getX(), z.getPosicion().getY()*63, 96, 84);
+			//System.out.println ("POSICION ZOMBIE" + lblEntidad.getBounds());
+			this.add(lblEntidad, Integer.valueOf(1));
+			
+			Pair<Entidad, JLabel> par = new Pair<>(z,lblEntidad);
+			
+			entidades.add(par); //guardamos cada zombie con su label asociado
+		}
 								
 	}
 	
@@ -214,7 +220,7 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 	
 	public void modificar(Planta p) {
 		int x=p.getPosicion().getX(); int y = p.getPosicion().getY(); 
-		System.out.println("Path: "+String.valueOf(p.getImagen()));
+		//System.out.println("Path: "+String.valueOf(p.getImagen()));
 		
 		label[x][y].setIcon(new ImageIcon(Gameplay.class.getResource(String.valueOf(p.getImagen()))));
 		label[x][y].setVisible(true);
@@ -222,7 +228,7 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 	}
 	
 	public void actualizarSoles() {
-		System.out.println("nuevos soles: "+nivel.getSoles());
+		//System.out.println("nuevos soles: "+nivel.getSoles());
 		cantSoles.setText(String.valueOf(nivel.getSoles()));
 	}
 	
@@ -235,7 +241,7 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 		
 		int yAbsolute = 31;
 		int x=e.getPosicion().getX(); int y = e.getPosicion().getY(); 
-		System.out.println("Path: "+String.valueOf(e.getImagen()));
+		//System.out.println("Path: "+String.valueOf(e.getImagen()));
 		JLabel lbl = new JLabel();
 		lbl.setIcon(new ImageIcon(Gameplay.class.getResource(String.valueOf(e.getImagen()))));
 		this.add(lbl);
@@ -243,7 +249,7 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 		lbl.setLocation(e.getPosicion().getX(),yAbsolute);
 		zombies.add(new Pair<Entidad, JLabel>(e,lbl));
 		lbl.setVisible(true);
-		System.out.println("Posicion del zombie: "+lbl.getAlignmentX()+","+lbl.getAlignmentY());
+		//System.out.println("Posicion del zombie: "+lbl.getAlignmentX()+","+lbl.getAlignmentY());
 	}
 */
 	
@@ -264,22 +270,22 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==btnPlanta1) {
-			System.out.println("CREANDO PLANTA 1");
+			//System.out.println("CREANDO PLANTA 1");
 			panelJardin.setSeleccion(1);
 		}
 		
 		if(e.getSource()==btnPlanta2) {
-			System.out.println("CREANDO PLANTA 2");
+			//System.out.println("CREANDO PLANTA 2");
 			panelJardin.setSeleccion(2);
 		}
 		
 		if(e.getSource()==btnPlanta3) {
-			System.out.println("CREANDO PLANTA 3");
+			//System.out.println("CREANDO PLANTA 3");
 			panelJardin.setSeleccion(3);
 		}
 		
 		if(e.getSource()==btnPlanta4) {
-			System.out.println("CREANDO PLANTA 4");
+			//System.out.println("CREANDO PLANTA 4");
 			panelJardin.setSeleccion(4);
 		}
 	}
@@ -289,6 +295,7 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 			if(par.getKey().equals(z)) {
 				par.getValue().setVisible(false);
 				entidades.remove(par.getKey());
+				this.remove(par.getValue());
 			}
 		}
 	}
@@ -298,6 +305,7 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 			if(par.getKey().equals(p)) {
 				par.getValue().setVisible(false);
 				entidades.remove(par.getKey());
+				this.remove(par.getValue());
 			}
 		}
 	}

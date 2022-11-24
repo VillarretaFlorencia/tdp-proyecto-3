@@ -79,7 +79,7 @@ public class LevelReader {
 		       	zombies.add (linea.charAt(i));
 	        }
 	      }
-	      for (Character c : zombies) {System.out.println (c);}
+	      //for (Character c : zombies) {System.out.println (c);}
 	    } catch (Exception e) { e.printStackTrace(); }
 	}
 	
@@ -109,7 +109,7 @@ public class LevelReader {
 			break;} 
 		}
 		int fila = 5; // y 
-		int x = 570;
+		int x = 400;
 		switch (c) {
 		case 'v': {
 			z.setPosicion(new Posicion ((int)(Math.random()*(315-x)+x), (int)(Math.random()*fila))); //x,y eje 
@@ -122,7 +122,7 @@ public class LevelReader {
 
 		z.setEstado (new EstadoZombieNormal(z));
 		z.setVisitor (new VisitorZombie (z));
-		System.out.println("------------------------" + z.getPosicion().getX() + "-----------------" + z.getPosicion().getY());
+		//System.out.println("------------------------" + z.getPosicion().getX() + "-----------------" + z.getPosicion().getY());
 		return z;
 	}
 	

@@ -44,6 +44,16 @@ public class ArregloFilas{
 		}
 		return plantas;
 	}
+	
+	public LinkedList <Zombie> getTodosLosZombies() {
+		LinkedList <Zombie> zombies = new LinkedList <Zombie> ();
+		for (int i = 0; i < arreglo.length; i++) {
+			for (Zombie z: arreglo[i].getZombies()) {
+				zombies.add(z);
+			}
+		}
+		return zombies;
+	}
 
 	
 	
