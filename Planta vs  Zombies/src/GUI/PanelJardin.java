@@ -16,6 +16,7 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.LinkedList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -107,16 +108,16 @@ public class PanelJardin extends JPanel{
 		gameplay.restart();
 	}
 	
-	public void sacarZombie(Zombie z) {
-		gameplay.sacarZombie(z);
-	}
-	
-	public void sacarProyectil(Proyectil p) {
-		gameplay.sacarProyectil(p);
+	public void sacarEntidad(Entidad e) {
+		gameplay.sacarEntidad(e);
 	}
 
 	public void sacarPlanta(Planta p) {
 		gameplay.sacarPlanta(p);
+	}
+	
+	public void actualizar(Entidad e) {
+		gameplay.actualizar(e);
 	}
 
 }
