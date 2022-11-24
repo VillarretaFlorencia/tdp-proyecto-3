@@ -1,25 +1,19 @@
 package Logica;
 
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 public class EntidadGrafica{
-	protected JLabel imagen;
-	protected Posicion pos;
+	protected JLabel label;
 	
-	public EntidadGrafica() {
-		imagen = new JLabel();
+	public EntidadGrafica(String imagen) {
+		label = new JLabel(new ImageIcon(this.getClass().getResource(imagen)));
 	}
 	
-	public void setImagen(JLabel i) {
-		imagen = i;
+	public void cambiarImagen(String imagen) {
+		label.setIcon(new ImageIcon(this.getClass().getResource(imagen)));
 	}
-	public JLabel getImagen() {
-		return imagen;
-	}
-	public void setPosicion(Posicion p) {
-		pos = p;
-	}
-	public Posicion getPosicion() {
-		return pos;
+	public JLabel getLabel() {
+		return label;
 	}
 }
