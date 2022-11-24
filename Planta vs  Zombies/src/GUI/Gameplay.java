@@ -208,6 +208,8 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 		this.remove(labelSacar);
 	}
 	
+	
+	
 	public void actualizarSoles(int cantidad) {
 		//System.out.println("nuevos soles: "+nivel.getSoles());
 		cantSoles.setText(String.valueOf(cantidad));
@@ -257,6 +259,7 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 	public void sacarPlanta(Planta p) {
 		
 		label[p.getPosicion().getX()][p.getPosicion().getY()].setVisible(false);
+		label[p.getPosicion().getX()][p.getPosicion().getY()] = null;
 	}
 
 	public void actualizar(Entidad e) {
