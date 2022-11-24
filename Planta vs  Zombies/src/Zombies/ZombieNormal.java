@@ -9,6 +9,6 @@ public class ZombieNormal extends Zombie{
 		velocidad = 1;
 		imagenNormal = "/recursos/Zombie.gif";
 		imagenAtacando = "/recursos/ZombieAttack.gif";
-		entidadGrafica = new EntidadGrafica();
+		entidadGrafica = new EntidadGrafica(ancho, alto);
 	}
 }

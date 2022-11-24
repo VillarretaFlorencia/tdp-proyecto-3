@@ -16,6 +16,7 @@ public class VisitorZombie extends Visitor{
 	}
 	
 	public void visit (Proyectil p) {
+		System.out.println("PRoyectilVisitor------------VISITOR");
 		int daniar = p.getDanio();
 		if (zombie.getVida() > daniar) {
 			zombie.recibirDanio(daniar);
@@ -29,6 +30,7 @@ public class VisitorZombie extends Visitor{
 
 	
 	public void visit(Planta p) {
+		System.out.println("PlantaVisitor------------VISITOR"+p.getClass().getSimpleName());
 		zombie.setEstado(new EstadoZombieAtacando(zombie));
 		p.recibirDanio (zombie.getDanio());
 		if (p.getVida() <= 0) {

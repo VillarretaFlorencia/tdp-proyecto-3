@@ -2,9 +2,11 @@ package Plantas;
     import java.awt.Image;
 import java.awt.Rectangle;
 import java.util.Iterator;
+import java.util.LinkedList;
 
 import javax.swing.ImageIcon;
 
+import Conversor.Conversor;
 import Estados.*;
 import Logica.Entidad;
 import Logica.Nivel;
@@ -19,8 +21,12 @@ public abstract class Planta extends Entidad {
 	protected int tiempoDeAtaque;
 	protected int tiempo = 0;
 	protected String imagenProyectil;
+	protected int alto = 70;
+	protected int ancho = 72;
+	Conversor conversor = Conversor.getConversor();
 	
-	Nivel n = Nivel.getNivel();
+	
+	Nivel nivel = Nivel.getNivel();
 	
 	public int getVida() {return vida;}
 	
@@ -31,7 +37,7 @@ public abstract class Planta extends Entidad {
     			System.out.println("IMAGEN PROYECTIL" + imagenProyectil);
     			Proyectil proyectil = new Proyectil(this.posicion, imagenProyectil, danio);
     			proyectil.inicializarEntidadGrafica(imagenProyectil, this.posicion);
-    			n.setProyectil(proyectil);     
+    			nivel.setProyectil(proyectil);     
     		}
     	}
     	tiempo ++;
@@ -39,7 +45,9 @@ public abstract class Planta extends Entidad {
   
     public boolean hayZombiesEnRango() {
     	
-    	Iterator <Zombie> it = n.getFilas().getFila(posicion.getY()).getZombies().iterator();
+		int pos = conversor.convertirFila(posicion.getY());
+		LinkedList <Zombie> copiaZombies = (LinkedList<Zombie>) nivel.getFilas().getFila(pos).getZombies().clone();
+    	Iterator <Zombie> it = copiaZombies.iterator();
     	boolean hayEnRango = false;
     	while (it.hasNext() && !hayEnRango) {
     		Zombie z = it.next();
@@ -51,7 +59,7 @@ public abstract class Planta extends Entidad {
     public void recibirDanio (int d) {vida -= d;}
     
     public Rectangle getBounds() {
-		return new Rectangle(getPosicion().getX(), getPosicion().getY(), 60, 60);
+		return new Rectangle(getPosicion().getX(), getPosicion().getY(), ancho, alto);
 	}
     
     public void accept (Visitor v) {

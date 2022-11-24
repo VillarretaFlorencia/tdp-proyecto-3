@@ -12,6 +12,8 @@ public abstract class Entidad {
 	protected int danio;
 	protected EntidadGrafica entidadGrafica;
 	protected String imagen;
+	protected int ancho;
+	protected int alto;
 	
 	
 	public abstract Rectangle getBounds();

@@ -16,9 +16,9 @@ public class HumoSeta extends Planta{
     public HumoSeta(){
     	imagen = "/recursos/FumeShroom.gif";
     	imagenProyectil = "/recursos/PuffShroom_puff1.png";
-        danio = 250;
+        danio = 2;
         tiempoDeAtaque = 1000;
-        entidadGrafica = new EntidadGrafica();
+        entidadGrafica = new EntidadGrafica(ancho, alto);
     }
     
     

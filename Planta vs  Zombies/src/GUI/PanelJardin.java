@@ -28,13 +28,13 @@ public class PanelJardin extends JPanel{
 	int seleccion = 0;
 	private JLabel[][] label = new JLabel[9][6];
 	Nivel nivel = Nivel.getNivel();
-	int soles = 0;
+	//int soles = 0;
 	int precioPlantaA;
 	int precioPlantaB;
 	
 	
 	public PanelJardin() {
-		soles = 100;
+		//soles = 100;
 		this.setBounds(0, 0, 570, 380);
 		setOpaque(false);
 		EventosDelRaton raton = new EventosDelRaton();
@@ -135,7 +135,7 @@ class EventosDelRaton implements MouseListener{
 			System.out.println("Coordenadas del mouse: "+e.getX()+ " | "+e.getY());
 			System.out.println("Posicion en la grilla: "+(posX)+ " | "+(posY));
 			System.out.println("Seleccion: "+ panel.getSeleccion());
-			nivel.setPlanta(new Posicion(posX,posY), panel.getSeleccion());
+			nivel.setPlanta(new Posicion(e.getX(),e.getY()), panel.getSeleccion());
 			panel.setSeleccion(0);
 		}else {
 			System.out.println("ya hay una planta aqui");

@@ -11,11 +11,15 @@ import Visitores.Visitor;
 
 public class Proyectil extends Entidad{
 	
+	int ancho;
+	protected  int alto = ancho = 28;
+	
+	
 	public Proyectil(Posicion pos, String i, int d) {
 		posicion = pos;
 		danio = d;
 		imagen = i;
-		entidadGrafica = new EntidadGrafica();
+		entidadGrafica = new EntidadGrafica(ancho,alto);
 	}
 	
 	public void atacar() {
@@ -25,7 +29,7 @@ public class Proyectil extends Entidad{
 	
 		
 	public Rectangle getBounds() {
-		return new Rectangle(posicion.getX(), posicion.getY(),50, 50);
+		return new Rectangle(posicion.getX(), posicion.getY(),ancho,alto);
 	}
 	
 	 public void accept (Visitor v) {

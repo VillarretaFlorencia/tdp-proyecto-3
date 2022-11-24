@@ -9,6 +9,7 @@ import java.util.List;
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicButtonListener;
 
+import Conversor.Conversor;
 import Logica.Entidad;
 import Logica.Nivel;
 import Plantas.Planta;
@@ -30,6 +31,7 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 	private JLabel lblGameN;
 	JLabel cantSoles;
 	private int numeroNivel = 0;
+	Conversor conversor = Conversor.getConversor();
 
 	
 	public Gameplay( int i) {
@@ -168,7 +170,7 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 		for(int x = 0;x < 9; x++) {
 			for(int y = 0; y < 6; y++) {
 				label[x][y] =  new JLabel("");
-				label[x][y].setBounds((63*x)+0, (63*y)-10, 70, 87);
+				label[x][y].setBounds((conversor.convertirPantalla(x)), (conversor.convertirPantalla(y))-10, 70, 72);
 				//label[x][y].setIcon(new ImageIcon(Gameplay.class.getResource("/recursos/peashooter.gif")));
 				label[x][y].setVisible(true);
 				add(label[x][y],Integer.valueOf(1));
@@ -184,7 +186,8 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 	
 	
 	public void modificar(Planta p) {
-		int x=p.getPosicion().getX(); int y = p.getPosicion().getY(); 
+		int x = conversor.convertirFila(p.getPosicion().getX()); 
+		int y = conversor.convertirFila(p.getPosicion().getY()); 
 		//System.out.println("Path: "+String.valueOf(p.getImagen()));
 		label[x][y].setIcon(p.getEntidadGrafica().getLabel().getIcon());;
 		//label[x][y].setIcon(new ImageIcon(Gameplay.class.getResource(String.valueOf(p.getImagen())))); <<<<<<<<<<<<<<<<<<CHECKEAR
@@ -195,12 +198,12 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 	public void actualizarEntidad(Entidad e) {//toma la entidad y actualiza su label
 		
 		e.getEntidadGrafica().getLabel().setLocation(e.getPosicion().getX(),e.getPosicion().getY());
-		e.getEntidadGrafica().getLabel().setBounds(e.getPosicion().getX(),e.getPosicion().getY(), 100, 82);
+		//e.getEntidadGrafica().getLabel().setBounds(e.getPosicion().getX(),e.getPosicion().getY(), 100, 82);
 	}
 	
 	public void agregarEntidad(Entidad e) {//agrega la entidad al panel
 		JLabel labelAgregado = e.getEntidadGrafica().getLabel();
-		labelAgregado.setBounds(e.getPosicion().getX(),e.getPosicion().getY(), 100, 82);
+		//labelAgregado.setBounds(e.getPosicion().getX(),e.getPosicion().getY(), 100, 82);
 		
 		labelAgregado.setVisible(true);
 		this.add(labelAgregado,Integer.valueOf(6));

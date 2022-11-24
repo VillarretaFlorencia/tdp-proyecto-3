@@ -5,6 +5,7 @@ import java.util.LinkedList;
 
 
 import AudioMusic.*;
+import Conversor.Conversor;
 import Cronometro.Cronometro;
 import Estados.*;
 import Fabrica.*;
@@ -32,7 +33,7 @@ public class Nivel {
 	Thread hiloGeneral;
 	Thread hiloGerneradorOleadas;
 	Thread hiloMusica;
-	
+	Conversor conversor = Conversor.getConversor();
 	static private Nivel nivel = new Nivel();
 	
 	//protected Singleton singleton;
@@ -168,22 +169,22 @@ public class Nivel {
         
     
     public void matarZombie (Zombie z) {
-    	Posicion posZ = z.getPosicion();
-    	filas.getFila(posZ.getY()).sacarZombie(z);
+    	int posZ = conversor.convertirFila(z.getPosicion().getY());
+    	filas.getFila(posZ).sacarZombie(z);
     	gameplay.sacarEntidad(z);
     	//decir a gui que saque ese zombie, aca es donde es mas facil que zombie herede de labels?, o que el zombie conozca su labels soluciona?
     }
     
     public void matarProyectil (Proyectil p) {
-    	Posicion posP = p.getPosicion();
-    	filas.getFila(posP.getY()).sacarProyectil(p);
+    	int posP = conversor.convertirFila(p.getPosicion().getY());
+    	filas.getFila(posP).sacarProyectil(p);
     	gameplay.sacarEntidad(p);
     	//misma analogia que matar zombie
     }
     
     public void matarPlanta (Planta p) {
-    	Posicion posP = p.getPosicion();
-    	filas.getFila(posP.getY()).sacarPlanta(p);
+    	int posP = conversor.convertirFila(p.getPosicion().getY());
+    	filas.getFila(posP).sacarPlanta(p);
     	gameplay.sacarPlanta(p);
     	//misma analogia que matar zombie
     }

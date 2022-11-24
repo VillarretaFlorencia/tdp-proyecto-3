@@ -14,6 +14,9 @@ public abstract class Zombie extends Entidad{
 	protected Visitor visitor;
 	protected String imagenNormal;
 	protected String imagenAtacando;
+
+	protected int alto = 70;
+	protected int ancho = 102;
 	
 	//Setters & Getters
 	public int getVida(){
@@ -55,7 +58,7 @@ public abstract class Zombie extends Entidad{
 	}
 		
 	public Rectangle getBounds() {
-		return new Rectangle(getPosicion().getX(), getPosicion().getY(), 60, 60);
+		return new Rectangle(getPosicion().getX(), getPosicion().getY(), ancho, alto);
 	}
 	//public abstract void atacar();
 }

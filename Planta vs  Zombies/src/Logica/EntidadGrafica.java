@@ -5,9 +5,13 @@ import javax.swing.JLabel;
 
 public class EntidadGrafica{
 	protected JLabel label;
+	protected int alto;
+	protected int ancho;
 	
-	public EntidadGrafica() {
+	public EntidadGrafica(int alto, int ancho) {
 		label = new JLabel();
+		this.alto = alto;
+		this.ancho = ancho;
 	}
 	
 	public void setImagen(String imagen) {

@@ -21,14 +21,14 @@ public class Girasol extends Planta{
         imagen = imagenNormal;
         danio = 0;
         tiempoDeAtaque = 29000;
-        entidadGrafica = new EntidadGrafica();
+        entidadGrafica = new EntidadGrafica(ancho, alto);
     }
 
     //generalizarlo con rango amplio, o sobrescribir el hay zombie en rango con true, o sobrescribir el metodo para evitar el habilidad ya que todos en el fono hacen lo mismo 
     public void atacar() {
     	if (tiempo % tiempoDeAtaque == 0) {
     		imagen = imagenBrillante;
-    		n.aumentarSoles();
+    		nivel.aumentarSoles();
     	}
     	if (tiempo % (tiempoDeAtaque + tiempoEnAccion) == 0) {
     		imagen = imagenNormal;

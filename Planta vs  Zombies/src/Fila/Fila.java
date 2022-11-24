@@ -62,6 +62,7 @@ public class Fila{
 			for (Proyectil p: listaProyectiles) {
 				if (z.getBounds().intersects(p.getBounds())) {
 					p.accept(z.getVisitor());
+					System.out.println("PRoyectilVisitor-------------Colision");
 					//listaProyectiles.remove();	//desde visitor
 				}
 			}

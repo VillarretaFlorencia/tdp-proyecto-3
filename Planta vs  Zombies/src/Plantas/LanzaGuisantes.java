@@ -18,9 +18,9 @@ public class LanzaGuisantes extends Planta{
     public LanzaGuisantes(){
     	imagen = "/recursos/peashooter.gif";
     	imagenProyectil = "/recursos/pea.png";
-        danio = 1000;
+        danio = 1;
         tiempoDeAtaque = 3000;
-        entidadGrafica = new EntidadGrafica();
+        entidadGrafica = new EntidadGrafica(ancho, alto);
     }
     
   
