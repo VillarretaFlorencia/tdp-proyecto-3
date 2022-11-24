@@ -28,6 +28,7 @@ public abstract class Planta extends Entidad {
     public void atacar() {
     	if (hayZombiesEnRango()) {
     		if (tiempo % tiempoDeAtaque == 0) {
+    			System.out.println("IMAGEN PROYECTIL" + imagenProyectil);
     			Proyectil proyectil = new Proyectil(this.posicion, imagenProyectil, danio);
     			proyectil.inicializarEntidadGrafica(imagenProyectil, this.posicion);
     			n.setProyectil(proyectil);     

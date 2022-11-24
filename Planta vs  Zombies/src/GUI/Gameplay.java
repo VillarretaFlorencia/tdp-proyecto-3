@@ -193,13 +193,17 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 	}
 	
 	public void actualizarEntidad(Entidad e) {//toma la entidad y actualiza su label
-		e.getEntidadGrafica().getLabel().setLocation(e.getPosicion().getX(),e.getPosicion().getY());;
+		
+		e.getEntidadGrafica().getLabel().setLocation(e.getPosicion().getX(),e.getPosicion().getY());
+		e.getEntidadGrafica().getLabel().setBounds(e.getPosicion().getX(),e.getPosicion().getY(), 100, 82);
 	}
 	
 	public void agregarEntidad(Entidad e) {//agrega la entidad al panel
 		JLabel labelAgregado = e.getEntidadGrafica().getLabel();
-		this.add(labelAgregado);
+		labelAgregado.setBounds(e.getPosicion().getX(),e.getPosicion().getY(), 100, 82);
+		
 		labelAgregado.setVisible(true);
+		this.add(labelAgregado,Integer.valueOf(6));
 	}
 	
 	public void sacarEntidad(Entidad e) {//saca la entidad de dentro del panel
@@ -263,8 +267,8 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 	}
 
 	public void actualizar(Entidad e) {
-		//añadir los zombies si no estan
-		//actualizar todo
+		e.getEntidadGrafica().getLabel().setLocation(e.getPosicion().getX(),e.getPosicion().getY());
+		e.getEntidadGrafica().getLabel().setBounds(e.getPosicion().getX(),e.getPosicion().getY(), 100, 82);
 		
 	}
 }

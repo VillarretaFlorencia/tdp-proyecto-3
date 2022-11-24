@@ -4,6 +4,7 @@ import java.awt.Rectangle;
 
 import Fila.*;
 import Logica.Entidad;
+import Logica.EntidadGrafica;
 import Logica.Nivel;
 import Logica.Posicion;
 import Visitores.Visitor;
@@ -14,6 +15,7 @@ public class Proyectil extends Entidad{
 		posicion = pos;
 		danio = d;
 		imagen = i;
+		entidadGrafica = new EntidadGrafica();
 	}
 	
 	public void atacar() {

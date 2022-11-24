@@ -13,6 +13,7 @@ import Plantas.*;
 import Proyectil.Proyectil;
 import Zombies.*;
 import GUI.*;
+import Hilos.HiloGeneral;
 
 
 public class Nivel {
@@ -28,7 +29,6 @@ public class Nivel {
 	protected LinkedList<Entidad> entidadesDinamicas;
 	private int [] precios;
 	private boolean terminar = false;
-	private LevelReader lr;
 	Thread hiloGeneral;
 	Thread hiloGerneradorOleadas;
 	Thread hiloMusica;
@@ -67,25 +67,22 @@ public class Nivel {
 	    		precios [3] = 75;
 	    		valorSol = 25;
 	        }
-	        
-	        lr = new LevelReader(nivelLvl);
-	        oleadas = lr.crearOleadas(miFabrica, this);
-	        
-	    	//System.out.println("GENERANDO NIVEL");
-	    	        
+	        	        
+	        oleadas = LevelReader.getLevelReader().crearOleadas(numNivel);
+	        	    	        
 	        
 	    	//System.out.println("dentro del nivel: ");// solo agrege esto flor perdoname //no hay na que perdonar jajaa
 	    	//System.out.println("Estado: "+estado.getClass().getCanonicalName());
 	    	
 	    	
 	    	
-	    	HiloZombies hiloZombies = new HiloZombies();
-			hiloGerneradorOleadas = new Thread (hiloZombies);
+	    	HiloZombies lanzaOleadas = new HiloZombies();
+			hiloGerneradorOleadas = new Thread (lanzaOleadas);
 			hiloGerneradorOleadas.start();
 			
-			Cronometro cronometro;
-	    	cronometro = new Cronometro();
-	    	hiloGeneral = new Thread (cronometro);
+			HiloGeneral general;
+	    	general = new HiloGeneral();
+	    	hiloGeneral = new Thread (general);
 	    	hiloGeneral.start();
 	    	
 	    	/*AudioPlayer musica = new AudioPlayer();
@@ -115,6 +112,7 @@ public class Nivel {
     
         
     public void setPlanta(Posicion posicion, int tipoPlanta) {
+    	System.out.println("POSICION" + posicion.getX() + ", " + posicion.getY());
     	Planta planta = null;
     	int precio = precios[tipoPlanta-1];
     	//System.out.println("Entro en set planta");
@@ -228,19 +226,23 @@ public class Nivel {
     }
     
     public boolean moverZombies() {
+    	
     	for (int i = 0; i < 6 && !terminar; i ++) {
     		Fila fila = filas.getFila(i);
     		LinkedList <Zombie> copiaZombies = (LinkedList<Zombie>) fila.getZombies().clone();
+    		//System.out.println("entre a mover zombies-------" + fila.getZombies().size());
+    		//System.out.println("entre a mover zombies-------" + copiaZombies.size());
     		if (!copiaZombies.isEmpty()) {
-	    		Iterator <Zombie> it = fila.getZombies().iterator();
-	    		//System.out.println(Math.random() + " " + fila.getZombies().size());
+	    		Iterator <Zombie> it = copiaZombies.iterator();
 			    while(it.hasNext() && !terminar) { //usar un iterador para cortarlo y no seguir 
 			    	Zombie z = it.next();
+			    	//System.out.println("entre a mover zombies-------" + z.getEntidadGrafica().getLabel().getBounds());
 			    	if (z.getPosicion().getX() == 1) {
 			    		terminar = true;
 			    		//System.out.println("CHOCO PARED");
 			    	}
 			    	else {
+			    		//System.out.println("TAMAÑO FILA" + copiaZombies.size());
 			    		z.atacar();
 			    		gameplay.actualizar(z);
 			    		//entidadesDinamicas.add(z);//ver si mandar la entidad o una copia de esta
