@@ -1,24 +1,14 @@
 package Plantas;
 
-import java.awt.Image;
-
-import javax.swing.ImageIcon;
-
 import Logica.EntidadGrafica;
-import Logica.Nivel;
-import Logica.Posicion;
-import Proyectil.Proyectil;
-import Visitores.Visitor;
 
-public class SetaDesporadora extends Planta{
+public class SetaDesporadora extends Planta {
 
-   
-    public SetaDesporadora(){
-    	imagen = "/recursos/PuffShroom.gif";
-    	imagenProyectil = "/recursos/PuffShroom_puff2.png";
-        danio = 5;
-        tiempoDeAtaque = 15;
-        entidadGrafica = new EntidadGrafica(ancho, alto);
-    }
-    
+  public SetaDesporadora() {
+    imagen = "/recursos/PuffShroom.gif";
+    imagenProyectil = "/recursos/PuffShroom_puff2.png";
+    danio = 5;
+    tiempoDeAtaque = 15;
+    entidadGrafica = new EntidadGrafica(ancho, alto);
+  }
 }

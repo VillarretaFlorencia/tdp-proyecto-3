@@ -2,8 +2,6 @@ package Zombies;
 
 import java.util.LinkedList;
 
-import Cronometro.Cronometro;
-import Fila.ArregloFilas;
 import Logica.Nivel;
 
 //vienen predeterminados desde un txt solo los manejo de aca
@@ -25,8 +23,6 @@ public class HiloZombies implements Runnable{
 			try {
 				LinkedList <Zombie> oleada = oleadas.getFirst() ;
 				while (!oleada.isEmpty()) {
-					System.out.println("oleada no vacia");
-					System.out.println(oleada.size());
 					Zombie zombie = oleada.remove(); // primer zombie de la lista
 					nivel.setZombie (zombie);
 				}
