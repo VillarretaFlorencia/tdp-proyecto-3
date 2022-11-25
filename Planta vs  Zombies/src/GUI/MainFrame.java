@@ -14,10 +14,15 @@ public class MainFrame extends JFrame {
   static final String START = "Ventana Start";
   static final String GAMEPLAY = "Ventana Gameplay";
   static final String SELECTOR = "ventana selector de nivel";
+  static final String GAMEOVER = "Ventana final del juego";
+  static final String WINGAME = "Ventana de ganar el nivel";
 
   startScreen panelInicio = new startScreen();
   Gameplay panelGameplay = new Gameplay(1); //provisorio
   LvlSelector panelSelector = new LvlSelector();
+  finalscreen panelGameOver = new finalscreen();
+  WinScreen panelWin = new WinScreen();
+  
 
   Nivel nivel = Nivel.getNivel();
 
@@ -29,6 +34,7 @@ public class MainFrame extends JFrame {
     //anadimos las ventanas al frame
     getContentPane().add(panelInicio, START); //agregamos la ventana con el identificador
     getContentPane().add(panelSelector, SELECTOR);
+    getContentPane().add(panelGameOver,GAMEOVER);
 
     //agregamos el action listener del start
     panelInicio
@@ -112,6 +118,16 @@ public class MainFrame extends JFrame {
         }
       }
     );
+  }
+  
+  public void gameover() {
+	  CardLayout c1 = (CardLayout) (getContentPane().getLayout()); //se cambia toma el panel
+      c1.show(getContentPane(), GAMEOVER); // y lo cambiamos en el contentPane
+  }
+  
+  public void win() {
+	  CardLayout c1 = (CardLayout) (getContentPane().getLayout()); //se cambia toma el panel
+      c1.show(getContentPane(), WINGAME); // y lo cambiamos en el contentPane
   }
 
   public void jugar(int nroNivel) {
