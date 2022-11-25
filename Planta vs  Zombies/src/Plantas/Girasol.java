@@ -15,12 +15,12 @@ public class Girasol extends Planta{
 
 		protected String imagenNormal = "/recursos/sunflower.gif";
 		protected String imagenBrillante = "/recursos/sunflowerB.gif";
-		int tiempoEnAccion = 1000;
+		int tiempoEnAccion = 1;
 		
     public Girasol(){
         imagen = imagenNormal;
         danio = 0;
-        tiempoDeAtaque = 29000;
+        tiempoDeAtaque = 10;
         entidadGrafica = new EntidadGrafica(ancho, alto);
     }
 

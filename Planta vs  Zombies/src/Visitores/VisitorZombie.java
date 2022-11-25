@@ -36,8 +36,9 @@ public class VisitorZombie extends Visitor{
 		int daniar = zombie.getDanio();
 		System.out.println("PlantaVisitorDANIO------------VISITOR "+daniar);
 		if (p.getVida() <= daniar) {
-			n.matarPlanta(p);
 			zombie.setEstado(new EstadoZombieNormal(zombie));
+			n.matarPlanta(p);
+			
 		}
 		else {
 			p.recibirDanio (zombie.getDanio());

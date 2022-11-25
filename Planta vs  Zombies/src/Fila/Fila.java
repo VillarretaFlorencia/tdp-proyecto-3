@@ -57,15 +57,19 @@ public class Fila{
 	}
 	
 	public void colisiones() {
-		for (Zombie z: listaZombies) {
+
+		LinkedList <Zombie> copiaZombies = (LinkedList<Zombie>) listaZombies.clone();
+		for (Zombie z: copiaZombies) {
 			boolean colisionPlanta = false;
-			for (Proyectil proyectil: listaProyectiles) {
+
+    		LinkedList <Proyectil> copiaProyectil = (LinkedList<Proyectil>) listaProyectiles.clone();
+			for (Proyectil proyectil: copiaProyectil) {
 				if (z.getBounds().intersects(proyectil.getBounds())) {
 					proyectil.accept(z.getVisitor());
 				}
 			}
-			
-			Iterator<Planta> it = listaPlantas.iterator();
+			LinkedList <Planta> copiaPlantas = (LinkedList<Planta>) listaPlantas.clone();
+			Iterator<Planta> it = copiaPlantas.iterator();
 			while (it.hasNext() && !colisionPlanta) {
 				Planta planta = it.next();
 				if (z.getBounds().intersects(planta.getBounds())) {
