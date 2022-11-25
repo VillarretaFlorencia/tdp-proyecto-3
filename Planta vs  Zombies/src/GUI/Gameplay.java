@@ -12,6 +12,7 @@ import javax.swing.plaf.basic.BasicButtonListener;
 import Conversor.Conversor;
 import Logica.Entidad;
 import Logica.Nivel;
+import Logica.Posicion;
 import Plantas.Planta;
 import Proyectil.Proyectil;
 import Zombies.Zombie;
@@ -189,22 +190,15 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 		int x = conversor.convertirFila(p.getPosicion().getX()); 
 		int y = conversor.convertirFila(p.getPosicion().getY()); 
 		//System.out.println("Path: "+String.valueOf(p.getImagen()));
-		label[x][y].setIcon(p.getEntidadGrafica().getLabel().getIcon());;
+		label[x][y].setIcon(p.getEntidadGrafica().getLabel().getIcon());
 		//label[x][y].setIcon(new ImageIcon(Gameplay.class.getResource(String.valueOf(p.getImagen())))); <<<<<<<<<<<<<<<<<<CHECKEAR
 		//label[x][y].setVisible(true);
 		
 	}
-	
-	public void actualizarEntidad(Entidad e) {//toma la entidad y actualiza su label
-		
-		e.getEntidadGrafica().getLabel().setLocation(e.getPosicion().getX(),e.getPosicion().getY());
-		//e.getEntidadGrafica().getLabel().setBounds(e.getPosicion().getX(),e.getPosicion().getY(), 100, 82);
-	}
+
 	
 	public void agregarEntidad(Entidad e) {//agrega la entidad al panel
-		JLabel labelAgregado = e.getEntidadGrafica().getLabel();
-		//labelAgregado.setBounds(e.getPosicion().getX(),e.getPosicion().getY(), 100, 82);
-		
+		JLabel labelAgregado = e.getEntidadGrafica().getLabel();		
 		labelAgregado.setVisible(true);
 		this.add(labelAgregado,Integer.valueOf(6));
 	}
@@ -218,7 +212,6 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 	
 	
 	public void actualizarSoles(int cantidad) {
-		//System.out.println("nuevos soles: "+nivel.getSoles());
 		cantSoles.setText(String.valueOf(cantidad));
 	}
 	
@@ -264,14 +257,18 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 	
 
 	public void sacarPlanta(Planta p) {
-		
-		label[p.getPosicion().getX()][p.getPosicion().getY()].setVisible(false);
-		label[p.getPosicion().getX()][p.getPosicion().getY()] = null;
+		int y = conversor.convertirFila(p.getPosicion().getY());
+		int x = conversor.convertirFila(p.getPosicion().getX());
+		label[x][y].setVisible(false);
+		label[x][y] = null;
 	}
 
 	public void actualizar(Entidad e) {
-		e.getEntidadGrafica().getLabel().setLocation(e.getPosicion().getX(),e.getPosicion().getY());
-		e.getEntidadGrafica().getLabel().setBounds(e.getPosicion().getX(),e.getPosicion().getY(), 100, 82);
+		Posicion posicion = e.getPosicion();
+		int alto = e.getEntidadGrafica().getAlto();
+		int ancho = e.getEntidadGrafica().getAncho();
+		e.getEntidadGrafica().getLabel().setLocation(posicion.getX(),posicion.getY());
+		e.getEntidadGrafica().getLabel().setBounds(posicion.getX(),posicion.getY(), ancho, alto);
 		
 	}
 }

@@ -23,7 +23,7 @@ public class Proyectil extends Entidad{
 	}
 	
 	public void atacar() {
-		posicion.setX(posicion.getX()+1);
+		posicion.setX(posicion.getX()+10);
 		entidadGrafica.setPosicion(posicion.getX(),posicion.getY());
 	}
 	

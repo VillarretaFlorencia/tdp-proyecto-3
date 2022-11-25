@@ -59,22 +59,18 @@ public class Fila{
 	public void colisiones() {
 		for (Zombie z: listaZombies) {
 			boolean colisionPlanta = false;
-			for (Proyectil p: listaProyectiles) {
-				if (z.getBounds().intersects(p.getBounds())) {
-					p.accept(z.getVisitor());
-					System.out.println("PRoyectilVisitor-------------Colision");
-					//listaProyectiles.remove();	//desde visitor
+			for (Proyectil proyectil: listaProyectiles) {
+				if (z.getBounds().intersects(proyectil.getBounds())) {
+					proyectil.accept(z.getVisitor());
 				}
 			}
 			
 			Iterator<Planta> it = listaPlantas.iterator();
 			while (it.hasNext() && !colisionPlanta) {
-				Planta p = it.next();
-				if (z.getBounds().intersects(p.getBounds())) {
+				Planta planta = it.next();
+				if (z.getBounds().intersects(planta.getBounds())) {
 					colisionPlanta = true;
-					p.accept(z.getVisitor());
-					//if (p.getVida() <= 0)
-						//plantas[i] = null;//esto llamarlo desde visitor t
+					planta.accept(z.getVisitor());
 				}
 				
 			}

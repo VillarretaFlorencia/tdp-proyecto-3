@@ -2,6 +2,7 @@ package GUI;
 
 import javax.swing.JPanel;
 
+import Conversor.Conversor;
 import Cronometro.Cronometro;
 import Logica.Entidad;
 import Logica.Nivel;
@@ -27,6 +28,7 @@ public class PanelJardin extends JPanel{
 	Gameplay gameplay = null;
 	int seleccion = 0;
 	private JLabel[][] label = new JLabel[9][6];
+	Conversor conversor = Conversor.getConversor();
 	Nivel nivel = Nivel.getNivel();
 	//int soles = 0;
 	int precioPlantaA;
@@ -44,7 +46,8 @@ public class PanelJardin extends JPanel{
 		for(int x = 0;x < 9; x++) {
 			for(int y = 0; y < 6; y++) {
 				label[x][y] =  new JLabel("poggers");//el string es para ver si aparecian > no funciono
-				label[x][y].setBounds((63*x)+21, (63*y)+22, 27, 47);
+				//label[x][y].setBounds((63*x)+21, (63*y)+22, 27, 47);
+				label[x][y].setBounds((conversor.convertirPantalla(x)), (conversor.convertirPantalla(y))-10, 70, 72);
 			}
 		}
 		

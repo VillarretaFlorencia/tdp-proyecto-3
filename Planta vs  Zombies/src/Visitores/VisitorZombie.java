@@ -32,10 +32,15 @@ public class VisitorZombie extends Visitor{
 	public void visit(Planta p) {
 		System.out.println("PlantaVisitor------------VISITOR"+p.getClass().getSimpleName());
 		zombie.setEstado(new EstadoZombieAtacando(zombie));
-		p.recibirDanio (zombie.getDanio());
-		if (p.getVida() <= 0) {
+		System.out.println("PlantaVisitorVIDA------------VISITOR"+p.getVida());
+		int daniar = zombie.getDanio();
+		System.out.println("PlantaVisitorDANIO------------VISITOR "+daniar);
+		if (p.getVida() <= daniar) {
 			n.matarPlanta(p);
 			zombie.setEstado(new EstadoZombieNormal(zombie));
+		}
+		else {
+			p.recibirDanio (zombie.getDanio());
 		}
 	}
 

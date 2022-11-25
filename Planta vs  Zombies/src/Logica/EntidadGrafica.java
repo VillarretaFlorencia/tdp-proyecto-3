@@ -8,7 +8,7 @@ public class EntidadGrafica{
 	protected int alto;
 	protected int ancho;
 	
-	public EntidadGrafica(int alto, int ancho) {
+	public EntidadGrafica(int ancho, int alto) {
 		label = new JLabel();
 		this.alto = alto;
 		this.ancho = ancho;
@@ -27,4 +27,7 @@ public class EntidadGrafica{
 	public void mover (int x, int y) {
 		label.move(x,y);
 	}
+	
+	public int getAncho () {return ancho;}
+	public int getAlto () {return alto;}
 }

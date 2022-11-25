@@ -17,12 +17,12 @@ import Zombies.Zombie;
 
 public abstract class Planta extends Entidad {
 	  
-	protected int vida = 10000;
+	protected int vida = 5;
 	protected int tiempoDeAtaque;
 	protected int tiempo = 0;
 	protected String imagenProyectil;
 	protected int alto = 70;
-	protected int ancho = 72;
+	protected int ancho = 60;
 	Conversor conversor = Conversor.getConversor();
 	
 	
@@ -35,7 +35,7 @@ public abstract class Planta extends Entidad {
     	if (hayZombiesEnRango()) {
     		if (tiempo % tiempoDeAtaque == 0) {
     			System.out.println("IMAGEN PROYECTIL" + imagenProyectil);
-    			Proyectil proyectil = new Proyectil(this.posicion, imagenProyectil, danio);
+    			Proyectil proyectil = new Proyectil(new Posicion (posicion.getX(), posicion.getY()), imagenProyectil, danio);
     			proyectil.inicializarEntidadGrafica(imagenProyectil, this.posicion);
     			nivel.setProyectil(proyectil);     
     		}
@@ -56,7 +56,7 @@ public abstract class Planta extends Entidad {
     	return hayEnRango;
     }
     
-    public void recibirDanio (int d) {vida -= d;}
+    public void recibirDanio (int d) {vida = vida - d;}
     
     public Rectangle getBounds() {
 		return new Rectangle(getPosicion().getX(), getPosicion().getY(), ancho, alto);

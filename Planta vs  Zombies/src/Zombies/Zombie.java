@@ -9,14 +9,13 @@ public abstract class Zombie extends Entidad{
 	//Atributos
 	protected int vida;
 	protected int velocidad;
-	protected int danio = 1;
 	protected EstadoZombie estado;
 	protected Visitor visitor;
 	protected String imagenNormal;
 	protected String imagenAtacando;
 
 	protected int alto = 70;
-	protected int ancho = 102;
+	protected int ancho = 80;
 	
 	//Setters & Getters
 	public int getVida(){

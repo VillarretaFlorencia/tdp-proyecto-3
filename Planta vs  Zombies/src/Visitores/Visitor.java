@@ -1,6 +1,5 @@
 package Visitores;
 
-import Zombies.Zombie;
 import Plantas.Planta;
 import Proyectil.Proyectil;
 
