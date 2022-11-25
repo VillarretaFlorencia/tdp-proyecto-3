@@ -238,7 +238,7 @@ public class Nivel {
 			    while(it.hasNext() && !terminar) { //usar un iterador para cortarlo y no seguir 
 			    	Zombie z = it.next();
 			    	//System.out.println("entre a mover zombies-------" + z.getEntidadGrafica().getLabel().getBounds());
-			    	if (z.getPosicion().getX() == 1) {
+			    	if (z.getPosicion().getX() < 10) {
 			    		terminar = true;
 			    		//System.out.println("CHOCO PARED");
 			    	}
@@ -285,6 +285,7 @@ public class Nivel {
     }
     
     public void terminarJuego () {
+    	System.out.println("JUEGO TERMINADOOOOOOOOOOOOOOOOOOOO");
     	for (int i = 0; i< 6; i++) {
     		filas.getFila(i).limpiarFila();
     	}

@@ -35,7 +35,7 @@ public abstract class Planta extends Entidad {
     	if (hayZombiesEnRango()) {
     		if (tiempo % tiempoDeAtaque == 0) {
     			System.out.println("IMAGEN PROYECTIL" + imagenProyectil);
-    			Proyectil proyectil = new Proyectil(new Posicion (posicion.getX(), posicion.getY()), imagenProyectil, danio);
+    			Proyectil proyectil = new Proyectil(new Posicion (posicion.getX() , posicion.getY()), imagenProyectil, danio);
     			proyectil.inicializarEntidadGrafica(imagenProyectil, this.posicion);
     			nivel.setProyectil(proyectil);     
     		}

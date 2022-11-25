@@ -268,28 +268,8 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 		int alto = e.getEntidadGrafica().getAlto();
 		int ancho = e.getEntidadGrafica().getAncho();
 		e.getEntidadGrafica().getLabel().setLocation(posicion.getX(),posicion.getY());
-		e.getEntidadGrafica().getLabel().setBounds(posicion.getX(),posicion.getY(), ancho, alto);
+		e.getEntidadGrafica().getLabel().setBounds(posicion.getX(),posicion.getY()-20, ancho, alto);
 		
 	}
 }
 
-class Pair<K,V>{
-	K key; V value;
-	Pair(K k, V v){
-		key = k;
-		value = v;
-	}
-	public K getKey() {
-		return key;
-	}
-	public void setKey(K key) {
-		this.key = key;
-	}
-	public V getValue() {
-		return value;
-	}
-	public void setValue(V value) {
-		this.value = value;
-	}
-	
-}

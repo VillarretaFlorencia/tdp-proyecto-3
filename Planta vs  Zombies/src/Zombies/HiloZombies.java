@@ -16,7 +16,7 @@ public class HiloZombies implements Runnable{
 	 
 	public HiloZombies () {
 		oleadas = nivel.getOleadas();
-		dormir = 200;
+		dormir = 1000;
 	}
 		
 	public void run () {
@@ -29,7 +29,6 @@ public class HiloZombies implements Runnable{
 					System.out.println(oleada.size());
 					Zombie zombie = oleada.remove(); // primer zombie de la lista
 					nivel.setZombie (zombie);
-					Thread.sleep(dormir);
 				}
 				
 				oleadas.remove(oleadas.getFirst());
