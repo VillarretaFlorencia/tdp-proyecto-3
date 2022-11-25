@@ -78,9 +78,10 @@ public class Nivel {
       general = new HiloGeneral();
       hiloGeneral = new Thread(general);
       hiloGeneral.start();
+      
       /*AudioPlayer musica = new AudioPlayer();
-	    	hiloMusica = new Thread (musica);
-	    	hiloGeneral.start();*/
+	  hiloMusica = new Thread (musica);
+	  hiloGeneral.start();*/
     }
   }
 
@@ -246,7 +247,7 @@ public class Nivel {
     hiloGeneral.stop();
     hiloGerneradorOleadas.stop();
     oleadas.clear();
-    //hiloMusica.stop();
+    hiloMusica.stop();
     panelJardin.terminarJuego();
   }
   
