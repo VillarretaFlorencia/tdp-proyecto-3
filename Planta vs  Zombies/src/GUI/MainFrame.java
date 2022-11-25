@@ -133,6 +133,7 @@ public class MainFrame extends JFrame {
   public void jugar(int nroNivel) {
     nivel.setPanelJardin(panelGameplay.getJardin());
     nivel.setGameplay(panelGameplay);
+    nivel.setMainframe (this);
     nivel.iniciarJuego(nroNivel);
   }
 }

@@ -62,7 +62,7 @@ public class LevelReader {
         }
     }
     int fila = 5; // y
-    int x = 570;
+    int x = 560;
     int yRandom = conversor.convertirPantalla((int) (Math.random() * fila));
     switch (c) {
       case 'v':

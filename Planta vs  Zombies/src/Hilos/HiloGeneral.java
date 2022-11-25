@@ -10,17 +10,19 @@ public class HiloGeneral implements Runnable {
   private boolean terminar;
 
   public HiloGeneral() {
-    terminar = false;
+    terminar = nivel.getTerminar();
   }
 
   public void run() {
-    while (!terminar) {
-      terminar = nivel.moverZombies();
+    while (!nivel.getTerminar()) {
+      nivel.moverZombies();
       if (!terminar) {
         nivel.moverProyectiles();
         nivel.activarDefensa();
         nivel.checkColisiones();
+        nivel.superoJuego();
       }
+      
       try {
         Thread.sleep(500);
       } catch (InterruptedException e) {

@@ -6,7 +6,7 @@ public class ZombieBandera extends Zombie {
 
   public ZombieBandera() {
     vida = 5;
-    velocidad = 5;
+    velocidad = 10;
     danio = 1;
     imagenNormal = "/recursos/FlagZombie.gif";
     imagenAtacando = "/recursos/FlagZombieAttack.gif";

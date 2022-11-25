@@ -6,7 +6,7 @@ public class ZombieNormal extends Zombie {
 
   public ZombieNormal() {
     vida = 5;
-    velocidad = 5;
+    velocidad = 10;
     danio = 1;
     imagenNormal = "/recursos/Zombie.gif";
     imagenAtacando = "/recursos/ZombieAttack.gif";

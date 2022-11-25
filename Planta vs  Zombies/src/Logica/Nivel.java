@@ -6,7 +6,7 @@ import Estados.*;
 import Fabrica.*;
 import Fila.*;
 import GUI.*;
-import Hilos.HiloGeneral;
+import Hilos.*;
 import Plantas.*;
 import Proyectil.Proyectil;
 import Zombies.*;
@@ -24,9 +24,11 @@ public class Nivel {
   protected LinkedList<LinkedList<Zombie>> oleadas;
   protected PanelJardin panelJardin;
   protected Gameplay gameplay;
+  protected MainFrame mainframe;
   protected LinkedList<Entidad> entidadesDinamicas;
   private int[] precios;
-  private boolean terminar = false;
+  private boolean terminar;
+  private int cantOleadas;
   Thread hiloGeneral;
   Thread hiloGerneradorOleadas;
   Thread hiloMusica;
@@ -35,6 +37,7 @@ public class Nivel {
 
   private Nivel() {
     cantSoles = 1000;
+    terminar = false;
   }
 
   public static Nivel getNivel() {
@@ -65,6 +68,7 @@ public class Nivel {
       }
 
       oleadas = LevelReader.getLevelReader().crearOleadas(numNivel);
+      cantOleadas = oleadas.size();
 
       HiloZombies lanzaOleadas = new HiloZombies();
       hiloGerneradorOleadas = new Thread(lanzaOleadas);
@@ -86,6 +90,10 @@ public class Nivel {
 
   public ArregloFilas getFilas() {
     return filas;
+  }
+  
+  public void descontarCanOleadas() {
+	  cantOleadas--;
   }
 
   public void setZombie(Zombie z) {
@@ -158,21 +166,18 @@ public class Nivel {
     int posZ = conversor.convertirFila(z.getPosicion().getY());
     filas.getFila(posZ).sacarZombie(z);
     gameplay.sacarEntidad(z);
-    //decir a gui que saque ese zombie, aca es donde es mas facil que zombie herede de labels?, o que el zombie conozca su labels soluciona?
   }
 
   public void matarProyectil(Proyectil p) {
     int posP = conversor.convertirFila(p.getPosicion().getY());
     filas.getFila(posP).sacarProyectil(p);
     gameplay.sacarEntidad(p);
-    //misma analogia que matar zombie
   }
 
   public void matarPlanta(Planta p) {
     int posP = conversor.convertirFila(p.getPosicion().getY());
     filas.getFila(posP).sacarPlanta(p);
     gameplay.sacarPlanta(p);
-    //misma analogia que matar zombie
   }
 
   public void setPanelJardin(PanelJardin pj) {
@@ -194,9 +199,7 @@ public class Nivel {
   public void moverProyectiles() {
     for (int i = 0; i < 6; i++) {
       Fila fila = filas.getFila(i);
-      LinkedList<Proyectil> copiaProyectil = (LinkedList<Proyectil>) fila
-        .getProyectiles()
-        .clone();
+      LinkedList<Proyectil> copiaProyectil = (LinkedList<Proyectil>) fila.getProyectiles().clone();
       for (Proyectil p : copiaProyectil) {
         p.atacar();
         gameplay.actualizar(p);
@@ -204,12 +207,10 @@ public class Nivel {
     }
   }
 
-  public boolean moverZombies() {
+  public void moverZombies() {
     for (int i = 0; i < 6 && !terminar; i++) {
       Fila fila = filas.getFila(i);
-      LinkedList<Zombie> copiaZombies = (LinkedList<Zombie>) fila
-        .getZombies()
-        .clone();
+      LinkedList<Zombie> copiaZombies = (LinkedList<Zombie>) fila.getZombies() .clone();
       if (!copiaZombies.isEmpty()) {
         Iterator<Zombie> it = copiaZombies.iterator();
         while (it.hasNext() && !terminar) { //usar un iterador para cortarlo y no seguir
@@ -224,11 +225,11 @@ public class Nivel {
       }
     }
     if (terminar) {
+    	mainframe.gameover();
       terminarJuego();
     } else {
       moverProyectiles();
     }
-    return terminar;
   }
 
   public void activarDefensa() {
@@ -241,14 +242,31 @@ public class Nivel {
   public void terminarJuego() {
     for (int i = 0; i < 6; i++) {
       filas.getFila(i).limpiarFila();
-    }
+    }    
     hiloGeneral.stop();
     hiloGerneradorOleadas.stop();
+    oleadas.clear();
     //hiloMusica.stop();
     panelJardin.terminarJuego();
+  }
+  
+  public boolean getTerminar() {return terminar;}
+  
+  public boolean superoJuego() {
+	    if (!filas.getTodosLosZombies().isEmpty() && cantOleadas == 0) {
+	    	System.out.println("entre a ganar" + terminar);
+	    	terminar = true;
+	    	mainframe.win();
+	    }
+	    return terminar;
   }
 
   public Factory getFabrica() {
     return miFabrica;
   }
+
+	public void setMainframe(MainFrame mf) {
+		mainframe = mf;
+		
+	}
 }
