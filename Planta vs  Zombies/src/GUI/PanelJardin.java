@@ -23,6 +23,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
 
 public class PanelJardin extends JPanel{
 	Gameplay gameplay = null;
@@ -108,7 +109,16 @@ public class PanelJardin extends JPanel{
 	
 	
 	public void terminarJuego() {
-		gameplay.restart();
+		int resp =JOptionPane.showConfirmDialog(null,"Desea intentarlo de nuevo?", "Perdiste", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+		nivel.terminarJuego();
+		if(resp == JOptionPane.YES_OPTION) {
+			gameplay.restart();
+		}
+		else {
+			MainFrame mainframe = new MainFrame();
+			mainframe.setVisible(true);
+		}
+		
 	}
 	
 	public void sacarEntidad(Entidad e) {
