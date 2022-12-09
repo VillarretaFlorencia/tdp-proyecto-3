@@ -1,4 +1,4 @@
-package Logica;
+package Posicion;
 
 public class Posicion {
 
@@ -10,14 +10,6 @@ public class Posicion {
     posY = y;
   }
 
-  public int getX() {
-    return posX;
-  }
-
-  public int getY() {
-    return posY;
-  }
-
   public void setX(int x) {
     posX = x;
   }
@@ -25,4 +17,13 @@ public class Posicion {
   public void setY(int y) {
     posY = y;
   }
+  
+  public int getX() {
+    return posX;
+  }
+
+  public int getY() {
+    return posY;
+  }
+  
 }

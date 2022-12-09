@@ -1,6 +1,6 @@
 package Plantas;
 
-import Logica.EntidadGrafica;
+import Entidades.*;
 
 public class SetaDesporadora extends Planta {
 
@@ -8,7 +8,7 @@ public class SetaDesporadora extends Planta {
     imagen = "/recursos/PuffShroom.gif";
     imagenProyectil = "/recursos/PuffShroom_puff2.png";
     danio = 5;
-    tiempoDeAtaque = 15;
+    tiempoDeAtaque = 4;
     entidadGrafica = new EntidadGrafica(ancho, alto);
   }
 }

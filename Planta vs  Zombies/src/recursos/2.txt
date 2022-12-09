@@ -1,5 +1,5 @@
-nnnddB
-nnddccB
-nnddccbbB
-nnddccbbppB
-nnddccbbppvvB
+ndndB
+ndcndcB
+ndcbndcbB
+ndcbpndcbpB
+ndcbpvndcbpvB

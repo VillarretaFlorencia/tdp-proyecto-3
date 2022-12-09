@@ -1,6 +1,6 @@
 package Plantas;
 
-import Logica.EntidadGrafica;
+import Entidades.*;
 
 public class Nuez extends Planta {
 
@@ -14,6 +14,9 @@ public class Nuez extends Planta {
   }
 
   public void atacar() {
-    if (vida == vidaInicial / 2) imagen = "/recursos/walnut_half_life.gif";
+    if (vida < vidaInicial / 2) {
+    	imagen = "/recursos/walnut_half_life.gif";
+    	entidadGrafica.setImagen (imagen);
+    }
   }
 }

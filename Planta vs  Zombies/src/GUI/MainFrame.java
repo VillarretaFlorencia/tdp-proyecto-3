@@ -1,8 +1,10 @@
 package GUI;
 
 import Logica.Nivel;
+
 import java.awt.CardLayout;
 import java.awt.EventQueue;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
@@ -10,6 +12,7 @@ import javax.swing.*;
 //usaremos CardLayout
 public class MainFrame extends JFrame {
 
+	private boolean gane;
   //identificadores
   static final String START = "Ventana Start";
   static final String GAMEPLAY = "Ventana Gameplay";
@@ -31,10 +34,12 @@ public class MainFrame extends JFrame {
     getContentPane().setLayout(new CardLayout(0, 0));
     this.setBounds(0, 0, 583, 489);
     this.setResizable(false);
+    setIconImage(Toolkit.getDefaultToolkit().getImage(MainFrame.class.getResource("/recursos/icono.jpg")));
     //anadimos las ventanas al frame
     getContentPane().add(panelInicio, START); //agregamos la ventana con el identificador
     getContentPane().add(panelSelector, SELECTOR);
     getContentPane().add(panelGameOver,GAMEOVER);
+    getContentPane().add(panelWin, WINGAME);
 
     //agregamos el action listener del start
     panelInicio
@@ -104,36 +109,51 @@ public class MainFrame extends JFrame {
         }
       );
   }
-
-  public static void main(String[] args) {
-    EventQueue.invokeLater(
-      new Runnable() {
-        public void run() {
-          try {
-            MainFrame mainframe = new MainFrame();
-            mainframe.setVisible(true);
-          } catch (Exception e) {
-            e.printStackTrace();
-          }
-        }
-      }
-    );
+  
+  private void jugar(int nroNivel) {
+	    //nivel.setPanelJardin(panelGameplay.getJardin());
+	    nivel.setGameplay(panelGameplay);
+	    nivel.setMainframe (this);
+	    nivel.iniciarJuego(nroNivel);
+	  }
+  
+  public void terminarJuego(){
+	  if (gane) {
+		  win();
+	  }
+	  else {
+		  gameover();
+	  }
+	  panelGameplay.limpiarJArdin();
   }
   
-  public void gameover() {
+  public void setJuegoGanado(boolean gane) {
+	  this.gane = gane;
+  }
+
+  private void gameover() {
 	  CardLayout c1 = (CardLayout) (getContentPane().getLayout()); //se cambia toma el panel
       c1.show(getContentPane(), GAMEOVER); // y lo cambiamos en el contentPane
   }
   
-  public void win() {
+  private void win() {
+	  System.out.println("ENTRE A WIN");
 	  CardLayout c1 = (CardLayout) (getContentPane().getLayout()); //se cambia toma el panel
       c1.show(getContentPane(), WINGAME); // y lo cambiamos en el contentPane
   }
-
-  public void jugar(int nroNivel) {
-    nivel.setPanelJardin(panelGameplay.getJardin());
-    nivel.setGameplay(panelGameplay);
-    nivel.setMainframe (this);
-    nivel.iniciarJuego(nroNivel);
-  }
+  
+  public static void main(String[] args) {
+	    EventQueue.invokeLater(
+	      new Runnable() {
+	        public void run() {
+	          try {
+	            MainFrame mainframe = new MainFrame();
+	            mainframe.setVisible(true);
+	          } catch (Exception e) {
+	            e.printStackTrace();
+	          }
+	        }
+	      }
+	    );
+	  }
 }

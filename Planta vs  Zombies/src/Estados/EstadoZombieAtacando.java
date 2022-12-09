@@ -1,7 +1,11 @@
 package Estados;
 
 import Zombies.Zombie;
-
+/**
+ * Esta clase describe parte del comportamiento del zombie mientras ataca
+ * 
+ *
+ */
 public class EstadoZombieAtacando extends EstadoZombie {
 
   public EstadoZombieAtacando(Zombie z) {

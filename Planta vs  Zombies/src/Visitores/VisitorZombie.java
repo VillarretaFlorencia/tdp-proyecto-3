@@ -9,30 +9,31 @@ import Zombies.Zombie;
 public class VisitorZombie extends Visitor {
 
   Zombie zombie;
-  Nivel n = Nivel.getNivel();
+  Nivel nivel = Nivel.getNivel();
 
   public VisitorZombie(Zombie z) {
     zombie = z;
   }
 
-  public void visit(Proyectil p) {
-    int daniar = p.getDanio();
+  public void visit(Proyectil proyectil) {
+    int daniar = proyectil.getDanio();
     if (zombie.getVida() > daniar) {
       zombie.recibirDanio(daniar);
     } else {
-      n.matarZombie(zombie);
+      nivel.matarZombie(zombie);
     }
-    n.matarProyectil(p);
+    nivel.matarProyectil(proyectil);
   }
 
-  public void visit(Planta p) {
-    zombie.setEstado(new EstadoZombieAtacando(zombie));
+  public void visit(Planta planta) {
+    
     int daniar = zombie.getDanio();
-    if (p.getVida() <= daniar) {
+    if (planta.getVida() <= daniar) {
       zombie.setEstado(new EstadoZombieNormal(zombie));
-      n.matarPlanta(p);
+      nivel.matarPlanta(planta);
     } else {
-      p.recibirDanio(zombie.getDanio());
+    	zombie.setEstado(new EstadoZombieAtacando(zombie));
+    	planta.recibirDanio(zombie.getDanio());
     }
   }
 }

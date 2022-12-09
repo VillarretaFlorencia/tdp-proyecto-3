@@ -1,6 +1,6 @@
 package Logica;
 
-import AudioMusic.*;
+
 import Conversor.Conversor;
 import Estados.*;
 import Fabrica.*;
@@ -8,69 +8,70 @@ import Fila.*;
 import GUI.*;
 import Hilos.*;
 import Plantas.*;
-import Proyectil.Proyectil;
+import Proyectil.*;
 import Zombies.*;
+import Posicion.*;
 import java.util.Iterator;
 import java.util.LinkedList;
 
 public class Nivel {
 
+  protected int nivelLvl;
+  protected int limiteIzquierdo;
+  protected int limiteDerecho;
   protected int cantSoles;
   protected int valorSol;
-  protected EstadoNivel estado;
-  protected int nivelLvl;
+  protected int cantOleadas;
+  protected boolean terminarJuego;
+  protected int[] precios;
+  protected EstadoNivel miEstado;
   protected Factory miFabrica;
   protected ArregloFilas filas;
   protected LinkedList<LinkedList<Zombie>> oleadas;
-  protected PanelJardin panelJardin;
   protected Gameplay gameplay;
   protected MainFrame mainframe;
-  protected LinkedList<Entidad> entidadesDinamicas;
-  private int[] precios;
-  private boolean terminar;
-  private int cantOleadas;
   Thread hiloGeneral;
   Thread hiloGerneradorOleadas;
   Thread hiloMusica;
   Conversor conversor = Conversor.getConversor();
+  
   private static Nivel nivel = new Nivel();
 
   private Nivel() {
-    cantSoles = 1000;
-    terminar = false;
-  }
-
-  public static Nivel getNivel() {
-    return nivel;
+    terminarJuego = false;
   }
 
   public void iniciarJuego(int numNivel) {
-    if (!terminar) {
+    if (!terminarJuego) {
       nivelLvl = numNivel;
+      limiteIzquierdo = 1;
+      limiteDerecho = 540;
+      cantSoles = 1000;
       filas = new ArregloFilas();
 
       precios = new int[4];
-      precios[2] = precios[1] = 50;
+      precios[0] = 50;
+      precios[1] = 50;
 
       if (numNivel == 1 || numNivel == 2) {
-        estado = new EstadoDia();
+        miEstado = new EstadoDia();
         miFabrica = new FactoryDia();
-        precios[0] = 100;
+        precios[2] = 100;
         precios[3] = 200;
         valorSol = 50;
       }
       if (numNivel == 3 || numNivel == 4) {
-        estado = new EstadoNoche();
+        miEstado = new EstadoNoche();
         miFabrica = new FactoryNoche();
-        precios[0] = 25;
+        precios[2] = 25;
         precios[3] = 75;
         valorSol = 25;
       }
 
       oleadas = LevelReader.getLevelReader().crearOleadas(numNivel);
-      cantOleadas = oleadas.size();
+      //cantOleadas = oleadas.size(); //-1
 
-      HiloZombies lanzaOleadas = new HiloZombies();
+      HiloOleadasZombies lanzaOleadas = new HiloOleadasZombies();
       hiloGerneradorOleadas = new Thread(lanzaOleadas);
       hiloGerneradorOleadas.start();
 
@@ -79,34 +80,74 @@ public class Nivel {
       hiloGeneral = new Thread(general);
       hiloGeneral.start();
       
-      /*AudioPlayer musica = new AudioPlayer();
+      HiloMusica musica = new HiloMusica();
 	  hiloMusica = new Thread (musica);
-	  hiloGeneral.start();*/
+	  hiloMusica.start();
     }
   }
 
+  public void setCantOleadas(int cant) {
+	  cantOleadas = cant;
+	  gameplay.actualizarOleadas(cantOleadas);
+  }
+  
+  public void setGameplay(Gameplay g) {
+    gameplay = g;
+  }
+  
+  public void setMainframe(MainFrame mf) {
+	mainframe = mf;
+  }
+	  
+  public static Nivel getNivel() {
+    return nivel;
+  }
+  
   public int getNivelLVL() {
     return nivelLvl;
   }
-
+  
+  public int getLimiteIzquierdo() {return limiteIzquierdo;}
+  
+  public int getLimiteDerecho() {return limiteDerecho;}
+  
+  public int getSoles() {
+    return cantSoles;
+  }
+  
+  public int getValorSol() {return valorSol;}
+  
+  public boolean getTerminar() {return terminarJuego;}
+  
+  public int[] getPrecios() {
+	return precios;
+  }
+  
+  public Factory getFabrica() {
+    return miFabrica;
+  }
+  
   public ArregloFilas getFilas() {
     return filas;
   }
   
+  public LinkedList<LinkedList<Zombie>> getOleadas() {
+    return (LinkedList<LinkedList<Zombie>>) oleadas.clone();
+  }
+    
+  public int getCantOleadas() {return cantOleadas;}
+  
+  public void actualizarSoles(int valor) {
+	cantSoles += valor;
+    gameplay.actualizarSoles(cantSoles);
+  }
+  
+  
   public void descontarCanOleadas() {
+	  gameplay.actualizarOleadas(cantOleadas);
 	  cantOleadas--;
   }
-
-  public void setZombie(Zombie z) {
-    filas.setZombie(z);
-    gameplay.agregarEntidad(z);
-  }
-
-  public void setProyectil(Proyectil p) {
-    filas.setProyectil(p);
-    gameplay.agregarEntidad(p);
-  }
-
+  
   public void setPlanta(Posicion posicion, int tipoPlanta) {
     Planta planta = null;
     int precio = precios[tipoPlanta - 1];
@@ -114,17 +155,17 @@ public class Nivel {
       switch (tipoPlanta) {
         case 1:
           {
-            planta = miFabrica.createPlantaA();
+            planta = miFabrica.createPlantaGirasol();
             break;
           }
         case 2:
           {
-            planta = miFabrica.createPlantaGirasol();
+            planta = miFabrica.createPlantaNuez();
             break;
           }
         case 3:
           {
-            planta = miFabrica.createPlantaNuez();
+            planta = miFabrica.createPlantaA();
             break;
           }
         case 4:
@@ -137,137 +178,139 @@ public class Nivel {
 
     if (planta != null) {
       planta.setPosicion(posicion);
-      planta.inicializarEntidadGrafica(
-        planta.getImagen(),
-        planta.getPosicion()
-      );
+      planta.inicializarEntidadGrafica(planta.getImagen(), planta.getPosicion());
       filas.setPlanta(planta);
-      cantSoles -= precio;
-      gameplay.modificar(planta); //actualiza el label soles
-      gameplay.actualizarSoles(cantSoles);
+      actualizarSoles(-precio);
+      gameplay.agregarPlanta(planta.getEntidadGrafica());
     }
   }
+  public void setZombie(Zombie zombie) {
+    filas.setZombie(zombie);
+    gameplay.agregarEntidad(zombie.getEntidadGrafica());
+  }
 
+  public void setProyectil(Proyectil proyectil) {
+    filas.setProyectil(proyectil);
+    gameplay.agregarEntidad(proyectil.getEntidadGrafica());
+  }
+
+  public void matarPlanta(Planta planta) {
+    int posicionPlanta = conversor.convertirFila(planta.getPosicion().getY());
+    filas.getFila(posicionPlanta).sacarPlanta(planta);
+    gameplay.sacarPlanta(planta.getEntidadGrafica());
+  }
+	  
+  public void matarZombie(Zombie zombie) {
+    int posicionZombie = conversor.convertirFila(zombie.getPosicion().getY());
+    filas.getFila(posicionZombie).sacarZombie(zombie);
+    gameplay.sacarEntidad(zombie.getEntidadGrafica());
+  }
+
+  public void matarProyectil(Proyectil proyectil) {
+    int posicionProyectil = conversor.convertirFila(proyectil.getPosicion().getY());
+    filas.getFila(posicionProyectil).sacarProyectil(proyectil);
+    gameplay.sacarEntidad(proyectil.getEntidadGrafica());
+  }
+  
+  public void activarDefensa() {
+	  for (int i = 0; i < 6; i++) {
+	      Fila fila = filas.getFila(i);
+	      LinkedList<Planta> copiaPlantas = (LinkedList<Planta>) fila.getPlantas().clone();
+	      if (!copiaPlantas.isEmpty()) {
+	    	  Iterator<Planta> it = copiaPlantas.iterator();
+	    	  while (it.hasNext()) {
+	    		  Planta planta  = it.next();
+	    		  planta.atacar();
+	    	      //gameplay.actualizarEntidad(planta.getEntidadGrafica());
+	    	  }
+	      }
+	  }
+  }
+
+  public void moverZombies() {
+    for (int i = 0; i < 6 && !terminarJuego; i++) {
+      Fila fila = filas.getFila(i);
+      LinkedList<Zombie> copiaZombies = (LinkedList<Zombie>) fila.getZombies().clone();
+      if (!copiaZombies.isEmpty()) {
+        Iterator<Zombie> it = copiaZombies.iterator();
+        while (it.hasNext() && !terminarJuego) { //usar un iterador para cortarlo y no seguir
+          Zombie zombie = it.next();
+          if (zombie.getPosicion().getX() < 1) {
+            terminarJuego = true;
+          } else {
+            zombie.atacar();
+            //gameplay.actualizarEntidad(z.getEntidadGrafica());
+          }
+        }
+      }
+    }
+    if (terminarJuego) {
+    	mainframe.setJuegoGanado(false);
+    	terminarJuego();
+    } else {
+      moverProyectiles();
+    }
+  }
+  
+  public void moverProyectiles() {
+    for (int i = 0; i < 6; i++) {
+      Fila fila = filas.getFila(i);
+      LinkedList<Proyectil> copiaProyectil = (LinkedList<Proyectil>) fila.getProyectiles().clone();
+      for (Proyectil proyectil : copiaProyectil) {
+    	  //if (fila.hayZombies()) {
+    		  proyectil.atacar();
+    		  if (proyectil.getPosicion().getX() > limiteDerecho) {
+    			  matarProyectil(proyectil);
+    		  }
+    		  //gameplay.actualizarEntidad(p.getEntidadGrafica());
+    	  //}
+    	 // else matarProyectil(p);
+      }
+    }
+  }
+  
   public void checkColisiones() {
     for (int i = 0; i < 6; i++) {
       filas.getFila(i).colisiones();
     }
   }
-
-  public void aumentarSoles() {
-    cantSoles += valorSol;
-    gameplay.actualizarSoles(cantSoles);
-  }
-
-  public int getSoles() {
-    return cantSoles;
-  }
-
-  public void matarZombie(Zombie z) {
-    int posZ = conversor.convertirFila(z.getPosicion().getY());
-    filas.getFila(posZ).sacarZombie(z);
-    gameplay.sacarEntidad(z);
-  }
-
-  public void matarProyectil(Proyectil p) {
-    int posP = conversor.convertirFila(p.getPosicion().getY());
-    filas.getFila(posP).sacarProyectil(p);
-    gameplay.sacarEntidad(p);
-  }
-
-  public void matarPlanta(Planta p) {
-    int posP = conversor.convertirFila(p.getPosicion().getY());
-    filas.getFila(posP).sacarPlanta(p);
-    gameplay.sacarPlanta(p);
-  }
-
-  public void setPanelJardin(PanelJardin pj) {
-    panelJardin = pj;
-  }
-
-  public PanelJardin getPanelJardin() {
-    return panelJardin;
-  }
-
-  public void setGameplay(Gameplay g) {
-    gameplay = g;
-  }
-
-  public LinkedList<LinkedList<Zombie>> getOleadas() {
-    return oleadas;
-  }
-
-  public void moverProyectiles() {
-    for (int i = 0; i < 6; i++) {
-      Fila fila = filas.getFila(i);
-      LinkedList<Proyectil> copiaProyectil = (LinkedList<Proyectil>) fila.getProyectiles().clone();
-      for (Proyectil p : copiaProyectil) {
-        p.atacar();
-        gameplay.actualizar(p);
-      }
-    }
-  }
-
-  public void moverZombies() {
-    for (int i = 0; i < 6 && !terminar; i++) {
-      Fila fila = filas.getFila(i);
-      LinkedList<Zombie> copiaZombies = (LinkedList<Zombie>) fila.getZombies() .clone();
-      if (!copiaZombies.isEmpty()) {
-        Iterator<Zombie> it = copiaZombies.iterator();
-        while (it.hasNext() && !terminar) { //usar un iterador para cortarlo y no seguir
-          Zombie z = it.next();
-          if (z.getPosicion().getX() < 10) {
-            terminar = true;
-          } else {
-            z.atacar();
-            gameplay.actualizar(z);
-          }
-        }
-      }
-    }
-    if (terminar) {
-    	mainframe.gameover();
-      terminarJuego();
-    } else {
-      moverProyectiles();
-    }
-  }
-
-  public void activarDefensa() {
-    LinkedList<Planta> todasPlantas = filas.getTodasLasPlantas();
-    for (Planta p : todasPlantas) {
-      p.atacar();
-    }
+  
+  public void superoNivel() {
+	  boolean sinZombies = true;
+	  for (int i = 0; i < 6  && sinZombies; i++) {
+	      Fila fila = filas.getFila(i);
+	      sinZombies = !fila.hayZombies();
+	  }
+	    if (sinZombies && cantOleadas == 1) {
+	    	terminarJuego = true;
+	    	mainframe.setJuegoGanado(true);
+	    	terminarJuego();
+	    }
   }
 
   public void terminarJuego() {
-    for (int i = 0; i < 6; i++) {
-      filas.getFila(i).limpiarFila();
-    }    
+	mainframe.terminarJuego();
     hiloGeneral.stop();
     hiloGerneradorOleadas.stop();
+    for (int i = 0; i < 6; i++) {
+        filas.getFila(i).limpiarFila();
+    }    
     oleadas.clear();
     hiloMusica.stop();
-    panelJardin.terminarJuego();
   }
   
-  public boolean getTerminar() {return terminar;}
   
-  public boolean superoJuego() {
-	    if (!filas.getTodosLosZombies().isEmpty() && cantOleadas == 0) {
-	    	System.out.println("entre a ganar" + terminar);
-	    	terminar = true;
-	    	mainframe.win();
-	    }
-	    return terminar;
-  }
 
-  public Factory getFabrica() {
-    return miFabrica;
-  }
-
-	public void setMainframe(MainFrame mf) {
-		mainframe = mf;
+  
+/*
+	public void actualizarEntidad(EntidadGrafica entidadGrafica) {
+		gameplay.actualizarEntidad (entidadGrafica);
 		
-	}
+	}*/
+/*
+	public void actualizarEntidadGrafica(EntidadGrafica entidadGrafica) {
+	      gameplay.actualizarEntidad(entidadGrafica);
+	}*/
+
+	
 }

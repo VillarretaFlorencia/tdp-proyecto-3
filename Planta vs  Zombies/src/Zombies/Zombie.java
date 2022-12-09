@@ -1,24 +1,35 @@
 package Zombies;
 
 import Estados.EstadoZombie;
-import Logica.Entidad;
 import Visitores.*;
 import java.awt.Rectangle;
+
+import Entidades.*;
 
 public abstract class Zombie extends Entidad {
 
   //Atributos
   protected int vida;
   protected int velocidad;
-  protected EstadoZombie estado;
-  protected Visitor visitor;
+  protected int alto = 80;
+  protected int ancho = 80;
   protected String imagenNormal;
   protected String imagenAtacando;
-
-  protected int alto = 70;
-  protected int ancho = 80;
+  protected EstadoZombie estado;
+  protected Visitor visitor;
 
   //Setters & Getters
+  public void setImagen(String i) {
+    imagen = i;
+  }
+  public void setEstado(EstadoZombie e) {
+    estado = e;
+  }
+  
+  public void setVisitor(Visitor v) {
+    visitor = v;
+  }
+  
   public int getVida() {
     return vida;
   }
@@ -26,23 +37,7 @@ public abstract class Zombie extends Entidad {
   public int getVelocidad() {
     return velocidad;
   }
-
-  public EstadoZombie getEstado() {
-    return estado;
-  }
-
-  public void setEstado(EstadoZombie e) {
-    estado = e;
-  }
-
-  public Visitor getVisitor() {
-    return visitor;
-  }
-
-  public void setVisitor(Visitor v) {
-    visitor = v;
-  }
-
+  
   public String getImagenAtacando() {
     return imagenAtacando;
   }
@@ -51,11 +46,6 @@ public abstract class Zombie extends Entidad {
     return imagenNormal;
   }
 
-  public void setImagen(String i) {
-    imagen = i;
-  }
-
-  //Metodos propios
   public void recibirDanio(int danio) {
     vida -= danio;
   }
@@ -65,11 +55,15 @@ public abstract class Zombie extends Entidad {
   }
 
   public Rectangle getBounds() {
-    return new Rectangle(
-      getPosicion().getX(),
-      getPosicion().getY(),
-      ancho,
-      alto
-    );
+    return new Rectangle(getPosicion().getX()+50, getPosicion().getY(),ancho,alto);
   }
+
+  public EstadoZombie getEstado() {
+    return estado;
+  }
+
+  public Visitor getVisitor() {
+    return visitor;
+  }
+
 }

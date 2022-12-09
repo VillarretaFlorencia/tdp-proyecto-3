@@ -1,6 +1,6 @@
 package Plantas;
 
-import Logica.EntidadGrafica;
+import Entidades.*;
 
 public class HumoSeta extends Planta {
 
@@ -8,7 +8,7 @@ public class HumoSeta extends Planta {
     imagen = "/recursos/FumeShroom.gif";
     imagenProyectil = "/recursos/PuffShroom_puff1.png";
     danio = 2;
-    tiempoDeAtaque = 5;
+    tiempoDeAtaque = 2;
     entidadGrafica = new EntidadGrafica(ancho, alto);
   }
 }

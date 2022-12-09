@@ -1,13 +1,13 @@
 package Zombies;
 
-import Logica.EntidadGrafica;
+import Entidades.*;
 
 public class ZombieBalde extends Zombie {
-
+	
   public ZombieBalde() {
-    vida = 5;
-    velocidad = 6;
-    danio = 1;
+    vida = 12;
+    danio = 4;
+    velocidad = 4;
     imagenNormal = "/recursos/BucketheadZombie.gif";
     imagenAtacando = "/recursos/BucketheadZombieAttack.gif";
     entidadGrafica = new EntidadGrafica(ancho, alto);

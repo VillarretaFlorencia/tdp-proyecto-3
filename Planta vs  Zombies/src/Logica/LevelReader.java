@@ -5,6 +5,7 @@ import Estados.*;
 import Fabrica.Factory;
 import Visitores.VisitorZombie;
 import Zombies.*;
+import Posicion.Posicion;
 import java.io.File;
 import java.util.LinkedList;
 import java.util.Scanner;
@@ -21,69 +22,69 @@ public class LevelReader {
     return lr;
   }
 
-  private Zombie crearZombie(char c) {
-    Factory f = nivel.getFabrica();
-    Zombie z = null;
-    switch (c) {
+  private Zombie crearZombie(char caracter) {
+    Factory fabrica = nivel.getFabrica();
+    Zombie zombie = null;
+    switch (caracter) {
       case 'n':
         {
-          z = f.createZombieNormal();
+          zombie = fabrica.createZombieNormal();
           break;
         }
       case 'd':
         {
-          z = f.createZombiePeriodico();
+          zombie = fabrica.createZombiePeriodico();
           break;
         }
       case 'c':
         {
-          z = f.createZombieCono();
+          zombie = fabrica.createZombieCono();
           break;
         }
       case 'b':
         {
-          z = f.createZombieBalde();
+          zombie = fabrica.createZombieBalde();
           break;
         }
       case 'p':
         {
-          z = f.createZombiePuerta();
+          zombie = fabrica.createZombiePuerta();
           break;
         }
       case 'v':
         {
-          z = f.createZombieVolador();
+          zombie = fabrica.createZombieVolador();
           break;
         }
       case 'B':
         {
-          z = f.createZombieBandera();
+          zombie = fabrica.createZombieBandera();
           break;
         }
     }
     int fila = 5; // y
-    int x = 560;
+    int x = nivel.getLimiteDerecho();
     int yRandom = conversor.convertirPantalla((int) (Math.random() * fila));
-    switch (c) {
+    switch (caracter) {
       case 'v':
         {
-          z.setPosicion(
-            new Posicion((int) (Math.random() * (315 - x) + x), yRandom)
+          zombie.setPosicion(
+            new Posicion((int) (Math.random() * (200 - x) + x), yRandom)
           ); //x,y eje
           break;
         }
       default:
         {
-          z.setPosicion(new Posicion(x, yRandom));
+          zombie.setPosicion(new Posicion(x, yRandom));
 
           break;
         }
     }
 
-    z.setEstado(new EstadoZombieNormal(z));
-    z.setVisitor(new VisitorZombie(z));
-    z.inicializarEntidadGrafica(z.getImagen(), z.getPosicion());
-    return z;
+    zombie.setEstado(new EstadoZombieNormal(zombie));
+    zombie.setVisitor(new VisitorZombie(zombie));
+    zombie.inicializarEntidadGrafica(zombie.getImagen(), zombie.getPosicion());
+    return zombie;
   }
 
   public LinkedList<LinkedList<Zombie>> crearOleadas(int numNivel) {
@@ -95,14 +96,14 @@ public class LevelReader {
     File dirtxt = null;
     for (int i = 0; i < arr.length; i++) {
       if (arr[i].contains("src")) {
-        System.out.println(arr[i]);
+        //System.out.println(arr[i]);
         dirRecursos = new File(arr[i]);
       }
     }
 
     File[] arr2 = dirRecursos.listFiles();
     for (int i = 0; i < arr2.length; i++) {
-      System.out.println(arr2[i].getAbsolutePath());
+      //System.out.println(arr2[i].getAbsolutePath());
       if (arr2[i].getAbsolutePath().contains("recursos")) {
         dirtxt = new File(arr2[i].getAbsolutePath());
       }
@@ -130,7 +131,7 @@ public class LevelReader {
         oleadas.add(oleada);
         //empezamos por la fila de mas arriba del texto
         String linea = scan.nextLine();
-        System.out.println(linea);
+        //System.out.println(linea);
         //leemos cada linea de izquierda a dercha
         for (int i = 0; i < linea.length(); i++) {
           oleada.addLast(crearZombie(linea.charAt(i)));
@@ -141,7 +142,7 @@ public class LevelReader {
       e.printStackTrace();
     }
 
-    System.out.println("tamano oleadas" + oleadas.size());
+   // System.out.println("tamano oleadas" + oleadas.size());
     return oleadas;
   }
 }

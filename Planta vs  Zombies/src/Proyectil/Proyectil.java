@@ -1,25 +1,27 @@
 package Proyectil;
 
-import Logica.Entidad;
-import Logica.EntidadGrafica;
-import Logica.Posicion;
+import Posicion.Posicion;
 import Visitores.Visitor;
 import java.awt.Rectangle;
 
+import Entidades.*;
+
 public class Proyectil extends Entidad {
-
-  int ancho;
-  protected int alto = ancho = 28;
-
+	int velocidad;
+	
   public Proyectil(Posicion pos, String i, int d) {
+	danio = d;
+	velocidad = 15;
+	alto = ancho = 28;
     posicion = pos;
-    danio = d;
     imagen = i;
     entidadGrafica = new EntidadGrafica(ancho, alto);
   }
+  
+  public void recibirDanio(int d) {}
 
   public void atacar() {
-    posicion.setX(posicion.getX() + 10);
+	posicion.setX(posicion.getX() + velocidad);
     entidadGrafica.setPosicion(posicion.getX(), posicion.getY());
   }
 
@@ -31,9 +33,6 @@ public class Proyectil extends Entidad {
     v.visit(this);
   }
 
-  @Override
-  public void recibirDanio(int d) {
-    // TODO Auto-generated method stub
-
-  }
+  
+  
 }

@@ -1,8 +1,12 @@
 package Estados;
 
-import Logica.Posicion;
+import Posicion.Posicion;
 import Zombies.Zombie;
-
+/**
+ * Esta clase describe parte del comportamiento del zombie mientras ataca
+ * 
+ *
+ */
 public class EstadoZombieNormal extends EstadoZombie {
 
   public EstadoZombieNormal(Zombie z) {

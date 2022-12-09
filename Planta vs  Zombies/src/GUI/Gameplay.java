@@ -1,261 +1,286 @@
 package GUI;
 
 import Conversor.Conversor;
-import Logica.Entidad;
 import Logica.Nivel;
-import Logica.Posicion;
-import Plantas.Planta;
+import Entidades.*;
+
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
+import javax.swing.border.TitledBorder;
 
 public class Gameplay extends JLayeredPane implements ActionListener {
 
-  private PanelJardin panelJardin;
-  private Nivel nivel = Nivel.getNivel();
-  private JButton btnPlanta1;
-  private JButton btnPlanta2;
-  private JButton btnPlanta3;
-  private JButton btnPlanta4;
-  JLabel[][] label = new JLabel[9][6];
-  private JLabel lblGameN;
-  JLabel cantSoles;
-  private int numeroNivel = 0;
-  Conversor conversor = Conversor.getConversor();
+	private Conversor conversor = Conversor.getConversor();
+	private Nivel nivel = Nivel.getNivel();
+	private PanelJardin panelJardin;
+	private JLabel lblMadera;
+	private JLabel lblSol;
+	private JLabel lblCantSoles;
+	private JLabel lblOleadas;
+	private JButton btnGirasol;
+	private JButton btnNuez;
+	private JButton btnPlantaA;
+	private JButton btnPlantaB;
+	private JLabel lblGame;
+	JProgressBar bpOleadas;
+	//JSlider bpOleadas;
+	//private JLabel lblGameN;
+	
+	
 
-  public Gameplay(int i) {
-    numeroNivel = i;
-    setBackground(new Color(0, 204, 0));
-    JLabel lblGame = new JLabel("");
-    lblGame.setBounds(-3, -8, 575, 394);
+	private boolean [][] hayPlanta = new boolean[9][6];
+  
+	public Gameplay(int i) {
+		
+	    int ancho = 58;
+	    int alto = 23;
+	    int ubicacionY = 405;
+	    
+	    setBackground(new Color(0, 204, 0));
+	    setVisible(true);
+	    setLayout(null);
+	    
+	    lblMadera = new JLabel();
+	    lblMadera.setIcon(new ImageIcon(Gameplay.class.getResource("/recursos/madera.jpg")));
+	    lblMadera.setBounds(-13, 379, 581, 71);
+	    add(lblMadera);
+	    
+	    lblSol = new JLabel();
+	    ImageIcon reStartIcon = new ImageIcon(Gameplay.class.getResource("/recursos/suns.png"));
+	    Image reStart = reStartIcon.getImage();
+	    reStart = reStart.getScaledInstance(70, 30, java.awt.Image.SCALE_SMOOTH);
+	    reStartIcon = new ImageIcon(reStart);
+	    lblSol.setIcon(reStartIcon);
+	    lblSol.setBounds(462, 400, 70, 31);
+	    add(lblSol, Integer.valueOf(1));
+	    
+	    lblCantSoles = new JLabel(String.valueOf(nivel.getSoles()));
+	    lblCantSoles.setBounds(490, 405, 46, 14);
+	    add(lblCantSoles, Integer.valueOf(2));
+	    
+	   lblOleadas = new JLabel("Oleadas: ");
+	    //ImageIcon cartelIcon = new ImageIcon(Gameplay.class.getResource("/recursos/oleadas1.jfif"));
+	    //Image cartel = cartelIcon.getImage();
+	   // cartel= cartel.getScaledInstance(50, 70, java.awt.Image.SCALE_SMOOTH);
+	    //cartelIcon = new ImageIcon(cartel);
+	   // lblOleadas.setIcon(cartelIcon);
+	    Font myFont = new Font ( "Chiller", Font.PLAIN, 25);
+	    lblOleadas.setFont (myFont);
+	    lblOleadas.setForeground(Color. yellow);
+	    lblOleadas.setBounds(320, 385, 150, 60);
+	    add(lblOleadas, Integer.valueOf(1));
+	
+	    
+	    
+	    //add( new BarraDeCarga(),BorderLayout.CENTER );
+	    
+	    panelJardin = new PanelJardin();
+	    panelJardin.setGameplay(this);
+	    panelJardin.setBounds(-1, 1, 570, 380);
+	    panelJardin.setOpaque(false);
+	    add(panelJardin, Integer.valueOf(1));
+	
+	    //Nivel.getNivel().setPanelJardin(panelJardin);
+	    
+	    //creacion y configuracion de los botones y el Fondo
+	    	    
+	    btnGirasol = new JButton();
+	    ImageIcon iconGirasol = new ImageIcon(this.getClass().getResource("/recursos/sunflowerCard.png"));
+	    Image imgGirasol = iconGirasol.getImage();
+	    imgGirasol = imgGirasol.getScaledInstance(ancho, alto, java.awt.Image.SCALE_SMOOTH);
+	    iconGirasol = new ImageIcon(imgGirasol);
+	    btnGirasol.setIcon(iconGirasol);
+	    //btnGirasol.setOpaque(false);
+	    //btnGirasol.setContentAreaFilled(false);
+	    //btnGirasol.setBorderPainted(false);
+	    btnGirasol.setBounds(10, ubicacionY, ancho, alto);
+	    add(btnGirasol, Integer.valueOf(1));
+	    btnGirasol.addActionListener(this);
+	
+	    btnNuez = new JButton();
+	    ImageIcon iconNuez = new ImageIcon(this.getClass().getResource("/recursos/wallnutCard.png"));
+	    Image imgNuez = iconNuez.getImage();
+	    imgNuez = imgNuez.getScaledInstance(ancho, alto, java.awt.Image.SCALE_SMOOTH);
+	    iconNuez = new ImageIcon(imgNuez);
+	    btnNuez.setIcon(iconNuez);
+	    btnNuez.setBounds(80, ubicacionY, ancho, alto);
+	    add(btnNuez, Integer.valueOf(1));
+	    btnNuez.addActionListener(this);
+	    
+	    btnPlantaA = new JButton();
+	    ImageIcon iconPlantaA;
+	    btnPlantaA.setBounds(150, ubicacionY, ancho, alto);
+	    
+	    btnPlantaB = new JButton();
+	    ImageIcon iconPlantaB;
+	    btnPlantaB.setBounds(220, ubicacionY, ancho, alto);
+	    
+	    ImageIcon imagenFondo;
+	    
+	    if (i <= 2) {
+	      iconPlantaA = new ImageIcon(this.getClass().getResource("/recursos/peashooterCard.png"));
+	      iconPlantaB = new ImageIcon(this.getClass().getResource("/recursos/repeaterCard.png"));
+	      imagenFondo = new ImageIcon(this.getClass().getResource("/recursos/mainBG.png"));
+	    } else {
+	      
+	      iconPlantaA = new ImageIcon(this.getClass().getResource("/recursos/PuffShroomCard.jpeg"));
+	      iconPlantaB = new ImageIcon(this.getClass().getResource("/recursos/FumeShroomCard.jpeg"));
+	      imagenFondo = new ImageIcon(Gameplay.class.getResource("/recursos/mainBG_N.png"));
+	    }
+	    
+	    /*lblGameN = new JLabel();
+	    lblGameN.setIcon(new ImageIcon(Gameplay.class.getResource("/recursos/mainBG_N.png")));
+	    lblGameN.setBounds(-3, -8, 575, 394);
+	    lblGameN.setVisible(false);
+	    add(lblGameN, Integer.valueOf(0));
+	    lblGameN.setVisible(true);*/
+	    
+	    
+	
+	    Image imgPlantaA = iconPlantaA.getImage();
+	    imgPlantaA = imgPlantaA.getScaledInstance(ancho, alto, java.awt.Image.SCALE_SMOOTH);
+	    iconPlantaA = new ImageIcon(imgPlantaA);
+	    btnPlantaA.setIcon(iconPlantaA); 
+	    add(btnPlantaA, Integer.valueOf(1));
+	    btnPlantaA.addActionListener(this);
+	    
+	    Image imgPlantaB = iconPlantaB.getImage();
+	    imgPlantaB = imgPlantaB.getScaledInstance(ancho, alto, java.awt.Image.SCALE_SMOOTH);
+	    iconPlantaB = new ImageIcon(imgPlantaB);
+	    btnPlantaB.setIcon(iconPlantaB);
+	    add(btnPlantaB, Integer.valueOf(1));
+	    btnPlantaB.addActionListener(this);
+	    
+	    lblGame = new JLabel();
+	    lblGame.setIcon(imagenFondo);
+	    lblGame.setBounds(-3, -8, 575, 394);
+	    lblGame.setVisible(true);
+	    add(lblGame, Integer.valueOf(0));
+	    
+	    
+	
+	    for (int x = 0; x < 9; x++) {
+	        for (int y = 0; y < 6; y++) {
+	        	hayPlanta [x][y] = false;
+	        }
+	    }
+	}
+	
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnGirasol) {
+			panelJardin.setSeleccion(1);
+	    }
 
-    ImageIcon imagenInicio = new ImageIcon(
-      this.getClass().getResource("/recursos/mainBG.png")
-    );
-    Image start = imagenInicio.getImage();
-    setBounds(0, 0, 570, 450);
-    start = start.getScaledInstance(570, 380, java.awt.Image.SCALE_SMOOTH);
-    imagenInicio = new ImageIcon(start);
+	    if (e.getSource() == btnNuez) {
+	    	panelJardin.setSeleccion(2);
+	    }
+	    
+		if (e.getSource() == btnPlantaA) {
+			panelJardin.setSeleccion(3);
+		}
 
-    lblGameN = new JLabel("");
-    lblGameN.setIcon(
-      new ImageIcon(Gameplay.class.getResource("/recursos/mainBG_N.png"))
-    );
-    lblGameN.setBounds(-3, -8, 575, 394);
-    lblGame.setVisible(false);
-    lblGameN.setVisible(false);
-    lblGame.setIcon(imagenInicio);
-    lblGameN.setVisible(true);
-    setVisible(true);
-    setLayout(null);
-    if (i <= 2) {
-      add(lblGame, Integer.valueOf(0));
-      lblGame.setVisible(true);
-    } else {
-      lblGameN.setVisible(true);
-      add(lblGameN, Integer.valueOf(0));
-    }
+	    if (e.getSource() == btnPlantaB) {
+	    	panelJardin.setSeleccion(4);
+	    }
+	}
+	
+	public void controlarCompraDePlantas() {
+		int [] precios = nivel.getPrecios();
+	  		
+		if (precios[0] <= Integer.parseInt(lblCantSoles.getText())) {
+			  btnGirasol.setEnabled(true);
+		}else btnGirasol.setEnabled(false);		
+		  
+		if (precios[1] <= Integer.parseInt(lblCantSoles.getText())) {
+			btnNuez.setEnabled(true);
+		}else btnNuez.setEnabled(false);
+		
+		if (precios[2] <= Integer.parseInt(lblCantSoles.getText())) {
+			btnPlantaA.setEnabled(true);
+		}else btnPlantaA.setEnabled(false);
+		  
+		if (precios[3] <= Integer.parseInt(lblCantSoles.getText())) {
+			btnPlantaB.setEnabled(true);
+		}else btnPlantaB.setEnabled(false); 
+	}
+	
+	public void actualizarSoles(int cantidad) {
+	    lblCantSoles.setText(String.valueOf(cantidad));
+	    controlarCompraDePlantas();
+	}
+	
+	public void actualizarOleadas(int cantidad) {
+		if (cantidad == 1) {
+			lblOleadas.setForeground(Color.green);
+			lblOleadas.setText("¡Ultima oleada!");
+		
+		}else 
+			lblOleadas.setText("Oleadas: " + cantidad);
+	}
+	
+  
+	public boolean hayPlanta(int x, int y) {
+	    int nuevoX = conversor.convertirFila(x);
+	    int nuevoY = conversor.convertirFila(y);
+	    //label[x][y].setIcon(eg.getLabel().getIcon());
+	    return hayPlanta[nuevoX][nuevoY];
+	}
 
-    JLabel suns = new JLabel("");
-    ImageIcon reStartIcon = new ImageIcon(
-      Gameplay.class.getResource("/recursos/suns.png")
-    );
-    Image reStart = reStartIcon.getImage();
-    reStart = reStart.getScaledInstance(70, 30, java.awt.Image.SCALE_SMOOTH);
-    reStartIcon = new ImageIcon(reStart);
-    suns.setIcon(reStartIcon);
-    suns.setBounds(462, 408, 70, 31);
-    add(suns, Integer.valueOf(1));
+	public void agregarPlanta(EntidadGrafica eg) {
+	    int x = conversor.convertirFila(eg.getPosicion().getX());
+	    int y = conversor.convertirFila(eg.getPosicion().getY());
+	    //label[x][y].setIcon(eg.getLabel().getIcon());
+	    hayPlanta[x][y] = true;
+	    agregarEntidad(eg);
+	}
+  
+  /*public void actualizarPlanta(EntidadGrafica eg) {
+	  	Posicion posicion = eg.getPosicion();
+	    int x = conversor.convertirFila(posicion.getX());
+	    int y = conversor.convertirFila(posicion.getY());
+	    label[x][y].setIcon(eg.getLabel().getIcon());
+	}*/
+	public void sacarPlanta(EntidadGrafica eg) {
+	    int y = conversor.convertirFila(eg.getPosicion().getY());
+	    int x = conversor.convertirFila(eg.getPosicion().getX());
+	    hayPlanta[x][y] = false;
+	    sacarEntidad(eg);
+	}
 
-    panelJardin = new PanelJardin();
-    panelJardin.setGameplay(this);
-    panelJardin.setBounds(-1, 1, 570, 380);
-    panelJardin.setOpaque(false);
-    add(panelJardin, Integer.valueOf(1));
+	public void agregarEntidad(EntidadGrafica eg) { //agrega la entidad al panel
+	    JLabel labelAgregado = eg.getLabel();
+	    labelAgregado.setVisible(true);
+	    this.add(labelAgregado, Integer.valueOf(6));
+	}
 
-    Nivel.getNivel().setPanelJardin(panelJardin);
-
-    btnPlanta1 = new JButton("Planta1");
-    ImageIcon iconLanzaG;
-    if (i <= 2) {
-      iconLanzaG =
-        new ImageIcon(
-          this.getClass().getResource("/recursos/peashooterCard.png")
-        );
-    } else {
-      iconLanzaG =
-        new ImageIcon(
-          this.getClass().getResource("/recursos/PuffShroomCard.jpeg")
-        );
-    }
-    Image imgLanzaG = iconLanzaG.getImage();
-    imgLanzaG =
-      imgLanzaG.getScaledInstance(57, 23, java.awt.Image.SCALE_SMOOTH);
-    iconLanzaG = new ImageIcon(imgLanzaG);
-    btnPlanta1.setIcon(iconLanzaG);
-    btnPlanta1.setBounds(8, 416, 57, 23);
-    btnPlanta1.setOpaque(false);
-    btnPlanta1.setContentAreaFilled(false);
-    btnPlanta1.setBorderPainted(false);
-    add(btnPlanta1, Integer.valueOf(1));
-    btnPlanta1.addActionListener(this);
-
-    btnPlanta2 = new JButton("Planta2");
-    ImageIcon iconLanzaGDoble;
-    iconLanzaGDoble =
-      new ImageIcon(this.getClass().getResource("/recursos/sunflowerCard.png"));
-    Image imgLanzaGDoble = iconLanzaGDoble.getImage();
-    imgLanzaGDoble =
-      imgLanzaGDoble.getScaledInstance(57, 23, java.awt.Image.SCALE_SMOOTH);
-    iconLanzaGDoble = new ImageIcon(imgLanzaGDoble);
-    btnPlanta2.setIcon(iconLanzaGDoble);
-    btnPlanta2.setOpaque(false);
-    btnPlanta2.setContentAreaFilled(false);
-    btnPlanta2.setBorderPainted(false);
-    btnPlanta2.setBounds(142, 416, 57, 23);
-    add(btnPlanta2, Integer.valueOf(1));
-    btnPlanta2.addActionListener(this);
-
-    btnPlanta3 = new JButton("Planta3");
-    ImageIcon iconGirasol = new ImageIcon(
-      this.getClass().getResource("/recursos/wallnutCard.png")
-    );
-    Image imgGirasol = iconGirasol.getImage();
-    imgGirasol =
-      imgGirasol.getScaledInstance(57, 23, java.awt.Image.SCALE_SMOOTH);
-    iconGirasol = new ImageIcon(imgGirasol);
-    btnPlanta3.setIcon(iconGirasol);
-    btnPlanta3.setBounds(211, 416, 57, 23);
-    btnPlanta3.setOpaque(false);
-    btnPlanta3.setContentAreaFilled(false);
-    btnPlanta3.setBorderPainted(false);
-    add(btnPlanta3, Integer.valueOf(1));
-    btnPlanta3.addActionListener(this);
-
-    btnPlanta4 = new JButton("Planta4");
-    ImageIcon iconNuez;
-
-    if (i <= 2) {
-      iconNuez =
-        new ImageIcon(
-          this.getClass().getResource("/recursos/repeaterCard.png")
-        );
-    } else {
-      iconNuez =
-        new ImageIcon(
-          this.getClass().getResource("/recursos/FumeShroomCard.jpeg")
-        );
-    }
-    Image imgNuez = iconNuez.getImage();
-    imgNuez = imgNuez.getScaledInstance(57, 23, java.awt.Image.SCALE_SMOOTH);
-    iconNuez = new ImageIcon(imgNuez);
-    btnPlanta4.setIcon(iconNuez);
-    btnPlanta4.setBounds(75, 416, 57, 23);
-    btnPlanta4.setOpaque(false);
-    btnPlanta4.setContentAreaFilled(false);
-    btnPlanta4.setBorderPainted(false);
-    add(btnPlanta4, Integer.valueOf(1));
-    btnPlanta4.addActionListener(this);
-
-    JLabel madera = new JLabel("");
-    madera.setIcon(
-      new ImageIcon(Gameplay.class.getResource("/recursos/madera.jpg"))
-    );
-    madera.setBounds(-13, 379, 581, 71);
-    add(madera);
-
-    cantSoles = new JLabel(String.valueOf(nivel.getSoles()));
-    cantSoles.setBounds(490, 415, 46, 14);
-    add(cantSoles, Integer.valueOf(2));
-
-    for (int x = 0; x < 9; x++) {
-      for (int y = 0; y < 6; y++) {
-        label[x][y] = new JLabel("");
-        label[x][y].setBounds(
-            (conversor.convertirPantalla(x)),
-            (conversor.convertirPantalla(y)) - 10,
-            70,
-            72
-          );
-        label[x][y].setVisible(true);
-        add(label[x][y], Integer.valueOf(1));
-      }
-    }
-  }
-
-  public void modificar(Planta p) {
-    int x = conversor.convertirFila(p.getPosicion().getX());
-    int y = conversor.convertirFila(p.getPosicion().getY());
-    label[x][y].setIcon(p.getEntidadGrafica().getLabel().getIcon());
-  }
-
-  public void agregarEntidad(Entidad e) { //agrega la entidad al panel
-    JLabel labelAgregado = e.getEntidadGrafica().getLabel();
-    labelAgregado.setVisible(true);
-    this.add(labelAgregado, Integer.valueOf(6));
-  }
-
-  public void sacarEntidad(Entidad e) { //saca la entidad de dentro del panel
-    JLabel labelSacar = e.getEntidadGrafica().getLabel();
-    labelSacar.setVisible(false);
-    this.remove(labelSacar);
-  }
-
-  public void actualizarSoles(int cantidad) {
-    cantSoles.setText(String.valueOf(cantidad));
-  }
-
-  public void restart() {
-    panelJardin.restart();
-    for (int x = 0; x < label.length; x++) {
-      for (int y = 0; y < label[0].length; y++) {
-        label[x][y].setIcon(null);
-      }
-    }
-  }
-
-  public PanelJardin getJardin() {
-    return panelJardin;
-  }
-
-  public void actionPerformed(ActionEvent e) {
-    if (e.getSource() == btnPlanta1) {
-      panelJardin.setSeleccion(1);
-    }
-
-    if (e.getSource() == btnPlanta2) {
-      panelJardin.setSeleccion(2);
-    }
-
-    if (e.getSource() == btnPlanta3) {
-      panelJardin.setSeleccion(3);
-    }
-
-    if (e.getSource() == btnPlanta4) {
-      panelJardin.setSeleccion(4);
-    }
-  }
-
-  public void sacarPlanta(Planta p) {
-    int y = conversor.convertirFila(p.getPosicion().getY());
-    int x = conversor.convertirFila(p.getPosicion().getX());
-    label[x][y].setVisible(false);
-    label[x][y] = null;
-  }
-
-  public void actualizar(Entidad e) {
-    Posicion posicion = e.getPosicion();
-    int alto = e.getEntidadGrafica().getAlto();
-    int ancho = e.getEntidadGrafica().getAncho();
-    e
-      .getEntidadGrafica()
-      .getLabel()
-      .setLocation(posicion.getX(), posicion.getY());
-    e
-      .getEntidadGrafica()
-      .getLabel()
-      .setBounds(posicion.getX(), posicion.getY() - 20, ancho, alto);
-  }
+  /*public void actualizarEntidad(EntidadGrafica eg) {
+	    Posicion posicion = eg.getPosicion();
+	   // int alto = eg.getAlto();
+	   // int ancho = eg.getAncho();
+	    eg.getLabel().setLocation(posicion.getX(), posicion.getY());
+	   //eg.getLabel().setBounds(posicion.getX(), posicion.getY() - 20, ancho, alto);//esto corregir que cada uno tenga sus setBounds
+  }*/
+	
+	public void sacarEntidad(EntidadGrafica eg) { //saca la entidad de dentro del panel
+	    JLabel labelSacar = eg.getLabel();
+	    labelSacar.setVisible(false);
+	    this.remove(labelSacar);
+	}
+	
+	public PanelJardin getJardin() {
+		return panelJardin;
+	}
+	
+	public void limpiarJArdin() {
+		panelJardin.restart();
+	}
+  
 }
+
+

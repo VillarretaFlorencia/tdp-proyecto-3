@@ -5,35 +5,32 @@ import Zombies.Zombie;
 import java.util.LinkedList;
 
 //vienen predeterminados desde un txt solo los manejo de aca
-public class HiloZombies implements Runnable {
+public class HiloOleadasZombies implements Runnable {
 
   //Atributos de instancia
   public LinkedList<LinkedList<Zombie>> oleadas;
   protected Nivel nivel = Nivel.getNivel();
   protected boolean terminar;
-  Thread hc;
   int dormir;
 
-  public HiloZombies() {
+  public HiloOleadasZombies() {
     oleadas = nivel.getOleadas();
-    dormir = 200;
+    dormir = 3000;
     terminar = nivel.getTerminar();
   }
 
   public void run() {
-    while (!terminar || !oleadas.isEmpty()) {
+    while (!terminar && !oleadas.isEmpty()) {
       try {
+    	nivel.setCantOleadas(oleadas.size());
         LinkedList<Zombie> oleada = oleadas.getFirst();
         while (!oleada.isEmpty()) {
-          System.out.println("oleada no vacia");
-          System.out.println(oleada.size());
-          Zombie zombie = oleada.remove(); // primer zombie de la lista
+          Zombie zombie = oleada.remove(); 
           nivel.setZombie(zombie);
           Thread.sleep(dormir);
         }
-
         oleadas.remove(oleadas.getFirst());
-        Thread.sleep(60000);
+        Thread.sleep(10000);
       } catch (InterruptedException e) {
         e.printStackTrace();
       }

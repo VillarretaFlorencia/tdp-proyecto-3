@@ -1,6 +1,6 @@
 package Plantas;
 
-import Logica.EntidadGrafica;
+import Entidades.*;
 
 public class LanzaGuisantes extends Planta {
 
@@ -8,7 +8,7 @@ public class LanzaGuisantes extends Planta {
     imagen = "/recursos/peashooter.gif";
     imagenProyectil = "/recursos/pea.png";
     danio = 1;
-    tiempoDeAtaque = 10;
+    tiempoDeAtaque = 6;
     entidadGrafica = new EntidadGrafica(ancho, alto);
   }
 }
